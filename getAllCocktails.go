@@ -8,9 +8,9 @@ import (
 )
 
 type cocktail struct {
-	ID       uuid.UUID `json:"cocktail_id"`
-	Data_url string    `json: "data_url"`
-	Name     string    `json:"name"`
+	ID      uuid.UUID `json:"cocktail_id"`
+	DataUrl string    `json: "data_url"`
+	Name    string    `json:"name"`
 }
 
 func (cfg *apiConfig) getAllCocktails(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +25,7 @@ func (cfg *apiConfig) getAllCocktails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for _, cockt := range cocs {
-		cocktails = append(cocktails, cocktail{ID: cockt.ID.UUID, Data_url: cockt.DataUrl.String, Name: cockt.Name})
+		cocktails = append(cocktails, cocktail{ID: cockt.ID.UUID, DataUrl: cockt.DataUrl.String, Name: cockt.Name})
 	}
 
 	out, err := json.Marshal(cocktails)

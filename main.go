@@ -43,6 +43,7 @@ func main() {
 	serveMux.Handle("POST /api/order", http.HandlerFunc(cfg.sendOrder))
 	serveMux.Handle("POST /api/cancelOrder", http.HandlerFunc(cfg.cancelOrder))
 	// serveMux.Handle("GET /api/myOrders", http.HandlerFunc(cfg.getAllCocktails))
-	// serveMux.Handle("GET /api/currentOrders", http.HandlerFunc(cfg.getAllCocktails))
+	serveMux.Handle("GET /api/currentOrders", http.HandlerFunc(cfg.getCurrentOrders))
+	serveMux.Handle("PUT /api/FinishOrder", http.HandlerFunc(cfg.finishOrder))
 	server.ListenAndServe()
 }
