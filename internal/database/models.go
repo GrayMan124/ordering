@@ -19,6 +19,19 @@ type Cocktail struct {
 	BaseSpirit   string
 	CocktailType string
 	Name         string
+	ImgName      sql.NullString
+	Type         sql.NullString
+	IsNew        bool
+}
+
+type Ingredient struct {
+	ID         uuid.UUID
+	Name       string
+	Quantity   int32
+	Abv        float32
+	CreatedAt  time.Time
+	ModifiedAt sql.NullTime
+	CocktailID uuid.UUID
 }
 
 type Order struct {

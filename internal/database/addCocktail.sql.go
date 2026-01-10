@@ -11,32 +11,37 @@ import (
 )
 
 const addCocktail = `-- name: AddCocktail :one
-INSERT INTO cocktails (id, created_at, updated_at, data_url, base_spirit, cocktail_type, name) 
+INSERT INTO cocktails (id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new) 
 VALUES (
 	gen_random_uuid(),
 	now(),
 	now(),
+	Null,
 	$1,
 	$2,
 	$3,
-	$4
+	$4,
+	$5,
+	false
 )
-RETURNING id, created_at, updated_at, data_url, base_spirit, cocktail_type, name
+RETURNING id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new
 `
 
 type AddCocktailParams struct {
-	DataUrl      sql.NullString
 	BaseSpirit   string
 	CocktailType string
 	Name         string
+	ImgName      sql.NullString
+	Type         sql.NullString
 }
 
 func (q *Queries) AddCocktail(ctx context.Context, arg AddCocktailParams) (Cocktail, error) {
 	row := q.db.QueryRowContext(ctx, addCocktail,
-		arg.DataUrl,
 		arg.BaseSpirit,
 		arg.CocktailType,
 		arg.Name,
+		arg.ImgName,
+		arg.Type,
 	)
 	var i Cocktail
 	err := row.Scan(
@@ -47,6 +52,9 @@ func (q *Queries) AddCocktail(ctx context.Context, arg AddCocktailParams) (Cockt
 		&i.BaseSpirit,
 		&i.CocktailType,
 		&i.Name,
+		&i.ImgName,
+		&i.Type,
+		&i.IsNew,
 	)
 	return i, err
 }

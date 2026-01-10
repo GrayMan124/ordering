@@ -1,0 +1,32 @@
+package ui
+
+import "github.com/GrayMan124/ordering/internal/database"
+
+templ ExpandCocktail(cocktailName string, ingredients []database.Ingredient) {
+	<div class="bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner">
+		<div class="flex justify-between items-start mb-4">
+			<h2 class="text-2xl font-bold text-white">{ cocktailName }</h2>
+			<button hx-get="/cockatils" hx-target="#menu-area" class="text-sm text-slate-400 hover:text-white">Close</button>
+		</div>
+		<div class="mb-6 p-4 bg-slate-800 rounded-lg">
+			<h3 class="text-xs font-semibold text-slate-500 uppercase mb-2">Ingredients</h3>
+			<ul class="list-disc list-inside text-slate-300 space-y-1">
+				for _, ingr := range ingredients {
+					<li>{ ingr.Name }</li>
+				}
+			</ul>
+		</div>
+		<form hx-post="/order" hx-target="#main-area" class="space-y-4">
+			<input type="hidden" name="cocktail" value={ cocktailName }/>
+			<label for="userName" class="block text-sm font-medium text-slate-300 mb-1">名前を入れてください</label>
+			<input
+				type="text"
+				name="customerName"
+				class="w-full px-3 py-2 bg-slate-200 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+			/>
+			<button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
+				注文する
+			</button>
+		</form>
+	</div>
+}

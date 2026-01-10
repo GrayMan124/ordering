@@ -1,0 +1,82 @@
+package ui
+
+import (
+	"fmt"
+	"github.com/google/uuid"
+	"strings"
+)
+
+type cocktail struct {
+	ID      uuid.UUID
+	DataUrl string
+	Name    string
+	ImgName string
+}
+
+templ GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) {
+	<div class="space-y-3 animate-fade-in">
+		<h2 class="text-xl font-bold text-slate-100 leading-tight text-center">フィルタ</h2>
+		<div class="space-y-3 animate-fade-in items-center justify-between gap-6 py-6 px-6 bg-gray-700 hover:bg-gray-800 rounded-xl cursor-pointer transition-all boarder boarder-slate-300 hover:border-indigo-200">
+			<div class="space-y-3 animate-fade-in flex flex-wrap gap-1 items-start justify-between">
+				<h2 class="text-lg font-bold text-slate-100 leading-tight [writing-mode:vertical-rl] [text-orientation:upright] tracking-widest whitespace-nowrap">醸造酒</h2>
+				for _, filter := range []string{ "Whisky", "Gin", "Tequila", "Rum", "Vodka", "Brandy" } {
+					<span
+						class="space-y-3 animate-fade-in"
+						hx-get={ fmt.Sprintf("/cockatils?filter=%s", filter) }
+						hx-target="#menu-area"
+					>
+						<img
+							src={ fmt.Sprintf("/assets/type_%s.png", strings.ToLower(filter)) }
+							class="w-24 h-32 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0"
+						/>
+					</span>
+				}
+			</div>
+			<div class="space-y-3 animate-fade-in flex flex-wrap gap-1 items-start justify-between">
+				<h2
+					class="text-lg font-bold text-slate-100 leading-tight [writing-mode:vertical-rl] [text-orientation:upright] tracking-widest whitespace-nowrap"
+				>
+					スタイル
+				</h2>
+				for _, cock_type := range []string{ "Highball", "Martini", "Sour", "Rocks", "Shot", "Sunrise" } {
+					<span
+						class="space-y-3 animate-fade-in"
+						hx-get={ fmt.Sprintf("/cockatils?style=%s", cock_type) }
+						hx-target="#menu-area"
+					>
+						<img
+							src={ fmt.Sprintf("/assets/type_%s.png", strings.ToLower(cock_type)) }
+							class="w-24 h-32 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0"
+						/>
+					</span>
+				}
+			</div>
+		</div>
+		for idx, cock := range cockList {
+			<div>
+				<div
+					hx-get={ fmt.Sprintf("/cock?cocktail=%s", cock) }
+					hx-target="this"
+					hx-swap="outerHTML"
+					class="group relative flex items-center justify-between gap-6 py-6 px-6 bg-slate-700 hover:bg-slate-600 rounded-xl cursor-pointer transition-all boarder boarder-slate-600 hover:border-indigo-400"
+				>
+					<img
+						src={ fmt.Sprintf("/assets/drink_%s.png", ImgNames[idx]) }
+						alt={ cock }
+						class="w-20 h-30 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0"
+					/>
+					<div class="flex-grow">
+						<h2 class="text-lg font-bold text-slate-100 leading-tight">
+							{ cock }
+							if is_new[idx] {
+								<span class="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white tracking-wide shadow-sm">新品</span>
+							}
+						</h2>
+						<p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Base spirit: { baseSpirits[idx] }</p>
+					</div>
+					<span class="text-slate-500 group-hover:text-white">-></span>
+				</div>
+			</div>
+		}
+	</div>
+}

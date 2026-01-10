@@ -1,1 +1,5 @@
 .env
+connect-db.sh
+db.env
+notes.txt
+out

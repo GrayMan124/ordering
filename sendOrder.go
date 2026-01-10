@@ -2,41 +2,31 @@ package main
 
 import (
 	// "database/sql"
-	"encoding/json"
+	// "encoding/json"
 	"github.com/GrayMan124/ordering/internal/database"
-	"github.com/google/uuid"
+	"github.com/GrayMan124/ordering/internal/ui"
+	// "github.com/google/uuid"
 	"log"
 	"net/http"
 )
 
-type createOrder struct {
-	CocktailID uuid.UUID `json:"cocktail_id"`
-	OrderedBy  string    `json:"ordered_by"`
-}
-
 func (cfg *apiConfig) sendOrder(w http.ResponseWriter, r *http.Request) {
-	var order createOrder
-	decoder := json.NewDecoder(r.Body)
-	if err := decoder.Decode(&order); err != nil {
-		log.Printf("Failed to decode order request")
+	cocktail_name := r.FormValue("cocktail")
+	user_name := r.FormValue("customerName")
+	cocktail, err := cfg.Queries.GetCocktail(r.Context(), cocktail_name)
+	if err != nil {
 		w.WriteHeader(500)
+		log.Printf("Failed to retrieve data from DB: %v", err)
 		return
 	}
-	createdOrder, err := cfg.Queries.SendOrder(r.Context(), database.SendOrderParams{CocktailID: order.CocktailID,
-		OrderedBy: order.OrderedBy})
+	_, err = cfg.Queries.SendOrder(r.Context(), database.SendOrderParams{CocktailID: cocktail.ID.UUID,
+		OrderedBy: user_name})
 	if err != nil {
 		w.WriteHeader(500)
 		log.Printf("Failed to send order into DB: %v", err)
 		return
 	}
-
-	out, err := json.Marshal(createdOrder)
-	if err != nil {
-		log.Printf("Failed to marshal the order for response")
-		w.WriteHeader(500)
-		return
-	}
-	w.Write(out)
 	w.WriteHeader(201)
-	w.Header().Set("Content-Type", "application/json")
+	component := ui.OrderSend()
+	component.Render(r.Context(), w)
 }

@@ -7,17 +7,15 @@ package database
 
 import (
 	"context"
-
-	"github.com/google/uuid"
 )
 
 const getCocktail = `-- name: GetCocktail :one
-SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name FROM cocktails
-WHERE id = $1
+SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new FROM cocktails
+WHERE name = $1
 `
 
-func (q *Queries) GetCocktail(ctx context.Context, id uuid.NullUUID) (Cocktail, error) {
-	row := q.db.QueryRowContext(ctx, getCocktail, id)
+func (q *Queries) GetCocktail(ctx context.Context, name string) (Cocktail, error) {
+	row := q.db.QueryRowContext(ctx, getCocktail, name)
 	var i Cocktail
 	err := row.Scan(
 		&i.ID,
@@ -27,6 +25,9 @@ func (q *Queries) GetCocktail(ctx context.Context, id uuid.NullUUID) (Cocktail, 
 		&i.BaseSpirit,
 		&i.CocktailType,
 		&i.Name,
+		&i.ImgName,
+		&i.Type,
+		&i.IsNew,
 	)
 	return i, err
 }
