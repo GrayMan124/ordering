@@ -54,6 +54,7 @@ func main() {
 	serveMux.Handle("POST /api/addCocktail", http.HandlerFunc(cfg.addCocktails))
 	serveMux.Handle("POST /api/addRecipie", http.HandlerFunc(cfg.addRecipieFunc))
 	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.getCocktailAPI))
+	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(GetRecipieForm))
 	serveMux.Handle("POST /order", http.HandlerFunc(cfg.sendOrder))
 	//TODO:
 	// serveMux.Handle("POST /api/cancelOrder", http.HandlerFunc(cfg.cancelOrder))
