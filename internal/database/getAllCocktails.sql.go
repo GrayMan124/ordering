@@ -11,6 +11,7 @@ import (
 
 const getAllCock = `-- name: GetAllCock :many
 SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new FROM cocktails
+order by name
 `
 
 func (q *Queries) GetAllCock(ctx context.Context) ([]Cocktail, error) {

@@ -27,7 +27,7 @@ func (cfg *apiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request
 		return
 	}
 	log.Printf("Got: %v cocktail\nFound: %v records", cockName, checkCocktails)
-	baseSpirit := r.FormValue("baseSpirit")
+	baseSpirit := r.FormValue("BaseSpirit")
 	cocktailImg := r.FormValue("CocktailIMG")
 	cocktailType := r.FormValue("CocktailType")
 

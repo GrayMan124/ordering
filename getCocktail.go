@@ -11,7 +11,6 @@ func (cfg *apiConfig) getCocktailAPI(w http.ResponseWriter, r *http.Request) {
 	var ingredients []database.Ingredient
 	var err error
 	cockName := r.URL.Query().Get("cocktail")
-	log.Printf("Got request for: %s", cockName)
 	ingredients, err = cfg.Queries.GetRecipie(r.Context(), cockName)
 	if err != nil {
 		log.Printf("Failed to retrieve cocktail data ")
