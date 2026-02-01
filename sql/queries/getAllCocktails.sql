@@ -1,3 +1,3 @@
 -- name: GetAllCock :many
 SELECT * FROM cocktails
-order by name;
+order by is_new desc, name;
