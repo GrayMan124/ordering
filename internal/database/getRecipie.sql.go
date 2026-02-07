@@ -10,7 +10,7 @@ import (
 )
 
 const getRecipie = `-- name: GetRecipie :many
-SELECT ing.id, ing.name, ing.quantity, ing.abv, ing.created_at, ing.modified_at, ing.cocktail_id 
+SELECT ing.id, ing.name, ing.abv, ing.is_available, ing.created_at, ing.modified_at 
 FROM ingredients ing  
 INNER JOIN cocktails cock on cock.ID = ing.cocktail_ID
 WHERE $1 = cock.Name
@@ -28,11 +28,10 @@ func (q *Queries) GetRecipie(ctx context.Context, name string) ([]Ingredient, er
 		if err := rows.Scan(
 			&i.ID,
 			&i.Name,
-			&i.Quantity,
 			&i.Abv,
+			&i.IsAvailable,
 			&i.CreatedAt,
 			&i.ModifiedAt,
-			&i.CocktailID,
 		); err != nil {
 			return nil, err
 		}

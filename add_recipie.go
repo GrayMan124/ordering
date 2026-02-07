@@ -13,6 +13,7 @@ type SendRecipie struct {
 	Name        string    `json:"name"`
 	Quantity    int32     `json:"quantity"`
 	Abv         float32   `json:"abv"`
+	Unit        string    `json:"unit"`
 	Cockatil_id uuid.UUID `json:"cocktail_id"`
 }
 

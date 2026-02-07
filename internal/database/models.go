@@ -24,14 +24,20 @@ type Cocktail struct {
 	IsNew        bool
 }
 
+type GooseDbVersion struct {
+	ID        int32
+	VersionID int64
+	IsApplied bool
+	Tstamp    time.Time
+}
+
 type Ingredient struct {
-	ID         uuid.UUID
-	Name       string
-	Quantity   int32
-	Abv        float32
-	CreatedAt  time.Time
-	ModifiedAt sql.NullTime
-	CocktailID uuid.UUID
+	ID          uuid.UUID
+	Name        string
+	Abv         float32
+	IsAvailable bool
+	CreatedAt   time.Time
+	ModifiedAt  sql.NullTime
 }
 
 type Order struct {
@@ -42,4 +48,13 @@ type Order struct {
 	OrderedBy  string
 	CanceledAt sql.NullTime
 	Finished   sql.NullBool
+}
+
+type Recipy struct {
+	CocktailID   uuid.UUID
+	IngredientID uuid.UUID
+	Amount       int32
+	Unit         string
+	CreatedAt    time.Time
+	ModifiedAt   sql.NullTime
 }
