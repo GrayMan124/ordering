@@ -2,18 +2,18 @@ package ui
 
 import (
 	"fmt"
-	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/google/uuid"
 )
 
-type Recipie struct {
-	Cocktail    string
-	Ingredients []database.Ingredient
-	OrderId     uuid.UUID
-	OrderedBy   string
+type OrderStruct struct {
+	Cocktail   string
+	ingrAmount map[string]int
+	ingrUnit   map[string]int
+	OrderId    uuid.UUID
+	OrderedBy  string
 }
 
-templ Orders(orders []Recipie) {
+templ Orders(orders []OrderStruct) {
 	if len(orders) == 0 {
 		<div class="col-span-full text-center text-stone-500 py-10">
 			No Active orders
