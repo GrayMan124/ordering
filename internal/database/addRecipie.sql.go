@@ -43,11 +43,9 @@ func (q *Queries) AddRecipie(ctx context.Context, arg AddRecipieParams) (Ingredi
 	err := row.Scan(
 		&i.ID,
 		&i.Name,
-		&i.Quantity,
 		&i.Abv,
 		&i.CreatedAt,
 		&i.ModifiedAt,
-		&i.CocktailID,
 	)
 	return i, err
 }

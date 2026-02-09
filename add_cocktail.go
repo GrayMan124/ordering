@@ -4,7 +4,7 @@ import (
 	// "database/sql"
 	"database/sql"
 	"encoding/json"
-	"fmt"
+	// "fmt"
 	"log"
 	"net/http"
 	"slices"
@@ -72,7 +72,22 @@ func (cfg *apiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request
 	return ingrMap, nil
 }
 
-func (cfg *apiConfig) addCocktails(w http.ResponseWriter, r *http.Request) {
+func (cfg *apiConfig) addRecipie(cocktail database.Cocktail, ingredients []Ingredient, ingredientMap map[string]uuid.UUID, r *http.Request) error {
+	for _, ingr := range ingredients {
+		_, err := cfg.Queries.AddRecipIngr(r.Context(), database.AddRecipIngrParams{
+			CocktailID:   cocktail.ID.UUID,
+			IngredientID: ingredientMap[ingr.Name],
+			Amount:       ingr.Amount,
+			Unit:         ingr.Unit,
+		})
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (cfg *apiConfig) addCocktail(w http.ResponseWriter, r *http.Request) {
 	var cocktail SendCocktail
 
 	decoder := json.NewDecoder(r.Body)
@@ -95,7 +110,19 @@ func (cfg *apiConfig) addCocktails(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Failed to insert cocktail into DB: %v", err)
 		return
 	}
-
+	ingrMap, err := cfg.getIngredientsId(cocktail.Ingredients, r)
+	if err != nil {
+		log.Printf("Failed to retrieve the ingredient Ids: %v", err)
+		w.WriteHeader(500)
+		return
+	}
+	//Add all the ingredients into the db
+	err = cfg.addRecipie(created_cocktail, cocktail.Ingredients, ingrMap, r)
+	if err != nil {
+		log.Printf("Failed to add parts of recipie into recipies: %v", err)
+		w.WriteHeader(500)
+		return
+	}
 	output_cocktail := ReturnCocktail{Name: created_cocktail.Name, ID: created_cocktail.ID.UUID}
 
 	out, err := json.Marshal(output_cocktail)
