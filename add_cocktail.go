@@ -34,7 +34,7 @@ type ReturnCocktail struct {
 	ID   uuid.UUID `json:"uuid"`
 }
 
-func (cfg *apiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request) ([]uuid.UUID, error) {
+func (cfg *apiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request) (map[string]uuid.UUID, error) {
 
 	ingrNames := make([]string, len(ingredients))
 	for idx, ingr := range ingredients {
@@ -44,18 +44,32 @@ func (cfg *apiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request
 	if err != nil {
 		return nil, err
 	}
-	if len(ingrQuery) < len(ingrNames) {
-		var ingrInDB []string
-		for _, ingrQ := range ingrQuery {
-			ingrInDB = append(ingrInDB, ingrQ.Name)
-		}
-		for _, ingrName := range ingrNames {
-			if slices.Contains(ingrInDB, ingrName) {
-				continue
+	ingrQueryNames := make([]string, len(ingrQuery))
+	for idx, ingrQ := range ingrQuery {
+		ingrQueryNames[idx] = ingrQ.Name
+	}
+	ingrMap := make(map[string]uuid.UUID, len(ingrNames))
+	for _, ingr := range ingredients {
+		if slices.Contains(ingrQueryNames, ingr.Name) {
+			for _, ingrQ := range ingrQuery {
+				if ingrQ.Name == ingr.Name {
+					ingrMap[ingr.Name] = ingrQ.ID
+					break
+				}
 			}
-			//Add the ingredient
+		} else {
+			ingrNew, err := cfg.Queries.AddIngredient(r.Context(), database.AddIngredientParams{
+				Name: ingr.Name,
+				Abv:  ingr.ABV,
+			})
+			if err != nil {
+				return nil, err
+			}
+			ingrMap[ingr.Name] = ingrNew.ID
+			continue
 		}
 	}
+	return ingrMap, nil
 }
 
 func (cfg *apiConfig) addCocktails(w http.ResponseWriter, r *http.Request) {
