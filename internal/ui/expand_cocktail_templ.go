@@ -8,9 +8,7 @@ package ui
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import "github.com/GrayMan124/ordering/internal/database"
-
-func ExpandCocktail(cocktailName string, ingredients []database.Ingredient) templ.Component {
+func ExpandCocktail(cocktailName string, ingredients []string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -38,7 +36,7 @@ func ExpandCocktail(cocktailName string, ingredients []database.Ingredient) temp
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(cocktailName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 8, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 6, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -54,9 +52,9 @@ func ExpandCocktail(cocktailName string, ingredients []database.Ingredient) temp
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
-			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(ingr.Name)
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(ingr)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 15, Col: 20}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 13, Col: 15}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -74,7 +72,7 @@ func ExpandCocktail(cocktailName string, ingredients []database.Ingredient) temp
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(cocktailName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 20, Col: 60}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 18, Col: 60}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {

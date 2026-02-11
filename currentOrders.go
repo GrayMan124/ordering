@@ -2,36 +2,35 @@ package main
 
 import (
 	"github.com/GrayMan124/ordering/internal/ui"
-	"github.com/google/uuid"
+	// "github.com/google/uuid"
 	"log"
 	"net/http"
 )
 
 func (cfg *apiConfig) getCurrentOrders(w http.ResponseWriter, r *http.Request) {
-	var orders []ui.Recipie
-	ordersDB, err := cfg.Queries.GetCurrentOrders(r.Context())
+	var orders []ui.OrderStruct
+	ordersDB, err := cfg.Queries.GetFullOrders(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktails data ")
 		w.WriteHeader(500)
 		return
 	}
+
 	for _, ord := range ordersDB {
-		cocktailId := ord.CocktailID
-		cocktailFull, err := cfg.Queries.GetCocktailName(r.Context(), uuid.NullUUID{UUID: cocktailId, Valid: true})
-		if err != nil {
-			w.WriteHeader(500)
-			log.Printf("Failed to get Cocktail name: %v", err)
-			return
-		}
-		ingr, err := cfg.Queries.GetRecipie(r.Context(), cocktailFull.Name)
+		ingrs, err := cfg.Queries.GetFullRecipie(r.Context(), ord.CocktailID)
+
 		if err != nil {
 			w.WriteHeader(500)
 			log.Printf("Failed to get recipie: %v", err)
 			return
 		}
-		orders = append(orders, ui.Recipie{
-			Cocktail:    cocktailFull.Name,
-			Ingredients: ingr,
+		var uiIngrs []ui.RecipeIngr
+		for _, ingr := range ingrs {
+			uiIngrs = append(uiIngrs, ui.RecipeIngr{Name: ingr.Name.String, Amount: int(ingr.Amount), Unit: ingr.Unit})
+		}
+		orders = append(orders, ui.OrderStruct{
+			Cocktail:    ord.Name.String,
+			Ingredients: uiIngrs,
 			OrderId:     ord.ID,
 			OrderedBy:   ord.OrderedBy})
 	}

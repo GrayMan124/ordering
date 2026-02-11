@@ -10,18 +10,23 @@ import templruntime "github.com/a-h/templ/runtime"
 
 import (
 	"fmt"
-	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/google/uuid"
 )
 
-type Recipie struct {
+type RecipeIngr struct {
+	Name   string
+	Amount int
+	Unit   string
+}
+
+type OrderStruct struct {
 	Cocktail    string
-	Ingredients []database.Ingredient
+	Ingredients []RecipeIngr
 	OrderId     uuid.UUID
 	OrderedBy   string
 }
 
-func Orders(orders []Recipie) templ.Component {
+func Orders(orders []OrderStruct) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -48,7 +53,7 @@ func Orders(orders []Recipie) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		for idx, recipie := range orders {
+		for idx, recipe := range orders {
 			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div id=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
@@ -56,7 +61,7 @@ func Orders(orders []Recipie) templ.Component {
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("order-%v", idx))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 24, Col: 36}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 29, Col: 36}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
@@ -69,7 +74,7 @@ func Orders(orders []Recipie) templ.Component {
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprint(idx + 1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 29, Col: 91}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 34, Col: 91}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
@@ -80,9 +85,9 @@ func Orders(orders []Recipie) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
-			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(recipie.Cocktail)
+			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(recipe.Cocktail)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 32, Col: 73}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 37, Col: 72}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -93,9 +98,9 @@ func Orders(orders []Recipie) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
-			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(recipie.OrderedBy)
+			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(recipe.OrderedBy)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 33, Col: 93}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 38, Col: 92}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -105,7 +110,7 @@ func Orders(orders []Recipie) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			for _, ingr := range recipie.Ingredients {
+			for _, ingr := range recipe.Ingredients {
 				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<li class=\"flex justify-between items-center text-sm border-b border-stone-100 pb-1 last:border-0\"><span class=\"font-bold text-stone-800\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
@@ -113,7 +118,7 @@ func Orders(orders []Recipie) templ.Component {
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(ingr.Name)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 41, Col: 57}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 46, Col: 57}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
@@ -124,9 +129,9 @@ func Orders(orders []Recipie) templ.Component {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var7 string
-				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%v ml", ingr.Quantity))
+				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%v ml", ingr.Amount))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 42, Col: 106}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 47, Col: 104}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 				if templ_7745c5c3_Err != nil {
@@ -144,7 +149,7 @@ func Orders(orders []Recipie) templ.Component {
 			var templ_7745c5c3_Var8 string
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("#order-%v", idx))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 48, Col: 73}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 53, Col: 73}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
@@ -155,9 +160,9 @@ func Orders(orders []Recipie) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var9 string
-			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(recipie.OrderId.String())
+			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(recipe.OrderId.String())
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 50, Col: 73}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 55, Col: 72}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -168,9 +173,9 @@ func Orders(orders []Recipie) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var10 string
-			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(recipie.Cocktail)
+			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(recipe.Cocktail)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 51, Col: 70}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 56, Col: 69}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
@@ -181,9 +186,9 @@ func Orders(orders []Recipie) templ.Component {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var11 string
-			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(recipie.OrderedBy)
+			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(recipe.OrderedBy)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 52, Col: 68}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 57, Col: 67}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -226,7 +231,7 @@ func FinishOrder(cocktail, orderedBy string) templ.Component {
 		var templ_7745c5c3_Var13 string
 		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(cocktail)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 69, Col: 86}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 74, Col: 86}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 		if templ_7745c5c3_Err != nil {
@@ -239,7 +244,7 @@ func FinishOrder(cocktail, orderedBy string) templ.Component {
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(orderedBy)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 70, Col: 76}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 75, Col: 76}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {

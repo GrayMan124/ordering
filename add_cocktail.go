@@ -131,7 +131,7 @@ func (cfg *apiConfig) addCocktail(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(500)
 		return
 	}
-	w.Write(out)
 	w.WriteHeader(201)
+	w.Write(out)
 	w.Header().Set("Content-Type", "application/json")
 }

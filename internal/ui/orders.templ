@@ -5,12 +5,17 @@ import (
 	"github.com/google/uuid"
 )
 
+type RecipeIngr struct {
+	Name   string
+	Amount int
+	Unit   string
+}
+
 type OrderStruct struct {
-	Cocktail   string
-	ingrAmount map[string]int
-	ingrUnit   map[string]int
-	OrderId    uuid.UUID
-	OrderedBy  string
+	Cocktail    string
+	Ingredients []RecipeIngr
+	OrderId     uuid.UUID
+	OrderedBy   string
 }
 
 templ Orders(orders []OrderStruct) {
@@ -19,7 +24,7 @@ templ Orders(orders []OrderStruct) {
 			No Active orders
 		</div>
 	}
-	for idx, recipie := range orders {
+	for idx, recipe := range orders {
 		<div
 			id={ fmt.Sprintf("order-%v", idx) }
 			class="bg-white border-l-8 border-amber-500 shadow-md flex flex-col justify-between h-full"
@@ -29,17 +34,17 @@ templ Orders(orders []OrderStruct) {
 					<span class="text-xs font-bold text-stone-400 uppercase">Ticket #{ fmt.Sprint(idx +1 ) }</span>
 					<span class="text-xs font-bold text-stone-600 uppercase">Pending...</span>
 				</div>
-				<h2 class="text-2xl font-bold text-stone-900 mt-1">{ recipie.Cocktail }</h2>
-				<p class="text-sm text-stone-600 mt-1">Quest: <span class="font-bold">{ recipie.OrderedBy }</span></p>
+				<h2 class="text-2xl font-bold text-stone-900 mt-1">{ recipe.Cocktail }</h2>
+				<p class="text-sm text-stone-600 mt-1">Quest: <span class="font-bold">{ recipe.OrderedBy }</span></p>
 			</div>
 			<div class="p-4 flex-grow">
 				<ul class="space-y-2">
-					for _, ingr := range recipie.Ingredients {
+					for _, ingr := range recipe.Ingredients {
 						<li
 							class="flex justify-between items-center text-sm border-b border-stone-100 pb-1 last:border-0"
 						>
 							<span class="font-bold text-stone-800">{ ingr.Name }</span>
-							<span class="bg-stone-200 px-2 py-0.5 rounded text-stone-700">{ fmt.Sprintf("%v ml", ingr.Quantity) }</span>
+							<span class="bg-stone-200 px-2 py-0.5 rounded text-stone-700">{ fmt.Sprintf("%v ml", ingr.Amount) }</span>
 						</li>
 					}
 				</ul>
@@ -47,9 +52,9 @@ templ Orders(orders []OrderStruct) {
 			<div class="p-4 bg-stone-100 border-t border-stone-200">
 				<form hx-put="/finishOrder" hx-target={ fmt.Sprintf("#order-%v", idx) }>
 					//<form hx-put="/finishOrder" hx-target="this" hx-swap="outerHTML">
-					<input type="hidden" name="orderId" value={ recipie.OrderId.String() }/>
-					<input type="hidden" name="CocktailName" value={ recipie.Cocktail }/>
-					<input type="hidden" name="OrderedBy" value={ recipie.OrderedBy }/>
+					<input type="hidden" name="orderId" value={ recipe.OrderId.String() }/>
+					<input type="hidden" name="CocktailName" value={ recipe.Cocktail }/>
+					<input type="hidden" name="OrderedBy" value={ recipe.OrderedBy }/>
 					<button
 						type="submit"
 						class="w-full bg-emerald-600 hover:bg-emerlad-700 text-white font-bold py-3 uppercase tracking-wider text-sm shadow-sm transition-all active:translate-y-1"

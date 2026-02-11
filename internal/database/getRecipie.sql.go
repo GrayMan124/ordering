@@ -7,35 +7,31 @@ package database
 
 import (
 	"context"
+	"database/sql"
 )
 
 const getRecipie = `-- name: GetRecipie :many
-SELECT ing.id, ing.name, ing.abv, ing.is_available, ing.created_at, ing.modified_at 
-FROM ingredients ing  
-INNER JOIN cocktails cock on cock.ID = ing.cocktail_ID
-WHERE $1 = cock.Name
+select ingr.name
+from cocktails cock
+left join recipies rec on rec.cocktail_id = cock.id
+left join ingredients ingr on ingr.id = rec.ingredient_id
+where cock.name = $1 
+and ingr.id is not null
 `
 
-func (q *Queries) GetRecipie(ctx context.Context, name string) ([]Ingredient, error) {
+func (q *Queries) GetRecipie(ctx context.Context, name string) ([]sql.NullString, error) {
 	rows, err := q.db.QueryContext(ctx, getRecipie, name)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Ingredient
+	var items []sql.NullString
 	for rows.Next() {
-		var i Ingredient
-		if err := rows.Scan(
-			&i.ID,
-			&i.Name,
-			&i.Abv,
-			&i.IsAvailable,
-			&i.CreatedAt,
-			&i.ModifiedAt,
-		); err != nil {
+		var name sql.NullString
+		if err := rows.Scan(&name); err != nil {
 			return nil, err
 		}
-		items = append(items, i)
+		items = append(items, name)
 	}
 	if err := rows.Close(); err != nil {
 		return nil, err

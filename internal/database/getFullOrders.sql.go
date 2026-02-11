@@ -18,12 +18,9 @@ SELECT  ord.id,
 	ord.ordered_by,
 	ord.created_at,
 	ord.cocktail_id,
-	ing.id,
-	ing.name,
-	ing.quantity,
-	ing.abv     
+	cock.name
 FROM orders ord 
-LEFT OUTER JOIN ingredients ing on ing.cocktail_id = ord.cocktail_id
+LEFT OUTER JOIN cocktails cock on cock.id = ord.cocktail_id
 WHERE ord.canceled_at is null
 and ord.finished = false
 `
@@ -33,10 +30,7 @@ type GetFullOrdersRow struct {
 	OrderedBy  string
 	CreatedAt  time.Time
 	CocktailID uuid.UUID
-	ID_2       uuid.NullUUID
 	Name       sql.NullString
-	Quantity   sql.NullInt32
-	Abv        sql.NullFloat64
 }
 
 func (q *Queries) GetFullOrders(ctx context.Context) ([]GetFullOrdersRow, error) {
@@ -53,10 +47,7 @@ func (q *Queries) GetFullOrders(ctx context.Context) ([]GetFullOrdersRow, error)
 			&i.OrderedBy,
 			&i.CreatedAt,
 			&i.CocktailID,
-			&i.ID_2,
 			&i.Name,
-			&i.Quantity,
-			&i.Abv,
 		); err != nil {
 			return nil, err
 		}
