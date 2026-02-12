@@ -1,16 +1,13 @@
-package main
+package server
 
 import (
-	// "database/sql"
 	"database/sql"
 	"encoding/json"
-	// "fmt"
+	"github.com/GrayMan124/ordering/internal/database"
+	"github.com/google/uuid"
 	"log"
 	"net/http"
 	"slices"
-
-	"github.com/GrayMan124/ordering/internal/database"
-	"github.com/google/uuid"
 )
 
 type Ingredient struct {
@@ -34,7 +31,7 @@ type ReturnCocktail struct {
 	ID   uuid.UUID `json:"uuid"`
 }
 
-func (cfg *apiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request) (map[string]uuid.UUID, error) {
+func (cfg *ApiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request) (map[string]uuid.UUID, error) {
 
 	ingrNames := make([]string, len(ingredients))
 	for idx, ingr := range ingredients {
@@ -72,7 +69,7 @@ func (cfg *apiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request
 	return ingrMap, nil
 }
 
-func (cfg *apiConfig) addRecipie(cocktail database.Cocktail, ingredients []Ingredient, ingredientMap map[string]uuid.UUID, r *http.Request) error {
+func (cfg *ApiConfig) addRecipie(cocktail database.Cocktail, ingredients []Ingredient, ingredientMap map[string]uuid.UUID, r *http.Request) error {
 	for _, ingr := range ingredients {
 		_, err := cfg.Queries.AddRecipIngr(r.Context(), database.AddRecipIngrParams{
 			CocktailID:   cocktail.ID.UUID,
@@ -87,7 +84,7 @@ func (cfg *apiConfig) addRecipie(cocktail database.Cocktail, ingredients []Ingre
 	return nil
 }
 
-func (cfg *apiConfig) addCocktail(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) AddCocktail(w http.ResponseWriter, r *http.Request) {
 	var cocktail SendCocktail
 
 	decoder := json.NewDecoder(r.Body)

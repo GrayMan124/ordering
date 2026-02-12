@@ -1,9 +1,6 @@
-package main
+package server
 
 import (
-	// "database/sql"
-	// "github.com/GrayMan124/ordering/internal/ui"
-	// "github.com/google/uuid"
 	"database/sql"
 	"fmt"
 	"log"
@@ -13,7 +10,7 @@ import (
 	"github.com/GrayMan124/ordering/internal/database"
 )
 
-func (cfg *apiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request) {
 	cockName := r.FormValue("cocktailName")
 	checkCocktails, err := cfg.Queries.CheckCocktail(r.Context(), cockName)
 	if err != nil {

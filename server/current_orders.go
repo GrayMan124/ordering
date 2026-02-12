@@ -1,13 +1,12 @@
-package main
+package server
 
 import (
 	"github.com/GrayMan124/ordering/internal/ui"
-	// "github.com/google/uuid"
 	"log"
 	"net/http"
 )
 
-func (cfg *apiConfig) getCurrentOrders(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) GetCurrentOrders(w http.ResponseWriter, r *http.Request) {
 	var orders []ui.OrderStruct
 	ordersDB, err := cfg.Queries.GetFullOrders(r.Context())
 	if err != nil {

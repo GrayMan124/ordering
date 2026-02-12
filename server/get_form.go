@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"log"
@@ -8,7 +8,7 @@ import (
 	"github.com/GrayMan124/ordering/internal/ui"
 )
 
-func (cfg *apiConfig) GetRecipieForm(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) GetRecipieForm(w http.ResponseWriter, r *http.Request) {
 	num_ingredients := r.URL.Query().Get("num")
 	var numIngr int
 	if num_ingredients == "" {

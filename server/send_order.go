@@ -1,16 +1,13 @@
-package main
+package server
 
 import (
-	// "database/sql"
-	// "encoding/json"
 	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/GrayMan124/ordering/internal/ui"
-	// "github.com/google/uuid"
 	"log"
 	"net/http"
 )
 
-func (cfg *apiConfig) sendOrder(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) SendOrder(w http.ResponseWriter, r *http.Request) {
 	cocktail_name := r.FormValue("cocktail")
 	user_name := r.FormValue("customerName")
 	cocktail, err := cfg.Queries.GetCocktail(r.Context(), cocktail_name)

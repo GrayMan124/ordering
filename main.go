@@ -2,19 +2,17 @@ package main
 
 import (
 	"database/sql"
-	"github.com/GrayMan124/ordering/internal/database"
-	"github.com/GrayMan124/ordering/internal/ui"
-	"github.com/joho/godotenv"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/GrayMan124/ordering/internal/database"
+	"github.com/GrayMan124/ordering/internal/ui"
+	"github.com/GrayMan124/ordering/server"
+	"github.com/joho/godotenv"
+
+	_ "github.com/lib/pq"
 )
-
-import _ "github.com/lib/pq"
-
-type apiConfig struct {
-	Queries *database.Queries
-}
 
 func HandleApp(w http.ResponseWriter, r *http.Request) {
 	component := ui.Index()
@@ -38,7 +36,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to ping DB: %v", err)
 	}
-	cfg := apiConfig{Queries: dbQueries}
+	cfg := server.ApiConfig{Queries: dbQueries}
 	serveMux := http.NewServeMux()
 	server := http.Server{
 		Handler: serveMux,
@@ -50,17 +48,17 @@ func main() {
 	serveMux.Handle("/assets/", strip)
 	serveMux.Handle("/", http.HandlerFunc(HandleApp))
 	serveMux.Handle("/bar", http.HandlerFunc(HandleBar))
-	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.getAllCocktails))
+	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.GetAllCocktails))
+	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.GetCocktailData))
 	serveMux.Handle("GET /leaderboard", http.HandlerFunc(cfg.LeaderBoardAPI))
-	serveMux.Handle("POST /api/addCocktail", http.HandlerFunc(cfg.addCocktail))
-	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.getCocktailAPI))
-	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(cfg.GetRecipieForm))
+	serveMux.Handle("POST /api/addCocktail", http.HandlerFunc(cfg.AddCocktail))
 	serveMux.Handle("POST /AddCocktail", http.HandlerFunc(cfg.AddCocktailFromData))
-	serveMux.Handle("POST /order", http.HandlerFunc(cfg.sendOrder))
+	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(cfg.GetRecipieForm))
+	serveMux.Handle("POST /order", http.HandlerFunc(cfg.SendOrder))
+	serveMux.Handle("GET /currentOrders", http.HandlerFunc(cfg.GetCurrentOrders))
+	serveMux.Handle("PUT /finishOrder", http.HandlerFunc(cfg.FinishOrder))
 	//TODO:
 	// serveMux.Handle("POST /api/cancelOrder", http.HandlerFunc(cfg.cancelOrder))
 	// serveMux.Handle("GET /api/myOrders", http.HandlerFunc(cfg.getAllCocktails))
-	serveMux.Handle("GET /currentOrders", http.HandlerFunc(cfg.getCurrentOrders))
-	serveMux.Handle("PUT /finishOrder", http.HandlerFunc(cfg.finishOrder))
 	server.ListenAndServe()
 }

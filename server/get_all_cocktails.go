@@ -1,9 +1,8 @@
-package main
+package server
 
 import (
 	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/GrayMan124/ordering/internal/ui"
-	// "github.com/a-h/templ"
 	"log"
 	"net/http"
 
@@ -17,7 +16,7 @@ type cocktail struct {
 	BaseSpirit string    `json:"base_spirit"`
 }
 
-func (cfg *apiConfig) getAllCocktails(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) GetAllCocktails(w http.ResponseWriter, r *http.Request) {
 	cocs, err := cfg.Queries.GetAllCock(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktails data ")

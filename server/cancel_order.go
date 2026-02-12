@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	// "database/sql"
@@ -12,7 +12,7 @@ type Cancellation struct {
 	OrderID uuid.UUID `json:"order_id"`
 }
 
-func (cfg *apiConfig) cancelOrder(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) CancelOrder(w http.ResponseWriter, r *http.Request) {
 	var canc Cancellation
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&canc); err != nil {

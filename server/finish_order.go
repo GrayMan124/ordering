@@ -1,14 +1,13 @@
-package main
+package server
 
 import (
-	// "database/sql"
 	"github.com/GrayMan124/ordering/internal/ui"
 	"github.com/google/uuid"
 	"log"
 	"net/http"
 )
 
-func (cfg *apiConfig) finishOrder(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) FinishOrder(w http.ResponseWriter, r *http.Request) {
 	ordID := r.FormValue("orderId")
 	CockName := r.FormValue("CocktailName")
 	ordBy := r.FormValue("OrderedBy")

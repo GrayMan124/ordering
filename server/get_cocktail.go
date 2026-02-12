@@ -1,15 +1,12 @@
-package main
+package server
 
 import (
-	// "database/sql"
+	"github.com/GrayMan124/ordering/internal/ui"
 	"log"
 	"net/http"
-
-	// "github.com/GrayMan124/ordering/internal/database"
-	"github.com/GrayMan124/ordering/internal/ui"
 )
 
-func (cfg *apiConfig) getCocktailAPI(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) GetCocktailData(w http.ResponseWriter, r *http.Request) {
 	var err error
 	cockName := r.URL.Query().Get("cocktail")
 

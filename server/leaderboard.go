@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"github.com/GrayMan124/ordering/internal/ui"
@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func (cfg *apiConfig) LeaderBoardAPI(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) LeaderBoardAPI(w http.ResponseWriter, r *http.Request) {
 	rank, err := cfg.Queries.GetRanking(r.Context())
 	if err != nil {
 		log.Printf("Failed to get ranking from DB %v", err)
