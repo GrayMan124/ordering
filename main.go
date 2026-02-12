@@ -53,7 +53,6 @@ func main() {
 	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.getAllCocktails))
 	serveMux.Handle("GET /leaderboard", http.HandlerFunc(cfg.LeaderBoardAPI))
 	serveMux.Handle("POST /api/addCocktail", http.HandlerFunc(cfg.addCocktail))
-	serveMux.Handle("POST /api/addRecipie", http.HandlerFunc(cfg.addRecipieFunc))
 	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.getCocktailAPI))
 	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(cfg.GetRecipieForm))
 	serveMux.Handle("POST /AddCocktail", http.HandlerFunc(cfg.AddCocktailFromData))
