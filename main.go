@@ -14,11 +14,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func HandleApp(w http.ResponseWriter, r *http.Request) {
-	component := ui.Index()
-	component.Render(r.Context(), w)
-}
-
 func HandleBar(w http.ResponseWriter, r *http.Request) {
 	component := ui.BarIndex()
 	component.Render(r.Context(), w)
@@ -46,7 +41,7 @@ func main() {
 	strip := http.StripPrefix("/assets/", fileSys)
 
 	serveMux.Handle("/assets/", strip)
-	serveMux.Handle("/", http.HandlerFunc(HandleApp))
+	serveMux.Handle("/", http.HandlerFunc(cfg.Login))
 	serveMux.Handle("/bar", http.HandlerFunc(HandleBar))
 	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.GetAllCocktails))
 	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.GetCocktailData))

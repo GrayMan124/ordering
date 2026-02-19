@@ -10,7 +10,7 @@ import (
 )
 
 const getAllCock = `-- name: GetAllCock :many
-SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new FROM cocktails
+SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new, is_mocktail, is_available FROM cocktails
 order by is_new desc, name
 `
 
@@ -34,6 +34,8 @@ func (q *Queries) GetAllCock(ctx context.Context) ([]Cocktail, error) {
 			&i.ImgName,
 			&i.Type,
 			&i.IsNew,
+			&i.IsMocktail,
+			&i.IsAvailable,
 		); err != nil {
 			return nil, err
 		}

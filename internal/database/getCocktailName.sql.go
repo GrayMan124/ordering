@@ -12,7 +12,7 @@ import (
 )
 
 const getCocktailName = `-- name: GetCocktailName :one
-SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new FROM cocktails
+SELECT id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new, is_mocktail, is_available FROM cocktails
 WHERE id = $1
 `
 
@@ -30,6 +30,8 @@ func (q *Queries) GetCocktailName(ctx context.Context, id uuid.NullUUID) (Cockta
 		&i.ImgName,
 		&i.Type,
 		&i.IsNew,
+		&i.IsMocktail,
+		&i.IsAvailable,
 	)
 	return i, err
 }

@@ -24,7 +24,7 @@ VALUES (
 	$5,
 	false
 )
-RETURNING id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new
+RETURNING id, created_at, updated_at, data_url, base_spirit, cocktail_type, name, img_name, type, is_new, is_mocktail, is_available
 `
 
 type AddCocktailParams struct {
@@ -55,6 +55,8 @@ func (q *Queries) AddCocktail(ctx context.Context, arg AddCocktailParams) (Cockt
 		&i.ImgName,
 		&i.Type,
 		&i.IsNew,
+		&i.IsMocktail,
+		&i.IsAvailable,
 	)
 	return i, err
 }
