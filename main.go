@@ -42,6 +42,8 @@ func main() {
 
 	serveMux.Handle("/assets/", strip)
 	serveMux.Handle("/", http.HandlerFunc(cfg.Login))
+	//TODO:
+	// serveMux.Handle("POST /createUser", http.HandlerFunc(cfg.AddCocktail))
 	serveMux.Handle("/bar", http.HandlerFunc(HandleBar))
 	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.GetAllCocktails))
 	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.GetCocktailData))
