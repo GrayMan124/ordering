@@ -8,7 +8,9 @@ CREATE TABLE public.cocktails (
     name text NOT NULL,
     img_name text,
     type text,
-    is_new boolean DEFAULT false NOT NULL
+    is_new boolean DEFAULT false NOT NULL,
+    is_mocktail BOOLEAN NOT NULL DEFAULT FALSE,
+    is_available BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 
@@ -53,3 +55,10 @@ CREATE TABLE public.recipies (
 );
 
 
+CREATE TABLE public.users(
+	id UUID UNIQUE PRIMARY KEY,
+	name TEXT NOT NULL,
+	created_at TIMESTAMP NOT NULL,
+	modified_at TIMESTAMP NOT NULL,
+	last_seen_at TIMESTAMP NOT NULL
+);

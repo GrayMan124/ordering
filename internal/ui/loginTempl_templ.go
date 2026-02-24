@@ -37,33 +37,4 @@ func Login() templ.Component {
 	})
 }
 
-func Index() templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
-		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<html><head><title>HomeBar </title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"><style>\n        \t\t\tbody { font-family: 'Inter', sans-serif; }\n    \t\t\t</style></head><body id=\"main-area\" class=\"bg-slate-900 flex flex-col items-center justify-center min-h-screen py-4\"><div class=\"w-full max-w-2xl bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden\"><div class=\"p-8 text-center border-b border-slate-700\"><h1 class=\"text-3xl font-bold text-amber-500\">唐変木バー</h1><p class=\"mt-2 text-slate-400 text-sm\">唐変木バーへようこそ!</p><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto\"></div><div class=\"max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]\" id=\"menu-area\"><div class=\"flex flex-col items-center justify-center space-y-4\"><button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\">メニュー</button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\">ランキング </button></div></div></div></body></html>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		return nil
-	})
-}
-
 var _ = templruntime.GeneratedTemplate

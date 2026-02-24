@@ -22,6 +22,8 @@ type Cocktail struct {
 	ImgName      sql.NullString
 	Type         sql.NullString
 	IsNew        bool
+	IsMocktail   bool
+	IsAvailable  bool
 }
 
 type GooseDbVersion struct {
@@ -57,4 +59,12 @@ type Recipy struct {
 	Unit         string
 	CreatedAt    time.Time
 	ModifiedAt   sql.NullTime
+}
+
+type User struct {
+	ID         uuid.UUID
+	Name       string
+	CreatedAt  time.Time
+	ModifiedAt time.Time
+	LastSeenAt time.Time
 }
