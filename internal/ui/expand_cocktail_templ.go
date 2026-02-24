@@ -78,7 +78,7 @@ func ExpandCocktail(cocktailName string, ingredients []string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"> <label for=\"userName\" class=\"block text-sm font-medium text-slate-300 mb-1\">名前を入れてください</label> <input type=\"text\" name=\"customerName\" class=\"w-full px-3 py-2 bg-slate-200 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500\"> <button type=\"submit\" class=\"w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">注文する</button></form></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\"> <button type=\"submit\" class=\"w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">注文する</button></form></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
