@@ -42,7 +42,6 @@ func main() {
 
 	serveMux.Handle("/assets/", strip)
 	serveMux.Handle("/", http.HandlerFunc(cfg.Login))
-	//TODO:
 	serveMux.Handle("POST /createUser", http.HandlerFunc(cfg.CreateUser))
 	serveMux.Handle("/bar", http.HandlerFunc(HandleBar))
 	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.GetAllCocktails))
@@ -51,11 +50,13 @@ func main() {
 	serveMux.Handle("POST /api/addCocktail", http.HandlerFunc(cfg.AddCocktail))
 	serveMux.Handle("POST /AddCocktail", http.HandlerFunc(cfg.AddCocktailFromData))
 	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(cfg.GetRecipieForm))
+	//TODO: In order, when a user has no cookie for some reason - ask them to provide their name and create a new user
+	//TODO: Refactor the orders, it should be ordered by -> ordered for
 	serveMux.Handle("POST /order", http.HandlerFunc(cfg.SendOrder))
 	serveMux.Handle("GET /currentOrders", http.HandlerFunc(cfg.GetCurrentOrders))
 	serveMux.Handle("PUT /finishOrder", http.HandlerFunc(cfg.FinishOrder))
 	//TODO:
-	// serveMux.Handle("POST /api/cancelOrder", http.HandlerFunc(cfg.cancelOrder))
-	// serveMux.Handle("GET /api/myOrders", http.HandlerFunc(cfg.getAllCocktails))
+	// serveMux.Handle("POST /cancelOrder", http.HandlerFunc(cfg.cancelOrder))
+	// serveMux.Handle("GET /myOrders", http.HandlerFunc(cfg.getAllCocktails))
 	server.ListenAndServe()
 }
