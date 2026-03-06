@@ -29,7 +29,7 @@ func DefaultMainArea() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col items-center justify-center space-y-4\"><button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\">メニュー</button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\">ランキング </button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col items-center justify-center space-y-4\"><button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\">メニュー</button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\">ランキング </button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/myOrders\" hx-target=\"#main-area\">今夜の一杯</button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

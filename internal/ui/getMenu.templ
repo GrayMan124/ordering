@@ -32,12 +32,10 @@ templ GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) {
 					</span>
 				}
 			</div>
-			<div class="space-y-3 animate-fade-in flex flex-wrap gap-1 items-start justify-between">
+			<div class="space-y-3 animate-fade-in flex-direction-row flex items-center justify-between">
 				<h2
 					class="text-lg font-bold text-slate-100 leading-tight [writing-mode:vertical-rl] [text-orientation:upright] tracking-widest whitespace-nowrap"
-				>
-					スタイル
-				</h2>
+				>スタイル</h2>
 				for _, cock_type := range []string{ "Highball", "Martini", "Sour", "Rocks", "Shot", "Sunrise" } {
 					<span
 						class="space-y-3 animate-fade-in"
@@ -46,7 +44,7 @@ templ GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) {
 					>
 						<img
 							src={ fmt.Sprintf("/assets/type_%s.png", strings.ToLower(cock_type)) }
-							class="w-24 h-32 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0"
+							class="w-30 h-50 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0"
 						/>
 					</span>
 				}

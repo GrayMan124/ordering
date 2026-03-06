@@ -55,8 +55,7 @@ func main() {
 	serveMux.Handle("POST /order", http.HandlerFunc(cfg.SendOrder))
 	serveMux.Handle("GET /currentOrders", http.HandlerFunc(cfg.GetCurrentOrders))
 	serveMux.Handle("PUT /finishOrder", http.HandlerFunc(cfg.FinishOrder))
-	//TODO:
-	// serveMux.Handle("POST /cancelOrder", http.HandlerFunc(cfg.cancelOrder))
-	// serveMux.Handle("GET /myOrders", http.HandlerFunc(cfg.getAllCocktails))
+	serveMux.Handle("POST /cancelOrder", http.HandlerFunc(cfg.CancelOrder))
+	serveMux.Handle("GET /myOrders", http.HandlerFunc(cfg.MyOrders))
 	server.ListenAndServe()
 }

@@ -78,7 +78,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div><div class=\"space-y-3 animate-fade-in flex flex-wrap gap-1 items-start justify-between\"><h2 class=\"text-lg font-bold text-slate-100 leading-tight [writing-mode:vertical-rl] [text-orientation:upright] tracking-widest whitespace-nowrap\">スタイル</h2>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div><div class=\"space-y-3 animate-fade-in flex-direction-row flex items-center justify-between\"><h2 class=\"text-lg font-bold text-slate-100 leading-tight [writing-mode:vertical-rl] [text-orientation:upright] tracking-widest whitespace-nowrap\">スタイル</h2>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -90,7 +90,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/cockatils?style=%s", cock_type))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 44, Col: 60}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 42, Col: 60}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
@@ -103,13 +103,13 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/assets/type_%s.png", strings.ToLower(cock_type)))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 48, Col: 75}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 46, Col: 75}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" class=\"w-24 h-32 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0\"></span>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\" class=\"w-30 h-50 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0\"></span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -126,7 +126,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var6 string
 			templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/cock?cocktail=%s", cock))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 58, Col: 52}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 56, Col: 52}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 			if templ_7745c5c3_Err != nil {
@@ -139,7 +139,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/assets/drink_%s.png", ImgNames[idx]))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 64, Col: 62}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 62, Col: 62}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
@@ -152,7 +152,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var8 string
 			templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(cock)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 65, Col: 16}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 63, Col: 16}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 			if templ_7745c5c3_Err != nil {
@@ -165,7 +165,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(cock)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 70, Col: 13}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 68, Col: 13}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -188,7 +188,7 @@ func GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) templ.Comp
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(baseSpirits[idx])
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 75, Col: 101}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/getMenu.templ`, Line: 73, Col: 101}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {

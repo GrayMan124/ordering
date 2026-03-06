@@ -2,10 +2,11 @@ package server
 
 import (
 	// "database/sql"
-	"encoding/json"
-	"github.com/google/uuid"
 	"log"
 	"net/http"
+
+	"github.com/GrayMan124/ordering/internal/ui"
+	"github.com/google/uuid"
 )
 
 type Cancellation struct {
@@ -13,27 +14,24 @@ type Cancellation struct {
 }
 
 func (cfg *ApiConfig) CancelOrder(w http.ResponseWriter, r *http.Request) {
-	var canc Cancellation
-	decoder := json.NewDecoder(r.Body)
-	if err := decoder.Decode(&canc); err != nil {
-		log.Printf("Failed to decode cancel order request")
+	order_id := r.URL.Query().Get("ordId")
+	log.Printf("Got request to cancel order:\n%v", order_id)
+	ordId, err := uuid.Parse(order_id)
+	if err != nil {
 		w.WriteHeader(500)
+		http.Error(w, "Server Error", http.StatusInternalServerError)
 		return
 	}
-	canceled_order, err := cfg.Queries.CancelOrder(r.Context(), canc.OrderID)
+	_, err = cfg.Queries.CancelOrder(r.Context(), ordId)
 	if err != nil {
 		w.WriteHeader(500)
 		log.Printf("Failed to send cancellation into DB: %v", err)
 		return
 	}
-
-	out, err := json.Marshal(canceled_order)
+	w.WriteHeader(200)
+	component := ui.CancelOrder()
+	err = component.Render(r.Context(), w)
 	if err != nil {
-		log.Printf("Failed to marshal the cancellation for response")
-		w.WriteHeader(500)
-		return
+		log.Printf("Failed to render cancel order: %s", err)
 	}
-	w.Write(out)
-	w.WriteHeader(204)
-	w.Header().Set("Content-Type", "application/json")
 }
