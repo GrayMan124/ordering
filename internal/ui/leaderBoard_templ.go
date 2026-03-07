@@ -118,7 +118,7 @@ func LeaderBoard(Names []string, Scores []float32) templ.Component {
 					}
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</ul><button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 text-slate-500 hover:text-white text-sm transition-colors flex items-center space-x-2\"><span>← 戻る (Back)</span></button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</ul><button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

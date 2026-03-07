@@ -149,7 +149,7 @@ func MyOrdersUI(orders []MyOrders, userName string) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 text-slate-500 hover:text-white text-sm transition-colors flex items-center space-x-2\"><span>← 戻る (Back)</span></button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

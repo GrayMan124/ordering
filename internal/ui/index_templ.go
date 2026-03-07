@@ -29,7 +29,7 @@ func DefaultMainArea() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col items-center justify-center space-y-4\"><button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\">メニュー</button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\">ランキング </button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/myOrders\" hx-target=\"#main-area\">今夜の一杯</button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col items-center justify-center space-y-4\"><div class=\"flex flex-col items-center justify-center space-y-2\"><button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\">メニュー</button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\">ランキング </button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/myOrders\" hx-target=\"#main-area\">今夜の一杯</button></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -58,7 +58,7 @@ func LoginNewUser() templ.Component {
 			templ_7745c5c3_Var2 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"flex flex-col items-center justify-center space-y-4\"><h1 class=\"text-3xl font-bold text-amber-500\">いっらしゃいませ！</h1><img src=\"/assets/arigatou.png\" class=\"mx-auto\"><form hx-post=\"/createUser\" hx-target=\"#main-area\" class=\"p-6 space-y-6\"><label for=\"UserName\" class=\"block text-sm font-medium text-slate-700 mb-1\">お客様の名前を入れてください</label> <input type=\"text\" class=\"w-full px-3 py-2 bg-slate-100 border border-slate-300 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm\" name=\"UserName\" placeholder=\"e.g. あきら\"> <button type=\"submit\" class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\">ログイン</button></form></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"flex flex-col items-center justify-center space-y-2\"><h1 class=\"text-3xl font-bold text-amber-500\">いっらしゃいませ！</h1><img src=\"/assets/arigatou.png\" class=\"mx-auto\"><form hx-post=\"/createUser\" hx-target=\"#main-area\" class=\"p-6 space-y-4\"><label for=\"UserName\" class=\"block text-sm font-medium text-slate-700 mb-1\">お客様の名前を入れてください</label> <input type=\"text\" class=\"w-full px-3 py-2 bg-slate-100 border border-slate-300 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm\" name=\"UserName\" placeholder=\"e.g. あきら\"> <button type=\"submit\" class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\">ログイン</button></form></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -87,7 +87,7 @@ func Index(user_valid bool) templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<html><head><title>HomeBar </title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"><style>\n        \t\t\tbody { font-family: 'Inter', sans-serif; }\n    \t\t\t</style></head><body id=\"main-area\" class=\"bg-slate-900 flex flex-col items-center justify-center min-h-screen py-4\"><div class=\"w-full max-w-2xl bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden\"><div class=\"p-8 text-center border-b border-slate-700\"><h1 class=\"text-3xl font-bold text-amber-500\">唐変木バー</h1><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto\"></div><div class=\"max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]\" id=\"menu-area\"></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<html><head><title>HomeBar </title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"><style>\n        \t\t\tbody { font-family: 'Inter', sans-serif; }\n    \t\t\t</style></head><body id=\"main-area\" class=\"bg-slate-900 flex flex-col items-center justify-center min-h-screen py-4\"><div class=\"w-full max-w-2xl bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden\"><div class=\"p-8 text-center border-b border-slate-700\"><h1 class=\"text-3xl font-bold text-amber-500\">唐変木バー</h1><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto\"></div><div class=\"max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]\" id=\"menu-area\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -102,7 +102,7 @@ func Index(user_valid bool) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -29,7 +29,7 @@ func CancelOrder() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div><div class=\"flex flex-wrap max-w-md p-16 space-y-12 bg-slate-800 rounded-3xl shadow-lg items-center justify-center\"><h2 class=\"flex flex-wrap text-xl font-bold text-gray-100\">ご注文キャンセルしました</h2><img src=\"/assets/nomore.png\" class=\"flex w-30 h-100 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0\"></div><button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 text-slate-500 hover:text-white text-sm transition-colors flex items-center space-x-2\"><span>← 戻る (Back)</span></button></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div><div class=\"flex flex-wrap max-w-md p-16 space-y-12 bg-slate-800 rounded-3xl shadow-lg items-center justify-center\"><h2 class=\"flex flex-wrap text-xl font-bold text-gray-100\">ご注文キャンセルしました</h2><img src=\"/assets/nomore.png\" class=\"flex w-30 h-100 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0\"></div><button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

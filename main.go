@@ -39,7 +39,7 @@ func main() {
 	}
 	fileSys := http.FileServer(http.Dir("./assets/"))
 	strip := http.StripPrefix("/assets/", fileSys)
-
+	//tego
 	serveMux.Handle("/assets/", strip)
 	serveMux.Handle("/", http.HandlerFunc(cfg.Login))
 	serveMux.Handle("POST /createUser", http.HandlerFunc(cfg.CreateUser))

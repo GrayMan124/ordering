@@ -2,29 +2,31 @@ package ui
 
 templ DefaultMainArea() {
 	<div class="flex flex-col items-center justify-center space-y-4">
-		<button
-			class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
-			hx-get="/cockatils"
-			hx-target="#menu-area"
-		>メニュー</button>
-		<button
-			class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
-			hx-get="/leaderboard"
-			hx-target="#main-area"
-		>ランキング </button>
-		<button
-			class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
-			hx-get="/myOrders"
-			hx-target="#main-area"
-		>今夜の一杯</button>
+		<div class="flex flex-col items-center justify-center space-y-2">
+			<button
+				class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
+				hx-get="/cockatils"
+				hx-target="#menu-area"
+			>メニュー</button>
+			<button
+				class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
+				hx-get="/leaderboard"
+				hx-target="#main-area"
+			>ランキング </button>
+			<button
+				class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
+				hx-get="/myOrders"
+				hx-target="#main-area"
+			>今夜の一杯</button>
+		</div>
 	</div>
 }
 
 templ LoginNewUser() {
-	<div class="flex flex-col items-center justify-center space-y-4">
+	<div class="flex flex-col items-center justify-center space-y-2">
 		<h1 class="text-3xl font-bold text-amber-500">いっらしゃいませ！</h1>
 		<img src="/assets/arigatou.png" class="mx-auto"/>
-		<form hx-post="/createUser" hx-target="#main-area" class="p-6 space-y-6">
+		<form hx-post="/createUser" hx-target="#main-area" class="p-6 space-y-4">
 			<label
 				for="UserName"
 				class="block text-sm font-medium text-slate-700 mb-1"
@@ -62,12 +64,13 @@ templ Index(user_valid bool) {
 					<h1 class="text-3xl font-bold text-amber-500">唐変木バー</h1>
 					<img src="/assets/bar_shaker_man.png" class="mx-auto"/>
 				</div>
-				<div class="max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]" id="menu-area"></div>
-				if user_valid {
-					@DefaultMainArea()
-				} else {
-					@LoginNewUser()
-				}
+				<div class="max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]" id="menu-area">
+					if user_valid {
+						@DefaultMainArea()
+					} else {
+						@LoginNewUser()
+					}
+				</div>
 			</div>
 		</body>
 	</html>
