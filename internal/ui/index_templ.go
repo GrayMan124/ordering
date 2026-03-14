@@ -110,33 +110,4 @@ func Index(user_valid bool) templ.Component {
 	})
 }
 
-func tmp() templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
-		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var4 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var4 == nil {
-			templ_7745c5c3_Var4 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"flex flex-col items-center justify-center space-y-4\"><div class=\"flex flex-col items-center justify-center space-y-2\"><button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\"><img src=\"/assets/menu_tenin.png\" alt=\"Menu\" class=\"w-10 h-10 object-contain\"> <span>メニュー</span></button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\">ランキング </button> <button class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\" hx-get=\"/myOrders\" hx-target=\"#main-area\">今夜の一杯</button></div></div>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		return nil
-	})
-}
-
 var _ = templruntime.GeneratedTemplate
