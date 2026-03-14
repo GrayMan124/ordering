@@ -1,7 +1,9 @@
 package ui
 
+import "fmt"
+
 templ ExpandCocktail(cocktailName string, ingredients []string) {
-	<div class="bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner">
+	<div class="cocktail-wrapper bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner">
 		<div class="flex justify-between items-start mb-4">
 			<h2 class="text-2xl font-bold text-white">{ cocktailName }</h2>
 			<button hx-get="/cockatils" hx-target="#menu-area" class="text-sm text-slate-400 hover:text-white">Close</button>
@@ -14,11 +16,36 @@ templ ExpandCocktail(cocktailName string, ingredients []string) {
 				}
 			</ul>
 		</div>
-		<form hx-post="/order" hx-target="#main-area" class="space-y-4">
-			<input type="hidden" name="cocktail" value={ cocktailName }/>
-			<button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
+		<div>
+			<button type="button" 
+			hx-get={fmt.Sprintf("/confirm?cocktail=%s",cocktailName)}
+			hx-target="this"
+			hx-swap="outerHTML"
+			class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
 				注文する
 			</button>
+			</div>
+	</div>
+}
+
+templ ConfirmOrder(cocktailName string){
+	
+	<div class="bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner">
+	<p class="text-center text-white text-sm font-bold mb-2">ご注文を確認してください</p>
+		<form hx-post="/order" hx-target="#main-area" class="space-y-4">
+			<input type="hidden" name="cocktail" value={ cocktailName }/>
+			<div class="flex gap-4">
+			<button type="button" hx-get= { fmt.Sprintf("/cock?cocktail=%s",cocktailName) } 
+			hx-target="closest .cocktail-wrapper"
+			hx-swap="outerHTML"
+			class="flex-1 w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
+				キャンセル
+			</button>
+			<button type="submit" class="flex-1 w-full bg-green-700 hover:bg-indigo-600 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
+				確定する
+			</button>
+			</div>
+
 		</form>
 	</div>
 }
