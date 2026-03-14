@@ -1,43 +1,39 @@
 package ui 
 
 templ DefaultMainArea() {
-<div class="flex flex-col items-center justify-center space-y-4">
-    <div class="flex flex-col items-stretch justify-center space-y-4 w-full max-w-sm px-4">
-        
-        <button
-            class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
-            hx-get="/cockatils"
-            hx-target="#menu-area"
-        >
-            <img src="/assets/menu_tenin.png" alt="Menu" class="w-12 h-12 object-contain" />
-            <span>メニュー</span>
-        </button>
-
-        <button
-            class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
-            hx-get="/leaderboard"
-            hx-target="#main-area"
-        >
-            <img src="/assets/crown.png" alt="Leaderboard" class="w-12 h-12 object-contain" />
-            <span>ランキング</span>
-        </button>
-
-        <button
-            class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
-            hx-get="/myOrders"
-            hx-target="#main-area"
-        >
-            <img src="/assets/beer_yukata.png" alt="My Orders" class="w-12 h-12 object-contain" />
-            <span>今夜の一杯</span>
-        </button>
-        
-    </div>
-</div>
+	<div class="flex flex-col items-center justify-center space-y-4">
+		<div class="flex flex-col items-stretch justify-center space-y-4 w-full max-w-sm px-4">
+			<button
+				class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
+				hx-get="/cockatils"
+				hx-target="#menu-area"
+			>
+				<img src="/assets/menu_tenin.png" alt="Menu" class="w-12 h-12 object-contain"/>
+				<span>メニュー</span>
+			</button>
+			<button
+				class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
+				hx-get="/leaderboard"
+				hx-target="#main-area"
+			>
+				<img src="/assets/crown.png" alt="Leaderboard" class="w-12 h-12 object-contain"/>
+				<span>ランキング</span>
+			</button>
+			<button
+				class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
+				hx-get="/myOrders"
+				hx-target="#main-area"
+			>
+				<img src="/assets/beer_yukata.png" alt="My Orders" class="w-12 h-12 object-contain"/>
+				<span>今夜の一杯</span>
+			</button>
+		</div>
+	</div>
 }
 
 templ LoginNewUser() {
 	<div class="flex flex-col items-center justify-center space-y-2">
-		<h1 class="text-3xl font-bold text-amber-500">いっらしゃいませ！</h1>
+		<h1 class="text-3xl font-bold text-amber-500">いらっしゃいませ！</h1>
 		<img src="/assets/arigatou.png" class="mx-auto"/>
 		<form hx-post="/createUser" hx-target="#main-area" class="p-6 space-y-4">
 			<label
@@ -88,5 +84,3 @@ templ Index(user_valid bool) {
 		</body>
 	</html>
 }
-
-
