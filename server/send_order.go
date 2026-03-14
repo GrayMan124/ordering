@@ -14,26 +14,26 @@ func (cfg *ApiConfig) SendOrder(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("ordering-bar-user")
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Server Error", http.StatusInternalServerError)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	userUUID, err := uuid.Parse(cookie.Value)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Server Error", http.StatusInternalServerError)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	user, err := cfg.Queries.GetUserFromId(r.Context(), userUUID)
 	cocktail, err := cfg.Queries.GetCocktail(r.Context(), cocktail_name)
 	if err != nil {
-		w.WriteHeader(500)
 		log.Printf("Failed to retrieve data from DB: %v", err)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	_, err = cfg.Queries.SendOrder(r.Context(), database.SendOrderParams{CocktailID: cocktail.ID.UUID,
 		OrderedBy: user.Name})
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		log.Printf("Failed to send order into DB: %v", err)
 		return
 	}

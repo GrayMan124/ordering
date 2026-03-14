@@ -11,7 +11,7 @@ func (cfg *ApiConfig) GetCurrentOrders(w http.ResponseWriter, r *http.Request) {
 	ordersDB, err := cfg.Queries.GetFullOrders(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktails data ")
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 
@@ -19,7 +19,7 @@ func (cfg *ApiConfig) GetCurrentOrders(w http.ResponseWriter, r *http.Request) {
 		ingrs, err := cfg.Queries.GetFullRecipie(r.Context(), ord.CocktailID)
 
 		if err != nil {
-			w.WriteHeader(500)
+			cfg.RespondWithError(w, r, 500)
 			log.Printf("Failed to get recipie: %v", err)
 			return
 		}

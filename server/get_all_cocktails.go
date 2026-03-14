@@ -20,7 +20,7 @@ func (cfg *ApiConfig) GetAllCocktails(w http.ResponseWriter, r *http.Request) {
 	cocs, err := cfg.Queries.GetAllCock(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktails data ")
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	filter := r.URL.Query().Get("filter")

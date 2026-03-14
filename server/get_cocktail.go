@@ -13,7 +13,7 @@ func (cfg *ApiConfig) GetCocktailData(w http.ResponseWriter, r *http.Request) {
 	ingredients, err := cfg.Queries.GetRecipie(r.Context(), cockName)
 	if err != nil {
 		log.Printf("Failed to retrieve cocktail data ")
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	var ingrNames []string

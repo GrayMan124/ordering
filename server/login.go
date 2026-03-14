@@ -20,19 +20,21 @@ func (cfg *ApiConfig) Login(w http.ResponseWriter, r *http.Request) {
 			return
 		default:
 			log.Println(err)
-			http.Error(w, "Server Error", http.StatusInternalServerError)
+			cfg.RespondWithError(w, r, 500)
 		}
 		return
 	}
 	user_id, err := uuid.Parse(cookie.Value)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Server Error", http.StatusInternalServerError)
+		cfg.RespondWithError(w, r, 500)
+		return
 	}
 	_, err = cfg.Queries.GetUserFromId(r.Context(), user_id)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Server Error", http.StatusInternalServerError)
+		cfg.RespondWithError(w, r, 500)
+		return
 	}
 	component := ui.Index(true)
 	component.Render(r.Context(), w)

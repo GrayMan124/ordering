@@ -1,8 +1,6 @@
 package server
 
 import (
-	// "github.com/GrayMan124/ordering/internal/database"
-	// "errors"
 	"github.com/GrayMan124/ordering/internal/ui"
 	"log"
 	"net/http"
@@ -14,18 +12,20 @@ func (cfg *ApiConfig) MyOrders(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("ordering-bar-user")
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Unauthorized", http.StatusUnauthorized)
+		cfg.RespondWithError(w, r, 401)
+		return
 	}
 	user_id, err := uuid.Parse(cookie.Value)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Server Error", http.StatusInternalServerError)
+		cfg.RespondWithError(w, r, 500)
 	}
 	user_name, err := cfg.Queries.GetUserFromId(r.Context(), user_id)
 	orders, err := cfg.Queries.GetMyOrders(r.Context(), user_name.Name)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Server Error", http.StatusInternalServerError)
+		cfg.RespondWithError(w, r, 500)
 	}
 	var outputOrders []ui.MyOrders
 	for _, ord := range orders {

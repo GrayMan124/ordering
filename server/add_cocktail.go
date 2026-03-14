@@ -90,7 +90,7 @@ func (cfg *ApiConfig) AddCocktail(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&cocktail); err != nil {
 		log.Printf("Failed to decode cocktail data")
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 400)
 		return
 	}
 	img_name := sql.NullString{String: cocktail.ImgName, Valid: true}
@@ -103,21 +103,21 @@ func (cfg *ApiConfig) AddCocktail(w http.ResponseWriter, r *http.Request) {
 		ImgName:      img_name,
 		Type:         type_name})
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		log.Printf("Failed to insert cocktail into DB: %v", err)
 		return
 	}
 	ingrMap, err := cfg.getIngredientsId(cocktail.Ingredients, r)
 	if err != nil {
 		log.Printf("Failed to retrieve the ingredient Ids: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	//Add all the ingredients into the db
 	err = cfg.addRecipie(created_cocktail, cocktail.Ingredients, ingrMap, r)
 	if err != nil {
 		log.Printf("Failed to add parts of recipie into recipies: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	output_cocktail := ReturnCocktail{Name: created_cocktail.Name, ID: created_cocktail.ID.UUID}
@@ -125,7 +125,7 @@ func (cfg *ApiConfig) AddCocktail(w http.ResponseWriter, r *http.Request) {
 	out, err := json.Marshal(output_cocktail)
 	if err != nil {
 		log.Printf("Failed to marshal the cocktail for a response")
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	w.WriteHeader(201)

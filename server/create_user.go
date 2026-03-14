@@ -10,13 +10,13 @@ func (cfg *ApiConfig) CreateUser(w http.ResponseWriter, r *http.Request) {
 	userName := r.FormValue("UserName")
 	if userName == "" {
 		log.Printf("Retrieved empty UserName")
-		w.WriteHeader(400)
+		cfg.RespondWithError(w, r, 400)
 		return
 	}
 	user, err := cfg.Queries.CreateUser(r.Context(), userName)
 	if err != nil {
 		log.Printf("Failed to add user to DB")
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	log.Printf("Created user: %v with id: %v", user.Name, user.ID)

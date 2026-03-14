@@ -18,13 +18,13 @@ func (cfg *ApiConfig) CancelOrder(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Got request to cancel order:\n%v", order_id)
 	ordId, err := uuid.Parse(order_id)
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		http.Error(w, "Server Error", http.StatusInternalServerError)
 		return
 	}
 	_, err = cfg.Queries.CancelOrder(r.Context(), ordId)
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		log.Printf("Failed to send cancellation into DB: %v", err)
 		return
 	}

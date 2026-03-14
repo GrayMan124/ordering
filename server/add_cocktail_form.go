@@ -15,12 +15,12 @@ func (cfg *ApiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request
 	checkCocktails, err := cfg.Queries.CheckCocktail(r.Context(), cockName)
 	if err != nil {
 		log.Printf("Failed to execute query with error: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	if checkCocktails != 0 {
 		log.Printf("Cocktail: %v \nalready exsits in the DB\n", cockName)
-		w.WriteHeader(400)
+		cfg.RespondWithError(w, r, 400)
 		return
 	}
 	log.Printf("Got: %v cocktail\nFound: %v records", cockName, checkCocktails)
@@ -35,8 +35,8 @@ func (cfg *ApiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request
 		ImgName:      sql.NullString{String: cocktailImg, Valid: true},
 		Type:         sql.NullString{String: cocktailType, Valid: true}})
 	if err != nil {
-		w.WriteHeader(500)
 		log.Printf("Failed to insert cocktail into DB: %v", err)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	numIngr := r.FormValue("NumIngr")
@@ -60,14 +60,14 @@ func (cfg *ApiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request
 	ingrMap, err := cfg.getIngredientsId(ingrList, r)
 	if err != nil {
 		log.Printf("Failed to retrieve the ingredient Ids: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	//Add all the ingredients into the db
 	err = cfg.addRecipie(created_cocktail, ingrList, ingrMap, r)
 	if err != nil {
 		log.Printf("Failed to add parts of recipie into recipies: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	_ = ReturnCocktail{Name: created_cocktail.Name, ID: created_cocktail.ID.UUID}

@@ -13,13 +13,13 @@ func (cfg *ApiConfig) FinishOrder(w http.ResponseWriter, r *http.Request) {
 	ordBy := r.FormValue("OrderedBy")
 	orderID, err := uuid.Parse(ordID)
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		log.Printf("Failed to Parse UUID for Order: %v", err)
 		return
 	}
 	_, err = cfg.Queries.FinishOrder(r.Context(), orderID)
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		log.Printf("Failed to send Finised order into DB: %v", err)
 		return
 	}
@@ -27,7 +27,7 @@ func (cfg *ApiConfig) FinishOrder(w http.ResponseWriter, r *http.Request) {
 	component := ui.FinishOrder(CockName, ordBy)
 	err = component.Render(r.Context(), w)
 	if err != nil {
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		log.Printf("Failed to Render Object: %v", err)
 	}
 }

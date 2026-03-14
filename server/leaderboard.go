@@ -10,7 +10,7 @@ func (cfg *ApiConfig) LeaderBoardAPI(w http.ResponseWriter, r *http.Request) {
 	rank, err := cfg.Queries.GetRanking(r.Context())
 	if err != nil {
 		log.Printf("Failed to get ranking from DB %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	var names []string

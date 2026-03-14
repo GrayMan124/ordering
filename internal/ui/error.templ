@@ -1,0 +1,16 @@
+package ui
+
+
+templ ErrorRespons(errString string) {
+	<div class="space-y-3 animate-fade-in">
+		<h2 class="text-xl font-bold text-slate-100 leading-tight text-center">{ errString}</h2>
+					<img src="/assets/mizu_fuku.png" class="mx-auto"/>
+		<button
+			hx-get="/"
+			hx-target="#main-area"
+			class="mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2"
+		>
+			<span>← 戻る (Back)</span>
+		</button>
+	</div>
+}

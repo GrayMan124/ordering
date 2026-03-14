@@ -19,13 +19,13 @@ func (cfg *ApiConfig) GetRecipieForm(w http.ResponseWriter, r *http.Request) {
 	cockTypes, err := cfg.Queries.GetCocktailTypes(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktail types: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	imgLabels, err := cfg.Queries.GetCocktailImgs(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktail imgs: %v", err)
-		w.WriteHeader(500)
+		cfg.RespondWithError(w, r, 500)
 		return
 	}
 	options := make(map[string][]string)
