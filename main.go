@@ -39,17 +39,18 @@ func main() {
 	}
 	fileSys := http.FileServer(http.Dir("./assets/"))
 	strip := http.StripPrefix("/assets/", fileSys)
-	//tego
 	serveMux.Handle("/assets/", strip)
 	serveMux.Handle("/", http.HandlerFunc(cfg.Login))
 	serveMux.Handle("POST /createUser", http.HandlerFunc(cfg.CreateUser))
 	serveMux.Handle("/bar", http.HandlerFunc(HandleBar))
-	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.GetAllCocktails))
+	serveMux.Handle("GET /cockatils", http.HandlerFunc(cfg.GetCocktails))
 	serveMux.Handle("GET /cock", http.HandlerFunc(cfg.GetCocktailData))
 	serveMux.Handle("GET /leaderboard", http.HandlerFunc(cfg.LeaderBoardAPI))
 	serveMux.Handle("POST /api/addCocktail", http.HandlerFunc(cfg.AddCocktail))
 	serveMux.Handle("POST /AddCocktail", http.HandlerFunc(cfg.AddCocktailFromData))
 	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(cfg.GetRecipieForm))
+	serveMux.Handle("GET /ingredients", http.HandlerFunc(cfg.IngredientMenu))
+
 	//TODO: In order, when a user has no cookie for some reason - ask them to provide their name and create a new user
 	//TODO: Refactor the orders, it should be ordered by -> ordered for
 	serveMux.Handle("GET /confirm", http.HandlerFunc(cfg.ConfirmOrder))
