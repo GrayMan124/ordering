@@ -5,6 +5,7 @@ import (
 	// "fmt"
 
 	// "github.com/GrayMan124/ordering/internal/database"
+	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/GrayMan124/ordering/internal/ui"
 
 	"net/http"
@@ -51,6 +52,40 @@ func (cfg *ApiConfig) IngredientExpand(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(200)
 	component := ui.IngredientDesc(ingr, cocksOut)
+	component.Render(r.Context(), w)
+
+}
+
+func (cfg *ApiConfig) IngredientChange(w http.ResponseWriter, r *http.Request) {
+	ingrName := r.URL.Query().Get("ingr")
+	availability := r.URL.Query().Get("set")
+	var avBool bool
+	if availability == "t" {
+		avBool = true
+	} else {
+		avBool = false
+	}
+	_, err := cfg.Queries.UpdateIngr(r.Context(), database.UpdateIngrParams{
+		IsAvailable: avBool,
+		Name:        ingrName,
+	})
+	if err != nil {
+		cfg.RespondWithError(w, r, 500)
+		return
+	}
+	err = cfg.Queries.UpdateUnavCock(r.Context())
+	if err != nil {
+		cfg.RespondWithError(w, r, 500)
+		return
+	}
+	err = cfg.Queries.UpdateAvCock(r.Context())
+	if err != nil {
+		cfg.RespondWithError(w, r, 500)
+		return
+	}
+
+	w.WriteHeader(200)
+	component := ui.BarIndex()
 	component.Render(r.Context(), w)
 
 }

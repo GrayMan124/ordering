@@ -50,8 +50,9 @@ func main() {
 	serveMux.Handle("POST /AddCocktail", http.HandlerFunc(cfg.AddCocktailFromData))
 	serveMux.Handle("GET /addRecipieForm", http.HandlerFunc(cfg.GetRecipieForm))
 	serveMux.Handle("GET /ingredients", http.HandlerFunc(cfg.IngredientMenu))
+	serveMux.Handle("GET /ingredient", http.HandlerFunc(cfg.IngredientExpand))
+	serveMux.Handle("GET /ingrChange", http.HandlerFunc(cfg.IngredientChange))
 
-	//TODO: In order, when a user has no cookie for some reason - ask them to provide their name and create a new user
 	//TODO: Refactor the orders, it should be ordered by -> ordered for
 	serveMux.Handle("GET /confirm", http.HandlerFunc(cfg.ConfirmOrder))
 	serveMux.Handle("POST /order", http.HandlerFunc(cfg.SendOrder))

@@ -11,13 +11,13 @@ import (
 	"github.com/google/uuid"
 )
 
-const getuserfromid = `-- name: getuserfromid :one
+const getUserFromId = `-- name: GetUserFromId :one
 select id, name, created_at, modified_at, last_seen_at from users 
 where id = $1
 `
 
-func (q *Queries) getuserfromid(ctx context.Context, id uuid.UUID) (User, error) {
-	row := q.db.QueryRowContext(ctx, getuserfromid, id)
+func (q *Queries) GetUserFromId(ctx context.Context, id uuid.UUID) (User, error) {
+	row := q.db.QueryRowContext(ctx, getUserFromId, id)
 	var i User
 	err := row.Scan(
 		&i.ID,

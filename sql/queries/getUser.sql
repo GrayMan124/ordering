@@ -1,3 +1,3 @@
--- name: getuserfromid :one
+-- name: GetUserFromId :one
 select * from users 
 where id = $1;

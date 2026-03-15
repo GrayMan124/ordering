@@ -7,6 +7,25 @@ type Ingredient struct {
 	Available bool
 }
 
+templ IngredientRow(ingr Ingredient, avQuery, badge, badgeColor string) {
+	<div
+		hx-get={ fmt.Sprintf("/ingredient?q=%s&av=%s", ingr.Name, avQuery) }
+		hx-target="this"
+		hx-swap="outerHTML"
+		class="group relative flex items-center justify-between gap-4 p-4 bg-slate-700 hover:bg-slate-600 rounded-xl cursor-pointer transition-all border border-slate-600 hover:border-indigo-400"
+	>
+		<div class="flex-grow">
+			<h2 class="text-lg font-bold text-slate-100 leading-tight">
+				{ ingr.Name }
+				<span
+					class={ fmt.Sprintf("ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold %s text-white tracking-wide shadow-sm", badgeColor) }
+				>{ badge }</span>
+			</h2>
+		</div>
+		<span class="text-slate-500 group-hover:text-indigo-400 transition-colors font-bold text-xl">›</span>
+	</div>
+}
+
 templ IngredientMenu(ingredients []Ingredient) {
 	<div class="justify-center bg-slate-100 border border-slate-900 flex flex-col items-center min-h-screen py-4">
 		<div class="w-full max-w-3xl bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden">
@@ -15,39 +34,10 @@ templ IngredientMenu(ingredients []Ingredient) {
 			</div>
 			for _, ingr:= range ingredients {
 				if ingr.Available {
-					<div
-						hx-get={ fmt.Sprintf("/ingredient?q=%s&av=t", ingr.Name) }
-						hx-target="this"
-						hx-swap="outerHTML"
-						class="group relative flex items-center justify-between gap-4 p-4 bg-slate-700 hover:bg-slate-600 rounded-xl cursor-pointer transition-all border border-slate-600 hover:border-indigo-400"
-					>
-						<div class="flex-grow">
-							<h2 class="text-lg font-bold text-slate-100 leading-tight">
-								{ ingr.Name }
-									<span
-										class="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-green-600 text-white tracking-wide shadow-sm"
-									>Av</span>
-							</h2>
-						</div>
-						<span class="text-slate-500 group-hover:text-indigo-400 transition-colors font-bold text-xl">›</span>
-					</div>
+					@IngredientRow(ingr, "t", "Av", "bg-green-600")
 				} else {
-					<div
-						hx-get={ fmt.Sprintf("/ingredient?q=%s&av=f", ingr.Name) }
-						hx-target="this"
-						hx-swap="outerHTML"
-						class="group relative flex items-center justify-between gap-4 p-4 bg-slate-700 hover:bg-slate-600 rounded-xl cursor-pointer transition-all border border-slate-600 hover:border-indigo-400"
-					>
-						<div class="flex-grow">
-							<h2 class="text-lg font-bold text-slate-100 leading-tight">
-								{ ingr.Name }
-									<span
-										class="ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-600 text-white tracking-wide shadow-sm"
-									>Unav</span>
-							</h2>
-					</div>
-					}
-				</div>
+					@IngredientRow(ingr, "f", "Unav", "bg-red-600")
+				}
 			}
 		</div>
 	</div>
@@ -71,8 +61,7 @@ templ IngredientDesc(ingr Ingredient, cockNames []string) {
 				<button
 					type="button"
 					hx-get={ fmt.Sprintf("/ingrChange?ingr=%s&set=f", ingr.Name) }
-					hx-target="this"
-					hx-swap="outerHTML"
+					hx-target="#main-bar"
 					class="w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95"
 				>
 					Set Unavailable	
@@ -81,8 +70,7 @@ templ IngredientDesc(ingr Ingredient, cockNames []string) {
 				<button
 					type="button"
 					hx-get={ fmt.Sprintf("/ingrChange?ingr=%s&set=t", ingr.Name) }
-					hx-target="this"
-					hx-swap="outerHTML"
+					hx-target="#main-bar"
 					class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95"
 				>
 					Set Available
