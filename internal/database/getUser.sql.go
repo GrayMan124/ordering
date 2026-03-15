@@ -12,8 +12,8 @@ import (
 )
 
 const getUserFromId = `-- name: GetUserFromId :one
-SELECT id, name, created_at, modified_at, last_seen_at FROM users 
-WHERE id = $1
+select id, name, created_at, modified_at, last_seen_at from users 
+where id = $1
 `
 
 func (q *Queries) GetUserFromId(ctx context.Context, id uuid.UUID) (User, error) {

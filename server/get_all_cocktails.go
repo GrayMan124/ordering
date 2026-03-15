@@ -1,22 +1,53 @@
 package server
 
 import (
+	"database/sql"
+	"fmt"
+
 	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/GrayMan124/ordering/internal/ui"
+
 	"log"
 	"net/http"
-
-	"github.com/google/uuid"
 )
 
-type cocktail struct {
-	ID         uuid.UUID `json:"cocktail_id"`
-	DataUrl    string    `json: "data_url"`
-	Name       string    `json:"name"`
-	BaseSpirit string    `json:"base_spirit"`
+func (cfg *ApiConfig) GetCocktails(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Requested cocktails\n")
+	if r.URL.Query().Has("q") {
+		log.Printf("Search\n")
+		cfg.CocktailSearch(w, r)
+	} else if r.URL.Query().Has("filter") || r.URL.Query().Has("style") {
+		log.Printf("Filter\n")
+		cfg.CocktailsFiltered(w, r)
+	} else {
+		log.Printf("Base\n")
+		cfg.CocktailAllHandler(w, r)
+	}
 }
 
-func (cfg *ApiConfig) GetAllCocktails(w http.ResponseWriter, r *http.Request) {
+func (cfg *ApiConfig) CocktailAllHandler(w http.ResponseWriter, r *http.Request) {
+	cocs, err := cfg.Queries.GetAllCock(r.Context())
+	if err != nil {
+		cfg.RespondWithError(w, r, 500)
+		return
+	}
+	var cockNames []string
+	var cockSpirits []string
+	var imgNames []string
+	var is_new_list []bool
+	for _, cockt := range cocs {
+		cockNames = append(cockNames, cockt.Name)
+		cockSpirits = append(cockSpirits, cockt.BaseSpirit)
+		imgNames = append(imgNames, cockt.ImgName.String)
+		is_new_list = append(is_new_list, cockt.IsNew)
+	}
+	w.WriteHeader(200)
+	component := ui.GetMenu(cockNames, cockSpirits, imgNames, is_new_list)
+	component.Render(r.Context(), w)
+
+}
+
+func (cfg *ApiConfig) CocktailsFiltered(w http.ResponseWriter, r *http.Request) {
 	cocs, err := cfg.Queries.GetAllCock(r.Context())
 	if err != nil {
 		log.Printf("Failed to retrieve cocktails data ")
@@ -49,6 +80,29 @@ func (cfg *ApiConfig) GetAllCocktails(w http.ResponseWriter, r *http.Request) {
 	var imgNames []string
 	var is_new_list []bool
 	for _, cockt := range final_cocs {
+		cockNames = append(cockNames, cockt.Name)
+		cockSpirits = append(cockSpirits, cockt.BaseSpirit)
+		imgNames = append(imgNames, cockt.ImgName.String)
+		is_new_list = append(is_new_list, cockt.IsNew)
+	}
+	w.WriteHeader(200)
+	component := ui.GetMenu(cockNames, cockSpirits, imgNames, is_new_list)
+	component.Render(r.Context(), w)
+
+}
+
+func (cfg *ApiConfig) CocktailSearch(w http.ResponseWriter, r *http.Request) {
+	quer := r.URL.Query().Get("q")
+	cocs, err := cfg.Queries.GetCockSearch(r.Context(), sql.NullString{String: fmt.Sprintf("%s", quer), Valid: true})
+	if err != nil {
+		cfg.RespondWithError(w, r, 500)
+		return
+	}
+	var cockNames []string
+	var cockSpirits []string
+	var imgNames []string
+	var is_new_list []bool
+	for _, cockt := range cocs {
 		cockNames = append(cockNames, cockt.Name)
 		cockSpirits = append(cockSpirits, cockt.BaseSpirit)
 		imgNames = append(imgNames, cockt.ImgName.String)
