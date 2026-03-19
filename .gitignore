@@ -3,3 +3,4 @@ connect-db.sh
 db.env
 notes.txt
 out
+/assets/meme/*

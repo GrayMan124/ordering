@@ -96,6 +96,9 @@ func (cfg *ApiConfig) CocktailSearch(w http.ResponseWriter, r *http.Request) {
 	} else if quer == "cs?" {
 		cfg.RespondWithMeme(w, r, "cs?")
 		return
+	} else if quer == "szlug?" {
+		cfg.RespondWithMeme(w, r, "szlug")
+		return
 	}
 	cocs, err := cfg.Queries.GetCockSearch(r.Context(), sql.NullString{String: fmt.Sprintf("%s", quer), Valid: true})
 	if err != nil {
