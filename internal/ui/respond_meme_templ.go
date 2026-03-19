@@ -8,7 +8,9 @@ package ui
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func ErrorRespons(errString string, isRickroll bool) templ.Component {
+import "fmt"
+
+func MemeTempl(meme_name, meme_text string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -34,30 +36,28 @@ func ErrorRespons(errString string, isRickroll bool) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(errString)
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(meme_text)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/error.templ`, Line: 5, Col: 84}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/respond_meme.templ`, Line: 7, Col: 84}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</h2><img src=\"/assets/mizu_fuku.png\" class=\"mx-auto\"> ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</h2><img src=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if isRickroll {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<button onclick=\"window.location.href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/assets/meme/%s.png", meme_name))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/respond_meme.templ`, Line: 8, Col: 58}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "\" class=\"mx-auto\"> <button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

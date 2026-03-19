@@ -3,6 +3,7 @@ package server
 import (
 	"database/sql"
 	"fmt"
+	"strings"
 
 	"github.com/GrayMan124/ordering/internal/database"
 	"github.com/GrayMan124/ordering/internal/ui"
@@ -12,15 +13,11 @@ import (
 )
 
 func (cfg *ApiConfig) GetCocktails(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Requested cocktails\n")
 	if r.URL.Query().Has("q") {
-		log.Printf("Search\n")
 		cfg.CocktailSearch(w, r)
 	} else if r.URL.Query().Has("filter") || r.URL.Query().Has("style") {
-		log.Printf("Filter\n")
 		cfg.CocktailsFiltered(w, r)
 	} else {
-		log.Printf("Base\n")
 		cfg.CocktailAllHandler(w, r)
 	}
 }
@@ -93,6 +90,13 @@ func (cfg *ApiConfig) CocktailsFiltered(w http.ResponseWriter, r *http.Request) 
 
 func (cfg *ApiConfig) CocktailSearch(w http.ResponseWriter, r *http.Request) {
 	quer := r.URL.Query().Get("q")
+	if strings.Contains("Godfather", quer) && len(quer) >= 2 {
+		cfg.RespondWithError(w, r, 403)
+		return
+	} else if quer == "cs?" {
+		cfg.RespondWithMeme(w, r, "cs?")
+		return
+	}
 	cocs, err := cfg.Queries.GetCockSearch(r.Context(), sql.NullString{String: fmt.Sprintf("%s", quer), Valid: true})
 	if err != nil {
 		cfg.RespondWithError(w, r, 500)

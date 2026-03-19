@@ -13,7 +13,7 @@ func (cfg *ApiConfig) RespondWithError(w http.ResponseWriter, r *http.Request, e
 	case 401:
 		errString = "Error code 401\n Unauthorized"
 	case 403:
-		errString = "Error code 402\n Forbidden"
+		errString = "Error code 403\n Forbidden"
 	case 404:
 		errString = "Error code 404\n Page Not Found"
 	case 500:
@@ -25,7 +25,12 @@ func (cfg *ApiConfig) RespondWithError(w http.ResponseWriter, r *http.Request, e
 	default:
 		errString = "知らないエッラが現れた。"
 	}
-	w.WriteHeader(err_code)
-	component := ui.ErrorRespons(errString)
+	w.WriteHeader(200) //NOTE: I return 200 to make the HTMX swap the thing
+	if err_code == 403 {
+		component := ui.ErrorRespons(errString, true)
+		component.Render(r.Context(), w)
+		return
+	}
+	component := ui.ErrorRespons(errString, false)
 	component.Render(r.Context(), w)
 }
