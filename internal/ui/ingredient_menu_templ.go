@@ -49,14 +49,14 @@ func IngredientRow(ingr Ingredient, avQuery, badge, badgeColor string) templ.Com
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" hx-target=\"this\" hx-swap=\"outerHTML\" class=\"group relative flex items-center justify-between gap-4 p-4 bg-slate-700 hover:bg-slate-600 rounded-xl cursor-pointer transition-all border border-slate-600 hover:border-indigo-400\"><div class=\"flex-grow\"><h2 class=\"text-lg font-bold text-slate-100 leading-tight\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" hx-target=\"this\" hx-swap=\"outerHTML\" class=\"group flex items-center justify-between gap-4 py-4 px-2 border-t border-kin/20 cursor-pointer hover:bg-sumi-2 transition-colors\"><h3 class=\"font-mincho text-lg text-washi tracking-wider\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(ingr.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 19, Col: 15}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 18, Col: 14}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
@@ -66,7 +66,7 @@ func IngredientRow(ingr Ingredient, avQuery, badge, badgeColor string) templ.Com
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var4 = []any{fmt.Sprintf("ml-2 inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold %s text-white tracking-wide shadow-sm", badgeColor)}
+		var templ_7745c5c3_Var4 = []any{fmt.Sprintf("ml-3 align-middle font-jp text-[10px] border px-2 py-0.5 tracking-[0.3em] %s", badgeColor)}
 		templ_7745c5c3_Err = templ.RenderCSSItems(ctx, templ_7745c5c3_Buffer, templ_7745c5c3_Var4...)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -91,13 +91,13 @@ func IngredientRow(ingr Ingredient, avQuery, badge, badgeColor string) templ.Com
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(badge)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 22, Col: 12}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 20, Col: 11}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></h2></div><span class=\"text-slate-500 group-hover:text-indigo-400 transition-colors font-bold text-xl\">›</span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "</span></h3><span class=\"text-kin text-xl group-hover:translate-x-1 transition-transform\">›</span></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -126,24 +126,32 @@ func IngredientMenu(ingredients []Ingredient) templ.Component {
 			templ_7745c5c3_Var7 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"justify-center bg-slate-100 border border-slate-900 flex flex-col items-center min-h-screen py-4\"><div class=\"w-full max-w-3xl bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden\"><div class=\"bg-indigo-600 px-6 py-4\"><h2 class=\"text-xl font-bold text-white\">Set Ingredient availability</h2></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<section class=\"col-span-full max-w-3xl mx-auto w-full\"><header class=\"text-center mb-6 border-b border-kin/30 pb-4\"><h2 class=\"font-mincho text-3xl text-washi tracking-[0.3em]\">材料一覧</h2><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-2\">ingredient stock</p></header><ul>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, ingr := range ingredients {
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "<li>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 			if ingr.Available {
-				templ_7745c5c3_Err = IngredientRow(ingr, "t", "Av", "bg-green-600").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = IngredientRow(ingr, "t", "在庫", "text-kin border-kin/60").Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			} else {
-				templ_7745c5c3_Err = IngredientRow(ingr, "f", "Unav", "bg-red-600").Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = IngredientRow(ingr, "f", "切れ", "text-washi-dim border-washi-dim/40").Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</li>")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<li class=\"border-t border-kin/20\"></li></ul></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -172,84 +180,84 @@ func IngredientDesc(ingr Ingredient, cockNames []string) templ.Component {
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<div class=\"cocktail-wrapper bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner\"><div class=\"flex justify-between items-start mb-4\"><h2 class=\"text-2xl font-bold text-white\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"cocktail-wrapper bg-sumi-2 border-l-2 border-shu p-6 my-2\"><h2 class=\"font-mincho text-2xl text-washi tracking-widest mb-5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(ingr.Name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 49, Col: 56}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 50, Col: 78}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</h2></div><div class=\"mb-6 p-4 bg-slate-800 rounded-lg\"><h3 class=\"text-xs font-semibold text-slate-500 uppercase mb-2\">This ingredient is used in:</h3><ul class=\"list-disc list-inside text-slate-300 space-y-1\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</h2><div class=\"mb-6\"><h3 class=\"font-jp text-[10px] text-kin uppercase tracking-[0.4em] mb-3 pb-2 border-b border-kin/20\">使用カクテル — used in</h3><ul class=\"font-mincho text-washi text-base space-y-1.5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, cock := range cockNames {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<li>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "<li class=\"flex items-center gap-3\"><span class=\"text-kin text-xs\">◆</span> <span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(cock)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 55, Col: 15}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 59, Col: 18}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "</li>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</span></li>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</ul></div><div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</ul></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if ingr.Available {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "<button type=\"button\" hx-get=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<button type=\"button\" hx-get=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/ingrChange?ingr=%s&set=f", ingr.Name))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 63, Col: 65}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 67, Col: 64}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "\" hx-target=\"#main-bar\" class=\"w-full bg-red-600 hover:bg-red-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">Set Unavailable\t</button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\" hx-target=\"#main-bar\" class=\"w-full font-mincho text-base text-washi-dim border border-washi-dim/40 py-3 hover:text-shu hover:border-shu transition-colors tracking-[0.3em]\">切らす</button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "<button type=\"button\" hx-get=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "<button type=\"button\" hx-get=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/ingrChange?ingr=%s&set=t", ingr.Name))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 72, Col: 65}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/ingredient_menu.templ`, Line: 77, Col: 64}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\" hx-target=\"#main-bar\" class=\"w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">Set Available</button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\" hx-target=\"#main-bar\" class=\"w-full font-mincho text-base text-shu border border-shu py-3 hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]\">補充する</button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "</div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

@@ -1,0 +1,108 @@
+package ui
+
+templ themeHead(title string) {
+	<title>{ title }</title>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+	<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"/>
+	<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sumi:        '#1a1410',
+                        'sumi-2':    '#221a14',
+                        'sumi-3':    '#2c2218',
+                        washi:       '#ebe4d3',
+                        'washi-dim': '#b8ad95',
+                        shu:         '#b3413e',
+                        kin:         '#b08d4a',
+                        aiiro:       '#1f3a5c',
+                        sakura:      '#e8a3a3',
+                        'sakura-soft':'#f4c2c2',
+                    },
+                    fontFamily: {
+                        mincho: ['"Shippori Mincho"', 'serif'],
+                        jp:     ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+	<style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        /* Seasonal noren — sakura version. Soft pink band that fades at the edges. */
+        .noren {
+            height: 4px;
+            background: linear-gradient(to right,
+                transparent 0%,
+                rgba(232, 163, 163, 0.0) 5%,
+                rgba(232, 163, 163, 0.55) 35%,
+                rgba(244, 194, 194, 0.7) 50%,
+                rgba(232, 163, 163, 0.55) 65%,
+                rgba(232, 163, 163, 0.0) 95%,
+                transparent 100%);
+        }
+        .hanko {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 4.5rem; height: 4.5rem;
+            border: 3px solid #b3413e; color: #b3413e;
+            font-family: 'Shippori Mincho', serif; font-size: 1.25rem;
+            background: rgba(179, 65, 62, 0.06);
+            transform: rotate(-6deg);
+        }
+        .washi-bg {
+            background-color: #1a1410;
+            background-image: radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);
+            background-size: 3px 3px;
+        }
+        /* Falling petals — pure CSS, very restrained. */
+        @keyframes sakura-fall {
+            0%   { transform: translate3d(0, -10vh, 0) rotate(0deg);   opacity: 0; }
+            10%  { opacity: 0.55; }
+            100% { transform: translate3d(40px, 110vh, 0) rotate(540deg); opacity: 0; }
+        }
+	.sakura-petals span {
+    position: absolute;
+    top: 0;
+    display: block;
+    background: #e8a3a3;
+    clip-path: path('M7 0 C 10 4, 11 9, 7 14 C 3 9, 4 4, 7 0 Z');
+    animation: sakura-fall linear infinite;
+    opacity: 0;
+}
+.sakura-petals span:nth-child(1){left: 8%; width:14px; height:14px; animation-duration:22s; animation-delay: -7s;}
+.sakura-petals span:nth-child(2){left:30%; width:11px; height:11px; animation-duration:26s; animation-delay:-16s;}
+.sakura-petals span:nth-child(3){left:55%; width:17px; height:17px; animation-duration:20s; animation-delay: -3s;}
+.sakura-petals span:nth-child(4){left:75%; width:14px; height:14px; animation-duration:24s; animation-delay:-19s;}
+.sakura-petals span:nth-child(5){left:90%; width:10px; height:10px; animation-duration:28s; animation-delay:-13s;}
+@media (prefers-reduced-motion: reduce) {
+    .sakura-petals span { animation: none; display: none; }
+}
+    </style>
+}
+
+// Five-petal sakura flower icon — set color via text-* utility on the parent.
+templ sakuraFlower() {
+	<svg class="w-full h-full" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+		<g fill="currentColor">
+			<path d="M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z"></path>
+			<path d="M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z" transform="rotate(72 20 20)"></path>
+			<path d="M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z" transform="rotate(144 20 20)"></path>
+			<path d="M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z" transform="rotate(216 20 20)"></path>
+			<path d="M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z" transform="rotate(288 20 20)"></path>
+		</g>
+		<circle cx="20" cy="20" r="2.2" fill="#fce4ec"></circle>
+	</svg>
+}
+
+// Optional ambient falling petals. Drop into <body> once.
+templ sakuraPetals() {
+	<div class="sakura-petals" aria-hidden="true">
+		<span></span><span></span><span></span><span></span><span></span>
+	</div>
+}

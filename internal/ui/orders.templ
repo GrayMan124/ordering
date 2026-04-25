@@ -21,58 +21,58 @@ type OrderStruct struct {
 templ Orders(orders []OrderStruct) {
 	if len(orders) == 0 {
 		<div class="col-span-full text-center text-stone-500 py-10">
-			No Active orders
+			注文を待っています…
 		</div>
 	}
 	for idx, recipe := range orders {
 		<div
 			id={ fmt.Sprintf("order-%v", idx) }
-			class="bg-white border-l-8 border-amber-500 shadow-md flex flex-col justify-between h-full"
+			class="bg-washi text-sumi border-l-4 border-shu shadow-none flex flex-col"
 		>
-			<div class="p-4 border-b-2 border-dashed border-stone-200 bg-stone-50">
+			<div class="px-4 pt-3 pb-2 border-b border-dashed border-sumi/20">
 				<div class="flex justify-between items-start">
-					<span class="text-xs font-bold text-stone-400 uppercase">Ticket #{ fmt.Sprint(idx +1 ) }</span>
-					<span class="text-xs font-bold text-stone-600 uppercase">Pending...</span>
+					<span class="font-jp text-[10px] text-sumi/50 uppercase tracking-[0.3em]">
+						#{ fmt.Sprint(idx+1) }
+					</span>
+					<span class="font-jp text-[10px] text-shu uppercase tracking-[0.3em]">熟成中</span>
 				</div>
-				<h2 class="text-2xl font-bold text-stone-900 mt-1">{ recipe.Cocktail }</h2>
-				<p class="text-sm text-stone-600 mt-1">Quest: <span class="font-bold">{ recipe.OrderedBy }</span></p>
+				<h2 class="font-mincho text-2xl mt-1 tracking-wider">{ recipe.Cocktail }</h2>
+				<p class="font-jp text-xs text-sumi/70 mt-1">客: <span class="font-mincho text-base">{ recipe.OrderedBy }</span></p>
 			</div>
-			<div class="p-4 flex-grow">
-				<ul class="space-y-2">
-					for _, ingr := range recipe.Ingredients {
-						<li
-							class="flex justify-between items-center text-sm border-b border-stone-100 pb-1 last:border-0"
-						>
-							<span class="font-bold text-stone-800">{ ingr.Name }</span>
-							<span class="bg-stone-200 px-2 py-0.5 rounded text-stone-700">{ fmt.Sprintf("%v ml", ingr.Amount) }</span>
-						</li>
-					}
-				</ul>
-			</div>
-			<div class="p-4 bg-stone-100 border-t border-stone-200">
-				<form hx-put="/finishOrder" hx-target={ fmt.Sprintf("#order-%v", idx) }>
-					//<form hx-put="/finishOrder" hx-target="this" hx-swap="outerHTML">
-					<input type="hidden" name="orderId" value={ recipe.OrderId.String() }/>
-					<input type="hidden" name="CocktailName" value={ recipe.Cocktail }/>
-					<input type="hidden" name="OrderedBy" value={ recipe.OrderedBy }/>
-					<button
-						type="submit"
-						class="w-full bg-emerald-600 hover:bg-emerlad-700 text-white font-bold py-3 uppercase tracking-wider text-sm shadow-sm transition-all active:translate-y-1"
-					>
-						Finish Order	
-					</button>
-				</form>
-			</div>
+			<ul class="px-4 py-3 flex-grow space-y-1.5">
+				for _, ingr := range recipe.Ingredients {
+					<li class="flex justify-between font-jp text-sm border-b border-dotted border-sumi/15 pb-1 last:border-0">
+						<span>{ ingr.Name }</span>
+						<span class="font-mono text-xs text-sumi/70">{ fmt.Sprintf("%v %s", ingr.Amount, ingr.Unit) }</span>
+					</li>
+				}
+			</ul>
+			<form
+				hx-put="/finishOrder"
+				hx-target={ fmt.Sprintf("#order-%v", idx) }
+				class="px-4 py-3 border-t border-sumi/20"
+			>
+				<input type="hidden" name="orderId" value={ recipe.OrderId.String() }/>
+				<input type="hidden" name="CocktailName" value={ recipe.Cocktail }/>
+				<input type="hidden" name="OrderedBy" value={ recipe.OrderedBy }/>
+				<button
+					type="submit"
+					class="w-full font-mincho text-base text-shu border border-shu py-2
+                       hover:bg-shu hover:text-washi transition-colors tracking-widest"
+				>
+					提供
+				</button>
+			</form>
 		</div>
 	}
 }
 
 templ FinishOrder(cocktail, orderedBy string) {
-	<div class="bg-emerald-50 border-l-8 border-emerald-500 shadow-inner p-6 opacity-75 grayscale-0 flex items-center justify-center h-full min-h-[200px]">
+	<div class="bg-washi/40 text-sumi/60 border-l-4 border-kin shadow-none flex items-center justify-center min-h-[200px] p-6">
 		<div class="text-center">
-			<div class="text-3xl mb-2">✅</div>
-			<h2 class="text-lg font-bold text-emerald-800 line-through decoration-2">{ cocktail }</h2>
-			<p class="text-xs text-emerald-600 uppercase mt-1">Served to: { orderedBy }</p>
+			<div class="hanko mx-auto mb-3" style="border-color:#b08d4a; color:#b08d4a; transform:rotate(-12deg);">済</div>
+			<h2 class="font-mincho text-lg line-through decoration-1 tracking-wider">{ cocktail }</h2>
+			<p class="font-jp text-[10px] uppercase tracking-[0.3em] mt-1">{ orderedBy } 様へ</p>
 		</div>
 	</div>
 }

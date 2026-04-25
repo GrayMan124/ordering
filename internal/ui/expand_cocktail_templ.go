@@ -31,56 +31,56 @@ func ExpandCocktail(cocktailName string, ingredients []string) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"cocktail-wrapper bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner\"><div class=\"flex justify-between items-start mb-4\"><h2 class=\"text-2xl font-bold text-white\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"cocktail-wrapper bg-sumi-2 border-l-2 border-shu p-6 my-2\"><div class=\"flex justify-between items-start mb-5\"><h2 class=\"font-mincho text-3xl text-washi tracking-widest\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(cocktailName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 8, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 8, Col: 77}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</h2><button hx-get=\"/cockatils\" hx-target=\"#menu-area\" class=\"text-sm text-slate-400 hover:text-white\">Close</button></div><div class=\"mb-6 p-4 bg-slate-800 rounded-lg\"><h3 class=\"text-xs font-semibold text-slate-500 uppercase mb-2\">Ingredients</h3><ul class=\"list-disc list-inside text-slate-300 space-y-1\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</h2><button hx-get=\"/cockatils\" hx-target=\"#menu-area\" class=\"font-jp text-xs text-washi-dim hover:text-kin tracking-widest\">✕ 戻る</button></div><div class=\"mb-6\"><h3 class=\"font-jp text-[10px] text-kin uppercase tracking-[0.4em] mb-3 pb-2 border-b border-kin/20\">材料 — ingredients</h3><ul class=\"font-mincho text-washi text-lg space-y-1.5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		for _, ingr := range ingredients {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<li>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<li class=\"flex items-center gap-3\"><span class=\"text-kin text-xs\">◆</span> <span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(ingr)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 15, Col: 15}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 25, Col: 18}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</li>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</span></li>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</ul></div><div><button type=\"button\" hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</ul></div><button type=\"button\" hx-get=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
 		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/confirm?cocktail=%s", cocktailName))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 21, Col: 59}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 32, Col: 61}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" hx-target=\"this\" hx-swap=\"outerHTML\" class=\"w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">注文する</button></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" hx-target=\"this\" hx-swap=\"outerHTML\" class=\"w-full font-mincho text-lg text-shu border border-shu py-3 hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]\">注文する</button></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -109,33 +109,46 @@ func ConfirmOrder(cocktailName string) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner\"><p class=\"text-center text-white text-sm font-bold mb-2\">ご注文を確認してください</p><form hx-post=\"/order\" hx-target=\"#main-area\" class=\"space-y-4\"><input type=\"hidden\" name=\"cocktail\" value=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"bg-sumi-2 border-l-2 border-shu p-6 my-2 text-center\"><p class=\"font-mincho text-xl text-washi mb-1\">ご注文を確認</p><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mb-5\">confirm order</p><p class=\"font-mincho text-2xl text-washi tracking-widest mb-6\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(cocktailName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 36, Col: 60}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 47, Col: 80}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "\"><div class=\"flex gap-4\"><button type=\"button\" hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</p><form hx-post=\"/order\" hx-target=\"#main-area\" class=\"flex gap-3\"><input type=\"hidden\" name=\"cocktail\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
-		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/cock?cocktail=%s", cocktailName))
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(cocktailName)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 38, Col: 80}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 49, Col: 60}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\" hx-target=\"closest .cocktail-wrapper\" hx-swap=\"outerHTML\" class=\"flex-1 w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">キャンセル</button> <button type=\"submit\" class=\"flex-1 w-full bg-green-700 hover:bg-indigo-600 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">確定する</button></div></form></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "\"> <button type=\"button\" hx-get=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var8 string
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/cock?cocktail=%s", cocktailName))
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/expand_cocktail.templ`, Line: 52, Col: 59}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "\" hx-target=\"closest .cocktail-wrapper\" hx-swap=\"outerHTML\" class=\"flex-1 font-mincho text-base text-shu border border-shu py-3 hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]\">取消</button> <button type=\"submit\" class=\"flex-1 font-mincho text-base text-washi-dim border border-washi-dim/40 py-3 hover:text-washi hover:border-washi transition-colors tracking-widest\">確定</button></form></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

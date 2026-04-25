@@ -32,7 +32,7 @@ func cocktailType(options map[string][]string) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		for opt, optList := range options {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col\"><label for=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"space-y-2\"><label for=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -45,40 +45,40 @@ func cocktailType(options map[string][]string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"block text-sm font-medium text-slate-700 mb-1\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "\" class=\"block font-jp text-[11px] text-kin uppercase tracking-[0.4em]\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
 			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(opt)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 8, Col: 81}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 9, Col: 9}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</label><div class=\"relative\"><select name=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "</label> <select name=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var4 string
 			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(opt)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 10, Col: 22}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 12, Col: 14}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"w-full px-3 py-2 bg-white border border-slate-300 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm appearance-none\"><option value=\"\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" class=\"w-full bg-transparent border-0 border-b border-kin/30 focus:border-kin py-2 font-mincho text-washi text-base focus:outline-none appearance-none transition-colors\"><option value=\"\" class=\"bg-sumi text-washi-dim\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("Select: %v", opt))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 11, Col: 53}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 17, Col: 84}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -88,28 +88,28 @@ func cocktailType(options map[string][]string) templ.Component {
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			for _, opt := range optList {
+			for _, o := range optList {
 				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<option value=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var6 string
-				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(opt)
+				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(o)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 13, Col: 25}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 19, Col: 22}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\">")
+				templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "\" class=\"bg-sumi text-washi\">")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var7 string
-				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(opt)
+				templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(o)
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 13, Col: 33}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 19, Col: 55}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 				if templ_7745c5c3_Err != nil {
@@ -120,7 +120,7 @@ func cocktailType(options map[string][]string) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</select></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "</select></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -150,7 +150,7 @@ func RecipieForm(ingredients int, options map[string][]string) templ.Component {
 			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<div class=\"bg-slate-100 border border-slate-900 flex flex-col items-center justify-center min-h-screen py-4\" id=\"recipieForm\"><div class=\"w-full max-w-3xl bg-white rounded-xl shadow-lg border border-slate-200 overflow-hidden\"><div class=\"bg-indigo-600 px-6 py-4\"><h2 class=\"text-xl font-bold text-white\">Add New Cocktail Form</h2></div><form hx-post=\"/AddCocktail\" hx-target=\"#recipieForm\" class=\"p-6 space-y-6\"><div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\"><div><label for=\"CocktailName\" class=\"block text-sm font-medium text-slate-700 mb-1\">Cocktail Name</label> <input type=\"text\" class=\"w-full px-3 py-2 bg-slate-100 border border-slate-300 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm\" name=\"cocktailName\" placeholder=\"e.g. Boilermaker\"></div><div><label for=\"Base Spirit\" class=\"block text-sm font-medium text-slate-700 mb-1\">Base Spirit:\t</label> <input type=\"text\" class=\"w-full px-3 py-2 bg-slate-100 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm\" name=\"BaseSpirit\" placeholder=\"e.g. Whisky\"></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<section id=\"recipieForm\" class=\"col-span-full max-w-3xl mx-auto w-full\"><header class=\"text-center mb-8 border-b border-kin/30 pb-4\"><h2 class=\"font-mincho text-3xl text-washi tracking-[0.3em]\">献立を加える</h2><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-2\">add new cocktail</p></header><form hx-post=\"/AddCocktail\" hx-target=\"#recipieForm\" class=\"space-y-6\"><div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\"><div class=\"space-y-2\"><label for=\"CocktailName\" class=\"block font-jp text-[11px] text-kin uppercase tracking-[0.4em]\">Cocktail name</label> <input type=\"text\" name=\"cocktailName\" placeholder=\"e.g. Boilermaker\" class=\"w-full bg-transparent border-0 border-b border-kin/30 focus:border-kin py-2 font-mincho text-washi text-base placeholder-washi-dim/40 focus:outline-none transition-colors\"></div><div class=\"space-y-2\"><label for=\"BaseSpirit\" class=\"block font-jp text-[11px] text-kin uppercase tracking-[0.4em]\">Base spirit</label> <input type=\"text\" name=\"BaseSpirit\" placeholder=\"e.g. Whisky\" class=\"w-full bg-transparent border-0 border-b border-kin/30 focus:border-kin py-2 font-mincho text-washi text-base placeholder-washi-dim/40 focus:outline-none transition-colors\"></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -158,12 +158,12 @@ func RecipieForm(ingredients int, options map[string][]string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<hr class=\"border-slate-200\"><div><div class=\"flex items-center justify-between mb-2\"><label for=\"Ingredients\" class=\"block text-lg font-semibold text-slate-800\">Ingredients</label></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "<div class=\"pt-4 border-t border-kin/30\"><h3 class=\"font-mincho text-xl text-washi tracking-widest mb-4\">材料</h3>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if ingredients > 0 {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"grid grid-cols-12 gap-2 mb-2 px-1\"><label class=\"col-span-5 text-xs font-bold text-slate-400 uppercase tracking-wider\">Ingredient</label> <label class=\"col-span-3 text-xs font-bold text-slate-400 uppercase tracking-wider\">Amount</label> <label class=\"col-span-2 text-xs font-bold text-slate-400 uppercase tracking-wider\">ABV</label> <label class=\"col-span-2 text-xs font-bold text-slate-400 uppercase tracking-wider\">Unit</label></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<div class=\"grid grid-cols-12 gap-3 mb-3 pb-2 border-b border-kin/20\"><span class=\"col-span-5 font-jp text-[10px] text-kin uppercase tracking-[0.3em]\">Name</span> <span class=\"col-span-3 font-jp text-[10px] text-kin uppercase tracking-[0.3em]\">Amount</span> <span class=\"col-span-2 font-jp text-[10px] text-kin uppercase tracking-[0.3em]\">ABV</span> <span class=\"col-span-2 font-jp text-[10px] text-kin uppercase tracking-[0.3em]\">Unit</span></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -175,7 +175,7 @@ func RecipieForm(ingredients int, options map[string][]string) templ.Component {
 		var templ_7745c5c3_Var9 string
 		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(ingredients)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 67, Col: 60}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 72, Col: 59}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -186,77 +186,77 @@ func RecipieForm(ingredients int, options map[string][]string) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		for i := range ingredients {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<div class=\"grid grid-cols-12 gap-3\"><div class=\"col-span-5\"><input type=\"text\" class=\"w-full px-3 py-2 bg-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500\" name=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<div class=\"grid grid-cols-12 gap-3\"><input type=\"text\" name=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("Ingredient_%v", i))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 75, Col: 48}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 78, Col: 46}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\"></div><div class=\"col-span-3\"><input type=\"number\" class=\"w-full px-3 py-2 bg-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500\" name=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "\" class=\"col-span-5 bg-transparent border-0 border-b border-kin/30 focus:border-kin py-1.5 text-washi font-mincho text-sm focus:outline-none transition-colors\"> <input type=\"number\" name=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("Amount_%v", i))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 82, Col: 44}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 83, Col: 42}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\"></div><div class=\"col-span-2\"><input type=\"number\" class=\"w-full px-3 py-2 bg-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500\" name=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "\" class=\"col-span-3 bg-transparent border-0 border-b border-kin/30 focus:border-kin py-1.5 text-washi font-mono text-sm focus:outline-none transition-colors\"> <input type=\"number\" name=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("ABV_%v", i))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 89, Col: 41}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 88, Col: 39}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "\"></div><div class=\"col-span-2\"><input type=\"text\" class=\"w-full px-3 py-2 bg-slate-500 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500\" name=\"")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 18, "\" class=\"col-span-2 bg-transparent border-0 border-b border-kin/30 focus:border-kin py-1.5 text-washi font-mono text-sm focus:outline-none transition-colors\"> <input type=\"text\" name=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var13 string
 			templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("Unit_%v", i))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 96, Col: 42}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 93, Col: 40}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\"></div></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 19, "\" class=\"col-span-2 bg-transparent border-0 border-b border-kin/30 focus:border-kin py-1.5 text-washi font-mincho text-sm focus:outline-none transition-colors\"></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "<button type=\"button\" class=\"mt-4 w-full py-2 border-2 border-dashed border-slate-300 hover:bg-slate-400 text-slate-800 font-bold rounded-lg mb-4 transition-colors\" hx-get=\"")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 20, "</div><button type=\"button\" hx-get=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("/addRecipieForm?num=%v", ingredients+1))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 104, Col: 68}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/recipie_form.templ`, Line: 101, Col: 66}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "\" hx-target=\"#recipieForm\" hx-include=\"closest form\"><span>+ Add Ingredient </span></button></div><div class=\"pt-4 border-t border-slate-100\"><button type=\"submit\" class=\"w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95\">レシピを加える</button></div></div></form></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 21, "\" hx-target=\"#recipieForm\" hx-include=\"closest form\" class=\"mt-5 w-full py-2 font-jp text-xs text-washi-dim hover:text-kin border border-dashed border-kin/30 hover:border-kin tracking-[0.3em] transition-colors\">＋ 材料を追加</button></div><div class=\"pt-6 border-t border-kin/30\"><button type=\"submit\" class=\"w-full font-mincho text-lg text-shu border border-shu py-3 hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]\">レシピを保存</button></div></form></section>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
