@@ -24,7 +24,7 @@ func (cfg *ApiConfig) CreateUser(w http.ResponseWriter, r *http.Request) {
 		Name:     "ordering-bar-user",
 		Value:    user.ID.String(),
 		Path:     "/",
-		MaxAge:   3600,
+		MaxAge:   86400,
 		HttpOnly: true,
 		Secure:   true,
 		SameSite: http.SameSiteLaxMode,

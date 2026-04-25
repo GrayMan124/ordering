@@ -16,7 +16,7 @@ func (cfg *ApiConfig) RespondWithMeme(w http.ResponseWriter, r *http.Request, me
 		return
 
 	} else if meme == "szlug" {
-		outcome := rand.Int31n(4) + 1
+		outcome := rand.Int31n(5) + 1
 		var text_message string
 		switch outcome {
 		case 1:
@@ -24,7 +24,7 @@ func (cfg *ApiConfig) RespondWithMeme(w http.ResponseWriter, r *http.Request, me
 		case 2:
 			text_message = "UUUUUU SZLUG???"
 		case 3:
-			text_message = "Krystian zaprasza na szluga"
+			text_message = "No Dobra"
 		case 4:
 			text_message = "Hmm?"
 		case 5:
