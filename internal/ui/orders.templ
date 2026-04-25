@@ -21,7 +21,7 @@ type OrderStruct struct {
 templ Orders(orders []OrderStruct) {
 	if len(orders) == 0 {
 		<div class="col-span-full text-center text-stone-500 py-10">
-			No Active orders
+			注文を待っています…
 		</div>
 	}
 	for idx, recipe := range orders {

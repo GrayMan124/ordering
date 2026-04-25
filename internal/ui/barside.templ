@@ -3,68 +3,7 @@ package ui
 templ BarIndex() {
 	<html>
 		<head>
-			<title>唐変木テンダーさん</title>
-			<meta charset="utf-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
-			<script src="https://cdn.tailwindcss.com"></script>
-			<link rel="preconnect" href="https://fonts.googleapis.com"/>
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-			<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"/>
-			<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sumi:    '#1a1410',
-                        'sumi-2':'#221a14',
-                        'sumi-3':'#2c2218',
-                        washi:   '#ebe4d3',
-                        'washi-dim': '#b8ad95',
-                        shu:     '#b3413e',
-                        kin:     '#b08d4a',
-                        aiiro:   '#1f3a5c',
-                    },
-                    fontFamily: {
-                        mincho: ['"Shippori Mincho"', 'serif'],
-                        jp:     ['"Noto Sans JP"', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
-			<style>
-        body { font-family: 'Noto Sans JP', sans-serif; }
-        /* noren — cloth strip at the top of the page */
-        .noren {
-            height: 10px;
-            background: repeating-linear-gradient(
-                to right,
-                #1f3a5c 0 calc(20% - 1px),
-                #b08d4a calc(20% - 1px) 20%
-            );
-        }
-        /* hanko — vermillion stamp mark, slightly tilted */
-        .hanko {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 4.5rem; height: 4.5rem;
-            border: 3px solid #b3413e;
-            color: #b3413e;
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.25rem;
-            background: rgba(179, 65, 62, 0.06);
-            transform: rotate(-6deg);
-        }
-        /* subtle paper grain — optional, very low contrast */
-        .washi-bg {
-            background-color: #1a1410;
-            background-image:
-                radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);
-            background-size: 3px 3px;
-        }
-    </style>
+			@themeHead("唐変木テンダーさん")
 		</head>
 		<body id="main-bar" class="washi-bg text-washi min-h-screen">
 			<div class="noren"></div>
