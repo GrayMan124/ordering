@@ -197,7 +197,39 @@ func Index(user_valid bool) templ.Component {
 			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<html><head><title>唐変木バー</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap\" rel=\"stylesheet\"><script>\n        tailwind.config = {\n            theme: {\n                extend: {\n                    colors: {\n                        sumi:    '#1a1410',\n                        'sumi-2':'#221a14',\n                        'sumi-3':'#2c2218',\n                        washi:   '#ebe4d3',\n                        'washi-dim': '#b8ad95',\n                        shu:     '#b3413e',\n                        kin:     '#b08d4a',\n                        aiiro:   '#1f3a5c',\n                    },\n                    fontFamily: {\n                        mincho: ['\"Shippori Mincho\"', 'serif'],\n                        jp:     ['\"Noto Sans JP\"', 'sans-serif'],\n                    },\n                },\n            },\n        }\n    </script><style>\n        body { font-family: 'Noto Sans JP', sans-serif; }\n        /* noren — cloth strip at the top of the page */\n        .noren {\n            height: 10px;\n            background: repeating-linear-gradient(\n                to right,\n                #1f3a5c 0 calc(20% - 1px),\n                #b08d4a calc(20% - 1px) 20%\n            );\n        }\n        /* hanko — vermillion stamp mark, slightly tilted */\n        .hanko {\n            display: inline-flex;\n            align-items: center;\n            justify-content: center;\n            width: 4.5rem; height: 4.5rem;\n            border: 3px solid #b3413e;\n            color: #b3413e;\n            font-family: 'Shippori Mincho', serif;\n            font-size: 1.25rem;\n            background: rgba(179, 65, 62, 0.06);\n            transform: rotate(-6deg);\n        }\n        .washi-bg {\n            background-color: #1a1410;\n            background-image:\n                radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);\n            background-size: 3px 3px;\n        }\n    </style></head><body id=\"main-area\" class=\"washi-bg text-washi min-h-screen flex flex-col\"><div class=\"noren\"></div><main class=\"flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16\"><header class=\"text-center mb-10\"><h1 class=\"font-mincho text-5xl text-washi tracking-[0.3em]\">唐変木バー</h1><p class=\"font-jp text-[10px] text-kin tracking-[0.5em] uppercase mt-2\">tohenboku bar</p><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto w-40 mt-6 opacity-95\"></header><div id=\"menu-area\" class=\"w-full\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<html><head>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = themeHead("唐変木バー").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</head><body id=\"main-area\" class=\"washi-bg text-washi min-h-screen flex flex-col relative\"><div class=\"noren\"></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = sakuraPetals().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 12, "<main class=\"flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16 relative z-10\"><header class=\"text-center mb-10\"><div class=\"flex items-center justify-center gap-3 mb-3 text-sakura/80\"><span class=\"w-3 h-3\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = sakuraFlower().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 13, "</span><p class=\"font-mincho text-[11px] tracking-[0.5em]\">桜 の 候</p><span class=\"w-3 h-3\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = sakuraFlower().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 14, "</span></div><h1 class=\"font-mincho text-5xl text-washi tracking-[0.3em]\">唐変木バー</h1><p class=\"font-jp text-[10px] text-kin tracking-[0.5em] uppercase mt-2\">tohenboku bar</p><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto w-40 mt-6 opacity-95\"></header><div id=\"menu-area\" class=\"w-full\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -212,7 +244,7 @@ func Index(user_valid bool) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></main></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "</div></main></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

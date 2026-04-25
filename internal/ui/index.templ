@@ -43,8 +43,8 @@ templ LoginNewUser() {
 			name="UserName"
 			placeholder="あきら"
 			class="w-full bg-transparent border-0 border-b border-kin/40 focus:border-kin
-                   py-2 text-washi text-lg tracking-wider placeholder-washi-dim/40
-                   focus:outline-none transition-colors"
+                      py-2 text-washi text-lg tracking-wider placeholder-washi-dim/40
+                      focus:outline-none transition-colors"
 		/>
 		<button
 			type="submit"
@@ -59,72 +59,22 @@ templ LoginNewUser() {
 templ Index(user_valid bool) {
 	<html>
 		<head>
-			<title>唐変木バー</title>
-			<meta charset="utf-8"/>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
-			<script src="https://cdn.tailwindcss.com"></script>
-			<link rel="preconnect" href="https://fonts.googleapis.com"/>
-			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-			<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"/>
-			<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sumi:    '#1a1410',
-                        'sumi-2':'#221a14',
-                        'sumi-3':'#2c2218',
-                        washi:   '#ebe4d3',
-                        'washi-dim': '#b8ad95',
-                        shu:     '#b3413e',
-                        kin:     '#b08d4a',
-                        aiiro:   '#1f3a5c',
-                    },
-                    fontFamily: {
-                        mincho: ['"Shippori Mincho"', 'serif'],
-                        jp:     ['"Noto Sans JP"', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
-			<style>
-        body { font-family: 'Noto Sans JP', sans-serif; }
-        /* noren — cloth strip at the top of the page */
-        .noren {
-            height: 10px;
-            background: repeating-linear-gradient(
-                to right,
-                #1f3a5c 0 calc(20% - 1px),
-                #b08d4a calc(20% - 1px) 20%
-            );
-        }
-        /* hanko — vermillion stamp mark, slightly tilted */
-        .hanko {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 4.5rem; height: 4.5rem;
-            border: 3px solid #b3413e;
-            color: #b3413e;
-            font-family: 'Shippori Mincho', serif;
-            font-size: 1.25rem;
-            background: rgba(179, 65, 62, 0.06);
-            transform: rotate(-6deg);
-        }
-        .washi-bg {
-            background-color: #1a1410;
-            background-image:
-                radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);
-            background-size: 3px 3px;
-        }
-    </style>
+			@themeHead("唐変木バー")
 		</head>
-		<body id="main-area" class="washi-bg text-washi min-h-screen flex flex-col">
+		<body id="main-area" class="washi-bg text-washi min-h-screen flex flex-col relative">
 			<div class="noren"></div>
-			<main class="flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16">
+			@sakuraPetals()
+			<main class="flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16 relative z-10">
 				<header class="text-center mb-10">
+					<div class="flex items-center justify-center gap-3 mb-3 text-sakura/80">
+						<span class="w-3 h-3">
+							@sakuraFlower()
+						</span>
+						<p class="font-mincho text-[11px] tracking-[0.5em]">桜 の 候</p>
+						<span class="w-3 h-3">
+							@sakuraFlower()
+						</span>
+					</div>
 					<h1 class="font-mincho text-5xl text-washi tracking-[0.3em]">唐変木バー</h1>
 					<p class="font-jp text-[10px] text-kin tracking-[0.5em] uppercase mt-2">tohenboku bar</p>
 					<img src="/assets/bar_shaker_man.png" class="mx-auto w-40 mt-6 opacity-95"/>

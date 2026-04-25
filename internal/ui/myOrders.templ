@@ -16,54 +16,91 @@ type MyOrders struct {
 }
 
 templ MyOrdersUI(orders []MyOrders, userName string) {
-	<div class="space-y-3 animate-fade-in">
-		<h2 class="text-xl font-bold text-slate-100 leading-tight text-center">{ userName } Orders:</h2>
-		for _, ord:= range  orders {
-			<div>
-				<div
-					class="group relative flex items-center justify-between gap-6 py-6 px-6 bg-slate-700 hover:bg-slate-600 rounded-xl cursor-pointer transition-all boarder boarder-slate-600 hover:border-indigo-400"
-				>
-					<img
-						src={ fmt.Sprintf("/assets/drink_%s.png", ord.ImgName) }
-						alt={ ord.CocktailName }
-						class="w-20 h-30 rounded-lg object-cover bg-slate-800 shadow-sm flex-shrink-0"
-					/>
-					<div class="flex-grow">
-						<h2 class="text-lg font-bold text-slate-100 leading-tight">
-							{ ord.CocktailName }
-							if  ord.Finished {
-								<span class="ml-4 inline-flex items-center px-3 py-1 rounded text-[15px] font-bold bg-green-600 text-white tracking-wide shadow-sm">
-									できた
-								</span>
-							} else if ord.IsCancelled {
-								<span class="ml-4 inline-flex items-center px-3 py-1 rounded text-[15px] font-bold bg-red-600 text-white tracking-wide shadow-sm">
-									キャンセル
-								</span>
-							} else {
-								<span class="ml-4 inline-flex items-center px-3 py-1 rounded text-[15px] font-bold bg-yellow-500 text-white tracking-wide shadow-sm">
-									熟成中	
-								</span>
+	<section class="w-full max-w-md mx-auto">
+		<header class="text-center mb-8 border-b border-kin/30 pb-4">
+			<h2 class="font-mincho text-3xl text-washi tracking-[0.3em]">今宵の一杯</h2>
+			<p class="font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-2">
+				{ userName } — tonight's drinks
+			</p>
+		</header>
+		if len(orders) == 0 {
+			<p class="font-mincho text-washi-dim text-center italic py-12">
+				まだ注文がありません
+			</p>
+		} else {
+			<ul>
+				for _, ord := range orders {
+					<li class="border-t border-kin/20 last:border-b">
+						<div class={ orderRowClasses(ord) }>
+							<img
+								src={ fmt.Sprintf("/assets/drink_%s.png", ord.ImgName) }
+								alt={ ord.CocktailName }
+								class={ orderImgClasses(ord) }
+							/>
+							<div class="flex-grow min-w-0">
+								<h3 class="font-mincho text-xl text-washi leading-tight tracking-wider truncate">
+									if ord.IsCancelled {
+										<span class="line-through text-washi-dim">{ ord.CocktailName }</span>
+									} else {
+										{ ord.CocktailName }
+									}
+								</h3>
+								@orderStatus(ord)
+							</div>
+							if !ord.IsCancelled && !ord.Finished {
+								<button
+									hx-post={ fmt.Sprintf("/cancelOrder?ordId=%v", ord.OrderId) }
+									hx-target="#main-area"
+									class="flex-shrink-0 font-jp text-[10px] text-washi-dim hover:text-shu
+                                           border border-washi-dim/30 hover:border-shu px-3 py-2
+                                           tracking-widest transition-colors"
+								>
+									取消
+								</button>
 							}
-						</h2>
-						if !ord.IsCancelled && !ord.Finished {
-							<button
-								class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95"
-								hx-post={ fmt.Sprintf("/cancelOrder?ordId=%v", ord.OrderId) }
-								hx-target="#main-area"
-							>
-								キャンセル	
-							</button>
-						}
-					</div>
-				</div>
-			</div>
+						</div>
+					</li>
+				}
+			</ul>
 		}
 		<button
 			hx-get="/"
 			hx-target="#main-area"
-			class="mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2"
+			class="mt-10 mx-auto block font-jp text-xs text-washi-dim hover:text-kin tracking-[0.3em] transition-colors"
 		>
-			<span>← 戻る (Back)</span>
+			← 戻る
 		</button>
-	</div>
+	</section>
+}
+
+templ orderStatus(ord MyOrders) {
+	<p class="mt-2">
+		if ord.Finished {
+			<span class="font-jp text-[10px] text-kin border border-kin/60 px-2 py-0.5 tracking-[0.3em]">
+				できた
+			</span>
+		} else if ord.IsCancelled {
+			<span class="font-jp text-[10px] text-washi-dim border border-washi-dim/40 px-2 py-0.5 tracking-[0.3em]">
+				キャンセル
+			</span>
+		} else {
+			<span class="font-jp text-[10px] text-sakura border border-sakura/60 px-2 py-0.5 tracking-[0.3em]">
+				熟成中
+			</span>
+		}
+	</p>
+}
+
+func orderRowClasses(ord MyOrders) string {
+	if ord.IsCancelled {
+		return "flex items-center gap-5 py-4 px-2 opacity-50"
+	}
+	return "flex items-center gap-5 py-4 px-2"
+}
+
+func orderImgClasses(ord MyOrders) string {
+	if ord.IsCancelled {
+		return "w-14 h-20 object-contain flex-shrink-0 grayscale"
+	}
+	return "w-14 h-20 object-contain flex-shrink-0"
 }

@@ -68,11 +68,11 @@ templ Orders(orders []OrderStruct) {
 }
 
 templ FinishOrder(cocktail, orderedBy string) {
-	<div class="bg-emerald-50 border-l-8 border-emerald-500 shadow-inner p-6 opacity-75 grayscale-0 flex items-center justify-center h-full min-h-[200px]">
+	<div class="bg-washi/40 text-sumi/60 border-l-4 border-kin shadow-none flex items-center justify-center min-h-[200px] p-6">
 		<div class="text-center">
-			<div class="text-3xl mb-2">✅</div>
-			<h2 class="text-lg font-bold text-emerald-800 line-through decoration-2">{ cocktail }</h2>
-			<p class="text-xs text-emerald-600 uppercase mt-1">Served to: { orderedBy }</p>
+			<div class="hanko mx-auto mb-3" style="border-color:#b08d4a; color:#b08d4a; transform:rotate(-12deg);">済</div>
+			<h2 class="font-mincho text-lg line-through decoration-1 tracking-wider">{ cocktail }</h2>
+			<p class="font-jp text-[10px] uppercase tracking-[0.3em] mt-1">{ orderedBy } 様へ</p>
 		</div>
 	</div>
 }

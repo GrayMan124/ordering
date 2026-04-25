@@ -224,7 +224,7 @@ func FinishOrder(cocktail, orderedBy string) templ.Component {
 			templ_7745c5c3_Var12 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<div class=\"bg-emerald-50 border-l-8 border-emerald-500 shadow-inner p-6 opacity-75 grayscale-0 flex items-center justify-center h-full min-h-[200px]\"><div class=\"text-center\"><div class=\"text-3xl mb-2\">✅</div><h2 class=\"text-lg font-bold text-emerald-800 line-through decoration-2\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 15, "<div class=\"bg-washi/40 text-sumi/60 border-l-4 border-kin shadow-none flex items-center justify-center min-h-[200px] p-6\"><div class=\"text-center\"><div class=\"hanko mx-auto mb-3\" style=\"border-color:#b08d4a; color:#b08d4a; transform:rotate(-12deg);\">済</div><h2 class=\"font-mincho text-lg line-through decoration-1 tracking-wider\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -237,20 +237,20 @@ func FinishOrder(cocktail, orderedBy string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</h2><p class=\"text-xs text-emerald-600 uppercase mt-1\">Served to: ")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 16, "</h2><p class=\"font-jp text-[10px] uppercase tracking-[0.3em] mt-1\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var14 string
 		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(orderedBy)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 75, Col: 76}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/orders.templ`, Line: 75, Col: 77}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, "</p></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 17, " 様へ</p></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
