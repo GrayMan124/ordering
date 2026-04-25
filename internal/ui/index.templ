@@ -1,86 +1,142 @@
 package ui 
 
 templ DefaultMainArea() {
-	<div class="flex flex-col items-center justify-center space-y-4">
-		<div class="flex flex-col items-stretch justify-center space-y-4 w-full max-w-sm px-4">
-			<button
-				class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
-				hx-get="/cockatils"
-				hx-target="#menu-area"
-			>
-				<img src="/assets/menu_tenin.png" alt="Menu" class="w-12 h-12 object-contain"/>
-				<span>メニュー</span>
-			</button>
-			<button
-				class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
-				hx-get="/leaderboard"
-				hx-target="#main-area"
-			>
-				<img src="/assets/crown.png" alt="Leaderboard" class="w-12 h-12 object-contain"/>
-				<span>ランキング</span>
-			</button>
-			<button
-				class="flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg"
-				hx-get="/myOrders"
-				hx-target="#main-area"
-			>
-				<img src="/assets/beer_yukata.png" alt="My Orders" class="w-12 h-12 object-contain"/>
-				<span>今夜の一杯</span>
-			</button>
-		</div>
-	</div>
+	<nav class="flex flex-col w-full max-w-sm mx-auto px-2">
+		@menuRow("/cockatils", "#menu-area", "/assets/menu_tenin.png", "お品書き", "menu")
+		@menuRow("/leaderboard", "#main-area", "/assets/crown.png", "番付", "ranking")
+		@menuRow("/myOrders", "#main-area", "/assets/beer_yukata.png", "今宵の一杯", "my orders")
+		<div class="border-t border-kin/30"></div>
+	</nav>
+}
+
+templ menuRow(href, target, img, jp, en string) {
+	<a
+		class="group flex items-center gap-5 py-5 border-t border-kin/30 cursor-pointer"
+		hx-get={ href }
+		hx-target={ target }
+	>
+		<img src={ img } alt="" class="w-14 h-14 object-contain"/>
+		<span class="flex-1">
+			<span class="block font-mincho text-3xl text-washi tracking-wider">{ jp }</span>
+			<span class="block font-jp text-[10px] text-washi-dim tracking-[0.4em] uppercase mt-1">{ en }</span>
+		</span>
+		<span class="text-kin text-2xl group-hover:translate-x-1 transition-transform">›</span>
+	</a>
 }
 
 templ LoginNewUser() {
-	<div class="flex flex-col items-center justify-center space-y-2">
-		<h1 class="text-3xl font-bold text-amber-500">いらっしゃいませ！</h1>
-		<img src="/assets/arigatou.png" class="mx-auto"/>
-		<form hx-post="/createUser" hx-target="#main-area" class="p-6 space-y-4">
-			<label
-				for="UserName"
-				class="block text-sm font-medium text-slate-700 mb-1"
-			>お客様の名前を入れてください</label>
-			<input
-				type="text"
-				class="w-full px-3 py-2 bg-slate-100 border border-slate-300 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"
-				name="UserName"
-				placeholder="e.g. あきら"
-			/>
-			<button
-				type="submit"
-				class="px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg"
-			>ログイン</button>
-		</form>
-	</div>
+	<form
+		hx-post="/createUser"
+		hx-target="#main-area"
+		class="flex flex-col items-center w-full max-w-sm mx-auto px-6 space-y-6"
+	>
+		<div class="text-center">
+			<p class="font-mincho text-3xl text-washi tracking-[0.2em]">いらっしゃいませ</p>
+			<p class="font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-1">welcome</p>
+		</div>
+		<img src="/assets/arigatou.png" class="w-32 opacity-95"/>
+		<label for="UserName" class="font-jp text-sm text-washi-dim self-start">
+			お客様の名前を入れてください
+		</label>
+		<input
+			type="text"
+			name="UserName"
+			placeholder="あきら"
+			class="w-full bg-transparent border-0 border-b border-kin/40 focus:border-kin
+                   py-2 text-washi text-lg tracking-wider placeholder-washi-dim/40
+                   focus:outline-none transition-colors"
+		/>
+		<button
+			type="submit"
+			class="font-mincho text-lg text-shu border border-shu px-12 py-3
+                       hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]"
+		>
+			入店
+		</button>
+	</form>
 }
 
 templ Index(user_valid bool) {
 	<html>
 		<head>
-			<title>HomeBar </title>
+			<title>唐変木バー</title>
 			<meta charset="utf-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>
 			<script src="https://cdn.tailwindcss.com"></script>
-			<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet"/>
+			<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sumi:    '#1a1410',
+                        'sumi-2':'#221a14',
+                        'sumi-3':'#2c2218',
+                        washi:   '#ebe4d3',
+                        'washi-dim': '#b8ad95',
+                        shu:     '#b3413e',
+                        kin:     '#b08d4a',
+                        aiiro:   '#1f3a5c',
+                    },
+                    fontFamily: {
+                        mincho: ['"Shippori Mincho"', 'serif'],
+                        jp:     ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 			<style>
-        			body { font-family: 'Inter', sans-serif; }
-    			</style>
+        body { font-family: 'Noto Sans JP', sans-serif; }
+        /* noren — cloth strip at the top of the page */
+        .noren {
+            height: 10px;
+            background: repeating-linear-gradient(
+                to right,
+                #1f3a5c 0 calc(20% - 1px),
+                #b08d4a calc(20% - 1px) 20%
+            );
+        }
+        /* hanko — vermillion stamp mark, slightly tilted */
+        .hanko {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 4.5rem; height: 4.5rem;
+            border: 3px solid #b3413e;
+            color: #b3413e;
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.25rem;
+            background: rgba(179, 65, 62, 0.06);
+            transform: rotate(-6deg);
+        }
+        .washi-bg {
+            background-color: #1a1410;
+            background-image:
+                radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);
+            background-size: 3px 3px;
+        }
+    </style>
 		</head>
-		<body id="main-area" class="bg-slate-900 flex flex-col items-center justify-center min-h-screen py-4">
-			<div class="w-full max-w-2xl bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden">
-				<div class="p-8 text-center border-b border-slate-700">
-					<h1 class="text-3xl font-bold text-amber-500">唐変木バー</h1>
-					<img src="/assets/bar_shaker_man.png" class="mx-auto"/>
-				</div>
-				<div class="max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]" id="menu-area">
+		<body id="main-area" class="washi-bg text-washi min-h-screen flex flex-col">
+			<div class="noren"></div>
+			<main class="flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16">
+				<header class="text-center mb-10">
+					<h1 class="font-mincho text-5xl text-washi tracking-[0.3em]">唐変木バー</h1>
+					<p class="font-jp text-[10px] text-kin tracking-[0.5em] uppercase mt-2">tohenboku bar</p>
+					<img src="/assets/bar_shaker_man.png" class="mx-auto w-40 mt-6 opacity-95"/>
+				</header>
+				<div id="menu-area" class="w-full">
 					if user_valid {
 						@DefaultMainArea()
 					} else {
 						@LoginNewUser()
 					}
 				</div>
-			</div>
+			</main>
 		</body>
 	</html>
 }

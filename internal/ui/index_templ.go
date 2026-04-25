@@ -29,7 +29,117 @@ func DefaultMainArea() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col items-center justify-center space-y-4\"><div class=\"flex flex-col items-stretch justify-center space-y-4 w-full max-w-sm px-4\"><button class=\"flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg\" hx-get=\"/cockatils\" hx-target=\"#menu-area\"><img src=\"/assets/menu_tenin.png\" alt=\"Menu\" class=\"w-12 h-12 object-contain\"> <span>メニュー</span></button> <button class=\"flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg\" hx-get=\"/leaderboard\" hx-target=\"#main-area\"><img src=\"/assets/crown.png\" alt=\"Leaderboard\" class=\"w-12 h-12 object-contain\"> <span>ランキング</span></button> <button class=\"flex items-center justify-center gap-3 py-3 bg-indigo-600 hover:bg-indigo-500 text-3xl text-white font-semibold rounded-lg transition-colors shadow-lg\" hx-get=\"/myOrders\" hx-target=\"#main-area\"><img src=\"/assets/beer_yukata.png\" alt=\"My Orders\" class=\"w-12 h-12 object-contain\"> <span>今夜の一杯</span></button></div></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<nav class=\"flex flex-col w-full max-w-sm mx-auto px-2\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = menuRow("/cockatils", "#menu-area", "/assets/menu_tenin.png", "お品書き", "menu").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = menuRow("/leaderboard", "#main-area", "/assets/crown.png", "番付", "ranking").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = menuRow("/myOrders", "#main-area", "/assets/beer_yukata.png", "今宵の一杯", "my orders").Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"border-t border-kin/30\"></div></nav>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func menuRow(href, target, img, jp, en string) templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<a class=\"group flex items-center gap-5 py-5 border-t border-kin/30 cursor-pointer\" hx-get=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var3 string
+		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(href)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/index.templ`, Line: 15, Col: 15}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "\" hx-target=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var4 string
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(target)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/index.templ`, Line: 16, Col: 20}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "\"><img src=\"")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var5 string
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(img)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/index.templ`, Line: 18, Col: 16}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "\" alt=\"\" class=\"w-14 h-14 object-contain\"> <span class=\"flex-1\"><span class=\"block font-mincho text-3xl text-washi tracking-wider\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(jp)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/index.templ`, Line: 20, Col: 74}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span> <span class=\"block font-jp text-[10px] text-washi-dim tracking-[0.4em] uppercase mt-1\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(en)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/index.templ`, Line: 21, Col: 94}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</span></span> <span class=\"text-kin text-2xl group-hover:translate-x-1 transition-transform\">›</span></a>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -53,12 +163,12 @@ func LoginNewUser() templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var2 == nil {
-			templ_7745c5c3_Var2 = templ.NopComponent
+		templ_7745c5c3_Var8 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var8 == nil {
+			templ_7745c5c3_Var8 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"flex flex-col items-center justify-center space-y-2\"><h1 class=\"text-3xl font-bold text-amber-500\">いらっしゃいませ！</h1><img src=\"/assets/arigatou.png\" class=\"mx-auto\"><form hx-post=\"/createUser\" hx-target=\"#main-area\" class=\"p-6 space-y-4\"><label for=\"UserName\" class=\"block text-sm font-medium text-slate-700 mb-1\">お客様の名前を入れてください</label> <input type=\"text\" class=\"w-full px-3 py-2 bg-slate-100 border border-slate-300 text-slate-900 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm\" name=\"UserName\" placeholder=\"e.g. あきら\"> <button type=\"submit\" class=\"px-10 py-6 bg-indigo-600 hover:bg-indigo-500 font-size-3xl text-white font-smibold rounded-lg transition-colors shadow-lg\">ログイン</button></form></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 9, "<form hx-post=\"/createUser\" hx-target=\"#main-area\" class=\"flex flex-col items-center w-full max-w-sm mx-auto px-6 space-y-6\"><div class=\"text-center\"><p class=\"font-mincho text-3xl text-washi tracking-[0.2em]\">いらっしゃいませ</p><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-1\">welcome</p></div><img src=\"/assets/arigatou.png\" class=\"w-32 opacity-95\"> <label for=\"UserName\" class=\"font-jp text-sm text-washi-dim self-start\">お客様の名前を入れてください</label> <input type=\"text\" name=\"UserName\" placeholder=\"あきら\" class=\"w-full bg-transparent border-0 border-b border-kin/40 focus:border-kin py-2 text-washi text-lg tracking-wider placeholder-washi-dim/40 focus:outline-none transition-colors\"> <button type=\"submit\" class=\"font-mincho text-lg text-shu border border-shu px-12 py-3 hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]\">入店</button></form>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -82,12 +192,12 @@ func Index(user_valid bool) templ.Component {
 			}()
 		}
 		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var3 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var3 == nil {
-			templ_7745c5c3_Var3 = templ.NopComponent
+		templ_7745c5c3_Var9 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var9 == nil {
+			templ_7745c5c3_Var9 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<html><head><title>HomeBar </title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\"><style>\n        \t\t\tbody { font-family: 'Inter', sans-serif; }\n    \t\t\t</style></head><body id=\"main-area\" class=\"bg-slate-900 flex flex-col items-center justify-center min-h-screen py-4\"><div class=\"w-full max-w-2xl bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 overflow-hidden\"><div class=\"p-8 text-center border-b border-slate-700\"><h1 class=\"text-3xl font-bold text-amber-500\">唐変木バー</h1><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto\"></div><div class=\"max-w-2xl p-6 space-y-12 bg-slate-800/50 min-h-[300px]\" id=\"menu-area\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<html><head><title>唐変木バー</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap\" rel=\"stylesheet\"><script>\n        tailwind.config = {\n            theme: {\n                extend: {\n                    colors: {\n                        sumi:    '#1a1410',\n                        'sumi-2':'#221a14',\n                        'sumi-3':'#2c2218',\n                        washi:   '#ebe4d3',\n                        'washi-dim': '#b8ad95',\n                        shu:     '#b3413e',\n                        kin:     '#b08d4a',\n                        aiiro:   '#1f3a5c',\n                    },\n                    fontFamily: {\n                        mincho: ['\"Shippori Mincho\"', 'serif'],\n                        jp:     ['\"Noto Sans JP\"', 'sans-serif'],\n                    },\n                },\n            },\n        }\n    </script><style>\n        body { font-family: 'Noto Sans JP', sans-serif; }\n        /* noren — cloth strip at the top of the page */\n        .noren {\n            height: 10px;\n            background: repeating-linear-gradient(\n                to right,\n                #1f3a5c 0 calc(20% - 1px),\n                #b08d4a calc(20% - 1px) 20%\n            );\n        }\n        /* hanko — vermillion stamp mark, slightly tilted */\n        .hanko {\n            display: inline-flex;\n            align-items: center;\n            justify-content: center;\n            width: 4.5rem; height: 4.5rem;\n            border: 3px solid #b3413e;\n            color: #b3413e;\n            font-family: 'Shippori Mincho', serif;\n            font-size: 1.25rem;\n            background: rgba(179, 65, 62, 0.06);\n            transform: rotate(-6deg);\n        }\n        .washi-bg {\n            background-color: #1a1410;\n            background-image:\n                radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);\n            background-size: 3px 3px;\n        }\n    </style></head><body id=\"main-area\" class=\"washi-bg text-washi min-h-screen flex flex-col\"><div class=\"noren\"></div><main class=\"flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16\"><header class=\"text-center mb-10\"><h1 class=\"font-mincho text-5xl text-washi tracking-[0.3em]\">唐変木バー</h1><p class=\"font-jp text-[10px] text-kin tracking-[0.5em] uppercase mt-2\">tohenboku bar</p><img src=\"/assets/bar_shaker_man.png\" class=\"mx-auto w-40 mt-6 opacity-95\"></header><div id=\"menu-area\" class=\"w-full\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -102,7 +212,7 @@ func Index(user_valid bool) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</div></div></body></html>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 11, "</div></main></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
