@@ -31,7 +31,7 @@ func LeaderBoard(Names []string, Scores []float32) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full max-w-md mx-auto\"><header class=\"text-center mb-8 border-b border-kin/30 pb-4\"><h2 class=\"font-mincho text-3xl text-washi tracking-[0.3em]\">酔っぱらい番付</h2><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-2\">drunkards' ranking</p></header>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full max-w-md mx-auto px-5 pt-10 pb-16\"><header class=\"text-center mb-8 border-b border-kin/30 pb-4\"><h2 class=\"font-mincho text-3xl text-washi tracking-[0.3em]\">酔っぱらい番付</h2><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-2\">drunkards' ranking</p></header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

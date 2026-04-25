@@ -66,25 +66,23 @@ templ themeHead(title string) {
             10%  { opacity: 0.55; }
             100% { transform: translate3d(40px, 110vh, 0) rotate(540deg); opacity: 0; }
         }
-        .sakura-petals {
-            position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
-        }
-        .sakura-petals span {
-            position: absolute; top: 0; display: block;
-            width: 14px; height: 14px;
-            background: #e8a3a3;
-            clip-path: path('M7 0 C 10 4, 11 9, 7 14 C 3 9, 4 4, 7 0 Z');
-            animation: sakura-fall linear infinite;
-            opacity: 0.45;
-        }
-        .sakura-petals span:nth-child(1){left:8%; animation-duration:22s; animation-delay:0s;}
-        .sakura-petals span:nth-child(2){left:30%;animation-duration:26s; animation-delay:6s; transform:scale(0.8);}
-        .sakura-petals span:nth-child(3){left:55%;animation-duration:20s; animation-delay:11s;transform:scale(1.2);}
-        .sakura-petals span:nth-child(4){left:75%;animation-duration:24s; animation-delay:3s;}
-        .sakura-petals span:nth-child(5){left:90%;animation-duration:28s; animation-delay:14s;transform:scale(0.7);}
-        @media (prefers-reduced-motion: reduce) {
-            .sakura-petals span { animation: none; display: none; }
-        }
+	.sakura-petals span {
+    position: absolute;
+    top: 0;
+    display: block;
+    background: #e8a3a3;
+    clip-path: path('M7 0 C 10 4, 11 9, 7 14 C 3 9, 4 4, 7 0 Z');
+    animation: sakura-fall linear infinite;
+    opacity: 0;
+}
+.sakura-petals span:nth-child(1){left: 8%; width:14px; height:14px; animation-duration:22s; animation-delay: -7s;}
+.sakura-petals span:nth-child(2){left:30%; width:11px; height:11px; animation-duration:26s; animation-delay:-16s;}
+.sakura-petals span:nth-child(3){left:55%; width:17px; height:17px; animation-duration:20s; animation-delay: -3s;}
+.sakura-petals span:nth-child(4){left:75%; width:14px; height:14px; animation-duration:24s; animation-delay:-19s;}
+.sakura-petals span:nth-child(5){left:90%; width:10px; height:10px; animation-duration:28s; animation-delay:-13s;}
+@media (prefers-reduced-motion: reduce) {
+    .sakura-petals span { animation: none; display: none; }
+}
     </style>
 }
 
