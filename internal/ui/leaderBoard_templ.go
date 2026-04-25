@@ -31,82 +31,82 @@ func LeaderBoard(Names []string, Scores []float32) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"flex flex-col items-center w-full max-w-md mx-auto animate-in fade-in duration-500\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<div class=\"w-full max-w-md mx-auto\"><header class=\"text-center mb-8 border-b border-kin/30 pb-4\"><h2 class=\"font-mincho text-3xl text-washi tracking-[0.3em]\">酔っぱらい番付</h2><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-2\">drunkards' ranking</p></header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if len(Names) == 0 || len(Names) != len(Scores) {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<div class=\"bg-slate-800 border border-dashed border-slate-700 rounded-2xl p-12 text-center w-full\"><p class=\"text-slate-500 italic\">まだデータがありません</p><p class=\"text-slate-600 text-sm mt-2\">(No active users yet)</p></div>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<p class=\"font-mincho text-washi-dim text-center italic py-12\">まだデータがありません</p>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		} else {
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<div class=\"text-center mb-10\"><div class=\"bg-slate-800 border border-slate-700/50 rounded-[2rem] p-8 mb-6 shadow-xl\"><h2 class=\"text-3xl font-black text-amber-500 tracking-[0.2em] uppercase\">酔っぱらいランキング</h2></div><div class=\"relative flex flex-col items-center w-full bg-gradient-to-br from-indigo-950 to-slate-900 border-2 border-amber-500 rounded-[3rem] p-10 mb-10 shadow-[0_20px_50px_rgba(245,158,11,0.15)] overflow-visible\"><div class=\"absolute -top-8 -right-4 transform rotate-12 drop-shadow-2xl\"><span class=\"text-7xl\">👑</span></div><div class=\"relative mb-8\"><div class=\"p-1.5 bg-gradient-to-b from-amber-400 to-amber-700 rounded-[2rem] shadow-2xl\"><img src=\"/assets/yopparai.png\" class=\"w-40 h-40 rounded-[1.8rem] object-cover border-4 border-slate-900\"></div><div class=\"absolute -bottom-4 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-900 font-black px-6 py-1.5 rounded-full text-lg shadow-xl border-4 border-slate-900 whitespace-nowrap\">1位</div></div><div class=\"flex flex-col items-center space-y-2 mt-4\"><p class=\"text-amber-500/70 text-xl uppercase tracking-[0.3em] font-bold\">一番酔っ払いやつ</p><h3 class=\"text-5xl font-black text-white leading-tight\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<figure class=\"flex flex-col items-center mb-10\"><div class=\"relative\"><img src=\"/assets/crown.png\" class=\"absolute -top-6 left-1/2 -translate-x-1/2 w-12 z-10\"> <img src=\"/assets/yopparai.png\" class=\"w-32 h-32 object-cover border border-kin p-1\"></div><p class=\"font-jp text-[10px] text-kin tracking-[0.4em] uppercase mt-4\">大関 — first place</p><h3 class=\"font-mincho text-3xl text-washi tracking-widest mt-1\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var2 string
 			templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(Names[0])
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 39, Col: 17}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 23, Col: 79}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h3><div class=\"mt-4 px-8 py-2 bg-amber-500/10 border border-amber-500/30 rounded-2xl\"><p class=\"text-amber-400 font-mono text-3xl font-bold\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "</h3><p class=\"font-mincho text-shu text-xl mt-2\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			var templ_7745c5c3_Var3 string
-			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f pts", Scores[0]))
+			templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f", Scores[0]))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 43, Col: 44}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 25, Col: 37}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "</p></div></div></div></div><ul class=\"w-full space-y-3\">")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, " <span class=\"text-xs text-washi-dim tracking-widest ml-1\">pts</span></p></figure><ul>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 			for idx, name := range Names {
 				if idx != 0 {
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<li class=\"flex items-center justify-between bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 p-4 rounded-xl transition-all duration-200 group\"><div class=\"flex items-center space-x-4\"><span class=\"w-8 text-slate-500 font-mono font-bold group-hover:text-indigo-400\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<li class=\"flex items-center justify-between py-3 border-t border-kin/20 group\"><span class=\"flex items-center gap-4\"><span class=\"font-mincho text-kin/70 w-8\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var4 string
-					templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("#%02d", idx+1))
+					templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%d位", idx+1))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 55, Col: 40}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 35, Col: 40}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span> <span class=\"text-slate-200 font-medium\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "</span> <span class=\"font-mincho text-washi text-lg tracking-wider\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var5 string
 					templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 57, Col: 55}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 37, Col: 74}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
-					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</span></div><span class=\"text-indigo-400 font-mono font-semibold\">")
+					templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 8, "</span></span> <span class=\"font-mincho text-washi-dim\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
 					var templ_7745c5c3_Var6 string
 					templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(fmt.Sprintf("%.1f", Scores[idx]))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 60, Col: 41}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/leaderBoard.templ`, Line: 40, Col: 42}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 					if templ_7745c5c3_Err != nil {
@@ -118,7 +118,7 @@ func LeaderBoard(Names []string, Scores []float32) templ.Component {
 					}
 				}
 			}
-			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "</ul><button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-8 mx-auto w-fit text-slate-500 hover:text-white text-base transition-colors flex items-center justify-center space-x-2\"><span>← 戻る (Back)</span></button>")
+			templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 10, "<li class=\"border-t border-kin/20\"></li></ul><button hx-get=\"/\" hx-target=\"#main-area\" class=\"mt-10 mx-auto block font-jp text-xs text-washi-dim hover:text-kin tracking-[0.3em] transition-colors\">← 戻る</button>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

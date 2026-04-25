@@ -3,49 +3,67 @@ package ui
 import "fmt"
 
 templ ExpandCocktail(cocktailName string, ingredients []string) {
-	<div class="cocktail-wrapper bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner">
-		<div class="flex justify-between items-start mb-4">
-			<h2 class="text-2xl font-bold text-white">{ cocktailName }</h2>
-			<button hx-get="/cockatils" hx-target="#menu-area" class="text-sm text-slate-400 hover:text-white">Close</button>
+	<div class="cocktail-wrapper bg-sumi-2 border-l-2 border-shu p-6 my-2">
+		<div class="flex justify-between items-start mb-5">
+			<h2 class="font-mincho text-3xl text-washi tracking-widest">{ cocktailName }</h2>
+			<button
+				hx-get="/cockatils"
+				hx-target="#menu-area"
+				class="font-jp text-xs text-washi-dim hover:text-kin tracking-widest"
+			>
+				✕ 戻る
+			</button>
 		</div>
-		<div class="mb-6 p-4 bg-slate-800 rounded-lg">
-			<h3 class="text-xs font-semibold text-slate-500 uppercase mb-2">Ingredients</h3>
-			<ul class="list-disc list-inside text-slate-300 space-y-1">
+		<div class="mb-6">
+			<h3 class="font-jp text-[10px] text-kin uppercase tracking-[0.4em] mb-3 pb-2 border-b border-kin/20">
+				材料 — ingredients
+			</h3>
+			<ul class="font-mincho text-washi text-lg space-y-1.5">
 				for _, ingr := range ingredients {
-					<li>{ ingr }</li>
+					<li class="flex items-center gap-3">
+						<span class="text-kin text-xs">◆</span>
+						<span>{ ingr }</span>
+					</li>
 				}
 			</ul>
 		</div>
-		<div>
-			<button type="button" 
-			hx-get={fmt.Sprintf("/confirm?cocktail=%s",cocktailName)}
+		<button
+			type="button"
+			hx-get={ fmt.Sprintf("/confirm?cocktail=%s", cocktailName) }
 			hx-target="this"
 			hx-swap="outerHTML"
-			class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
-				注文する
-			</button>
-			</div>
+			class="w-full font-mincho text-lg text-shu border border-shu py-3
+                       hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]"
+		>
+			注文する
+		</button>
 	</div>
 }
 
-templ ConfirmOrder(cocktailName string){
-	
-	<div class="bg-slate-700 rounded-xl p-6 border border-indigo-500 shadow-inner">
-	<p class="text-center text-white text-sm font-bold mb-2">ご注文を確認してください</p>
-		<form hx-post="/order" hx-target="#main-area" class="space-y-4">
+templ ConfirmOrder(cocktailName string) {
+	<div class="bg-sumi-2 border-l-2 border-shu p-6 my-2 text-center">
+		<p class="font-mincho text-xl text-washi mb-1">ご注文を確認</p>
+		<p class="font-jp text-[10px] text-kin tracking-[0.4em] uppercase mb-5">confirm order</p>
+		<p class="font-mincho text-2xl text-washi tracking-widest mb-6">{ cocktailName }</p>
+		<form hx-post="/order" hx-target="#main-area" class="flex gap-3">
 			<input type="hidden" name="cocktail" value={ cocktailName }/>
-			<div class="flex gap-4">
-			<button type="button" hx-get= { fmt.Sprintf("/cock?cocktail=%s",cocktailName) } 
-			hx-target="closest .cocktail-wrapper"
-			hx-swap="outerHTML"
-			class="flex-1 w-full bg-red-700 hover:bg-red-600 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
-				キャンセル
+			<button
+				type="button"
+				hx-get={ fmt.Sprintf("/cock?cocktail=%s", cocktailName) }
+				hx-target="closest .cocktail-wrapper"
+				hx-swap="outerHTML"
+				class="flex-1 font-mincho text-base text-shu border border-shu py-3
+                           hover:bg-shu hover:text-sumi transition-colors tracking-[0.3em]"
+			>
+				取消
 			</button>
-			<button type="submit" class="flex-1 w-full bg-green-700 hover:bg-indigo-600 text-white font-bold py-3 rounded-lg shadow-md transition-transform active:scale-95">
-				確定する
+			<button
+				type="submit"
+				class="flex-1 font-mincho text-base text-washi-dim border border-washi-dim/40 py-3
+                           hover:text-washi hover:border-washi transition-colors tracking-widest"
+			>
+				確定
 			</button>
-			</div>
-
 		</form>
 	</div>
 }
