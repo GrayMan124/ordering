@@ -2,6 +2,50 @@ package ui
 
 import "fmt"
 
+templ ExpandGodfather(key int) {
+	<div class="cocktail-wrapper bg-sumi-2 border-l-2 border-shu p-6 my-2">
+		<div class="flex justify-between items-start mb-5">
+			<h2 class="font-mincho text-3xl text-washi tracking-widest">Godfather</h2>
+			<button
+				hx-get="/cockatils"
+				hx-target="#menu-area"
+				class="font-jp text-xs text-washi-dim hover:text-kin tracking-widest"
+			>
+				✕ 戻る
+			</button>
+		</div>
+		<div class="mb-6">
+			<img src="/assets/meme/linus.jpg" class="mx-auto"/>
+		</div>
+		<div class="border-t border-b border-shu/30 py-5 mb-6 text-center">
+			<p class="font-jp text-[10px] text-kin tracking-[0.5em] uppercase mb-3">― 暗証 ―</p>
+			<h3 class="font-mincho text-2xl text-washi mb-3 tracking-wider">
+				断れない申し出だ。
+			</h3>
+			<p class="font-jp text-sm text-washi-dim leading-relaxed">
+				正しい番号を選べ。
+				<br/>
+				さもなくば、最初からやり直しだ。
+			</p>
+		</div>
+		<p class="font-jp text-[10px] text-kin tracking-[0.5em] uppercase mb-3 text-center">１ — ６</p>
+		<div class="grid grid-cols-6 gap-2">
+			for i := 1; i<=6; i++ {
+				<button
+					type="button"
+					hx-get={ fmt.Sprintf("/confirm_godfather?choice=%v&key=%v", i, key) }
+					hx-target="#main-area"
+					hx-swap="outerHTML"
+					class="font-mincho text-lg text-shu border border-shu py-3
+                           hover:bg-shu hover:text-sumi transition-colors"
+				>
+					{ i }
+				</button>
+			}
+		</div>
+	</div>
+}
+
 templ ExpandCocktail(cocktailName string, ingredients []string) {
 	<div class="cocktail-wrapper bg-sumi-2 border-l-2 border-shu p-6 my-2">
 		<div class="flex justify-between items-start mb-5">

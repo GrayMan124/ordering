@@ -55,6 +55,7 @@ func main() {
 
 	//TODO: Refactor the orders, it should be ordered by -> ordered for
 	serveMux.Handle("GET /confirm", http.HandlerFunc(cfg.ConfirmOrder))
+	serveMux.Handle("GET /confirm_godfather", http.HandlerFunc(cfg.CheckGodfather))
 	serveMux.Handle("POST /order", http.HandlerFunc(cfg.SendOrder))
 	serveMux.Handle("GET /currentOrders", http.HandlerFunc(cfg.GetCurrentOrders))
 	serveMux.Handle("PUT /finishOrder", http.HandlerFunc(cfg.FinishOrder))
