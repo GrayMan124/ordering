@@ -36,13 +36,13 @@ func themeHead(title string) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/ui/theme.templ`, Line: 4, Col: 15}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `theme.templ`, Line: 4, Col: 15}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap\" rel=\"stylesheet\"><script>\n        tailwind.config = {\n            theme: {\n                extend: {\n                    colors: {\n                        sumi:        '#1a1410',\n                        'sumi-2':    '#221a14',\n                        'sumi-3':    '#2c2218',\n                        washi:       '#ebe4d3',\n                        'washi-dim': '#b8ad95',\n                        shu:         '#b3413e',\n                        kin:         '#b08d4a',\n                        aiiro:       '#1f3a5c',\n                        sakura:      '#e8a3a3',\n                        'sakura-soft':'#f4c2c2',\n                    },\n                    fontFamily: {\n                        mincho: ['\"Shippori Mincho\"', 'serif'],\n                        jp:     ['\"Noto Sans JP\"', 'sans-serif'],\n                    },\n                },\n            },\n        }\n    </script><style>\n        body { font-family: 'Noto Sans JP', sans-serif; }\n        /* Seasonal noren — sakura version. Soft pink band that fades at the edges. */\n        .noren {\n            height: 4px;\n            background: linear-gradient(to right,\n                transparent 0%,\n                rgba(232, 163, 163, 0.0) 5%,\n                rgba(232, 163, 163, 0.55) 35%,\n                rgba(244, 194, 194, 0.7) 50%,\n                rgba(232, 163, 163, 0.55) 65%,\n                rgba(232, 163, 163, 0.0) 95%,\n                transparent 100%);\n        }\n        .hanko {\n            display: inline-flex; align-items: center; justify-content: center;\n            width: 4.5rem; height: 4.5rem;\n            border: 3px solid #b3413e; color: #b3413e;\n            font-family: 'Shippori Mincho', serif; font-size: 1.25rem;\n            background: rgba(179, 65, 62, 0.06);\n            transform: rotate(-6deg);\n        }\n        .washi-bg {\n            background-color: #1a1410;\n            background-image: radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);\n            background-size: 3px 3px;\n        }\n        /* Falling petals — pure CSS, very restrained. */\n        @keyframes sakura-fall {\n            0%   { transform: translate3d(0, -10vh, 0) rotate(0deg);   opacity: 0; }\n            10%  { opacity: 0.55; }\n            100% { transform: translate3d(40px, 110vh, 0) rotate(540deg); opacity: 0; }\n        }\n\t.sakura-petals span {\n    position: absolute;\n    top: 0;\n    display: block;\n    background: #e8a3a3;\n    clip-path: path('M7 0 C 10 4, 11 9, 7 14 C 3 9, 4 4, 7 0 Z');\n    animation: sakura-fall linear infinite;\n    opacity: 0;\n}\n.sakura-petals span:nth-child(1){left: 8%; width:14px; height:14px; animation-duration:22s; animation-delay: -7s;}\n.sakura-petals span:nth-child(2){left:30%; width:11px; height:11px; animation-duration:26s; animation-delay:-16s;}\n.sakura-petals span:nth-child(3){left:55%; width:17px; height:17px; animation-duration:20s; animation-delay: -3s;}\n.sakura-petals span:nth-child(4){left:75%; width:14px; height:14px; animation-duration:24s; animation-delay:-19s;}\n.sakura-petals span:nth-child(5){left:90%; width:10px; height:10px; animation-duration:28s; animation-delay:-13s;}\n@media (prefers-reduced-motion: reduce) {\n    .sakura-petals span { animation: none; display: none; }\n}\n    </style>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "</title><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><script src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js\"></script><script src=\"https://cdn.tailwindcss.com\"></script><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap\" rel=\"stylesheet\"><script>\n        tailwind.config = {\n            theme: {\n                extend: {\n                    colors: {\n                        /* Year-round bones */\n                        sumi:        '#1a1410',\n                        'sumi-2':    '#221a14',\n                        'sumi-3':    '#2c2218',\n                        washi:       '#ebe4d3',\n                        'washi-dim': '#b8ad95',\n                        shu:         '#b3413e',\n                        kin:         '#b08d4a',\n                        /* Summer (蛍火 — firefly fire) */\n                        aiiro:       '#1f3a5c',  /* promoted: now seasonal lead */\n                        mizu:        '#6e9bb8',  /* new: water blue, soft variant */\n                        hotaru:      '#d4c25a',  /* new: firefly glow */\n                        /* Spring (kept for re-swap) */\n                        sakura:      '#e8a3a3',\n                        'sakura-soft':'#f4c2c2',\n                    },\n                    fontFamily: {\n                        mincho: ['\"Shippori Mincho\"', 'serif'],\n                        jp:     ['\"Noto Sans JP\"', 'sans-serif'],\n                    },\n                },\n            },\n        }\n    </script><style>\n        body { font-family: 'Noto Sans JP', sans-serif; }\n\n        /* Seasonal noren — summer (indigo fading through water blue). */\n        /* .noren { */\n        /*     height: 4px; */\n        /*     background: linear-gradient(to right, */\n        /*         transparent 0%, */\n        /*         rgba(31, 58, 92, 0.0)   5%, */\n        /*         rgba(31, 58, 92, 0.6)  35%, */\n        /*         rgba(110, 155, 184, 0.75) 50%, */\n        /*         rgba(31, 58, 92, 0.6)  65%, */\n        /*         rgba(31, 58, 92, 0.0)  95%, */\n        /*         transparent 100%); */\n        /* } */\n\t.noren {\n    \tposition: absolute;\n    \ttop: 0; left: 0; right: 0;\n    \theight: 140px;\n    \tpointer-events: none;\n    \tbackground: linear-gradient(to bottom,\n        \trgba(31, 58, 92, 0.45)   0%,\n        \trgba(31, 58, 92, 0.28)  25%,\n        \trgba(110, 155, 184, 0.12) 55%,\n        \ttransparent             100%);\n    \tz-index: 0;\n\t}\n        .hanko {\n            display: inline-flex; align-items: center; justify-content: center;\n            width: 4.5rem; height: 4.5rem;\n            border: 3px solid #b3413e; color: #b3413e;\n            font-family: 'Shippori Mincho', serif; font-size: 1.25rem;\n            background: rgba(179, 65, 62, 0.06);\n            transform: rotate(-6deg);\n        }\n\n        .washi-bg {\n            background-color: #1a1410;\n            background-image: radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);\n            background-size: 3px 3px;\n        }\n.stars {\n    position: absolute;\n    top: 0; left: 0; right: 0;\n    height: 140px;\n    pointer-events: none;\n    z-index: 0;\n}\n.stars span {\n    position: absolute;\n    width: 2px; height: 2px;\n    background: #ebe4d3;\n    border-radius: 50%;\n}\n.stars span:nth-child(1) { top: 22%; left: 12%; opacity: 0.50; }\n.stars span:nth-child(2) { top: 45%; left: 28%; opacity: 0.35; width: 1px; height: 1px; }\n.stars span:nth-child(3) { top: 18%; left: 55%; opacity: 0.55; }\n.stars span:nth-child(4) { top: 38%; left: 73%; opacity: 0.40; width: 1px; height: 1px; }\n.stars span:nth-child(5) { top: 60%; left: 20%; opacity: 0.25; }\n.stars span:nth-child(6) { top: 55%; left: 88%; opacity: 0.30; width: 1px; height: 1px; }\n        /* ──── Fireflies (蛍) — active ambient layer ──── */\n        .fireflies {\n            position: fixed; inset: 0;\n            pointer-events: none;\n            overflow: hidden;\n            z-index: 0;\n        }\n        /* Slow wandering motion — fireflies drift, they don't fall. */\n        @keyframes firefly-drift {\n            0%   { transform: translate(0, 0); }\n            25%  { transform: translate(30px, -25px); }\n            50%  { transform: translate(-20px, 20px); }\n            75%  { transform: translate(15px, 35px); }\n            100% { transform: translate(0, 0); }\n        }\n        /* Pulse: dot fades in and out, glow fades with it (cheap to animate). */\n        @keyframes firefly-pulse {\n            0%, 100% { opacity: 0.15; }\n            50%      { opacity: 0.9; }\n        }\n        .fireflies span {\n            position: absolute;\n            width: 4px; height: 4px;\n            background: #d4c25a;\n            border-radius: 50%;\n            /* Static glow halo; opacity animation fades dot + halo together. */\n            box-shadow: 0 0 8px 2px rgba(212, 194, 90, 0.55);\n\t    will-change: transform, opacity;\n            animation: firefly-drift ease-in-out infinite,\n                       firefly-pulse ease-in-out infinite;\n        }\n        .fireflies span:nth-child(1){ top:18%; left:12%; animation-duration:18s,3.8s; animation-delay:  0s,-1.2s; }\n        .fireflies span:nth-child(2){ top:35%; left:78%; animation-duration:22s,4.5s; animation-delay: -7s,-2.8s; }\n        .fireflies span:nth-child(3){ top:62%; left:25%; animation-duration:26s,3.2s; animation-delay:-13s,-0.5s; }\n        .fireflies span:nth-child(4){ top:80%; left:60%; animation-duration:20s,5.1s; animation-delay: -4s,-3.7s; }\n        .fireflies span:nth-child(5){ top:50%; left:45%; animation-duration:24s,4.0s; animation-delay:-16s,-1.9s; }\n        .fireflies span:nth-child(6){ top:25%; left:88%; animation-duration:28s,3.5s; animation-delay: -9s,-2.3s; }\n        @media (prefers-reduced-motion: reduce) {\n            .fireflies span { animation: none; opacity: 0.4; }\n        }\n\n        /* ──── Sakura layer (spring) — kept for re-swap ──── */\n        .sakura-petals {\n            position: fixed; inset: 0;\n            pointer-events: none;\n            overflow: hidden;\n            z-index: 0;\n        }\n        @keyframes sakura-fall {\n            0%   { transform: translate3d(0, -10vh, 0) rotate(0deg);    opacity: 0; }\n            10%  { opacity: 0.55; }\n            100% { transform: translate3d(40px, 110vh, 0) rotate(540deg); opacity: 0; }\n        }\n        .sakura-petals span {\n            position: absolute; top: 0;\n            background: #e8a3a3;\n            clip-path: path('M7 0 C 10 4, 11 9, 7 14 C 3 9, 4 4, 7 0 Z');\n            animation: sakura-fall linear infinite;\n            opacity: 0;\n        }\n        .sakura-petals span:nth-child(1){ left: 8%; width:14px; height:14px; animation-duration:22s; animation-delay: -7s; }\n        .sakura-petals span:nth-child(2){ left:30%; width:11px; height:11px; animation-duration:26s; animation-delay:-16s; }\n        .sakura-petals span:nth-child(3){ left:55%; width:17px; height:17px; animation-duration:20s; animation-delay: -3s; }\n        .sakura-petals span:nth-child(4){ left:75%; width:14px; height:14px; animation-duration:24s; animation-delay:-19s; }\n        .sakura-petals span:nth-child(5){ left:90%; width:10px; height:10px; animation-duration:28s; animation-delay:-13s; }\n        @media (prefers-reduced-motion: reduce) {\n            .sakura-petals span { animation: none; display: none; }\n        }\n    </style>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -50,8 +50,8 @@ func themeHead(title string) templ.Component {
 	})
 }
 
-// Five-petal sakura flower icon — set color via text-* utility on the parent.
-func sakuraFlower() templ.Component {
+// Firefly icon — small glowing dot. Color inherits from text-* on parent.
+func firefly() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -72,7 +72,7 @@ func sakuraFlower() templ.Component {
 			templ_7745c5c3_Var3 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<svg class=\"w-full h-full\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><g fill=\"currentColor\"><path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(72 20 20)\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(144 20 20)\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(216 20 20)\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(288 20 20)\"></path></g> <circle cx=\"20\" cy=\"20\" r=\"2.2\" fill=\"#fce4ec\"></circle></svg>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 3, "<svg class=\"w-full h-full\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><circle cx=\"20\" cy=\"20\" r=\"5\" fill=\"currentColor\"></circle> <circle cx=\"20\" cy=\"20\" r=\"11\" fill=\"currentColor\" opacity=\"0.25\"></circle></svg>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -80,8 +80,8 @@ func sakuraFlower() templ.Component {
 	})
 }
 
-// Optional ambient falling petals. Drop into <body> once.
-func sakuraPetals() templ.Component {
+// Ambient firefly layer — drop into <body> once.
+func fireflies() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -102,7 +102,95 @@ func sakuraPetals() templ.Component {
 			templ_7745c5c3_Var4 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"sakura-petals\" aria-hidden=\"true\"><span></span><span></span><span></span><span></span><span></span></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<div class=\"fireflies\" aria-hidden=\"true\"><span></span><span></span><span></span><span></span><span></span><span></span></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func stars() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var5 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var5 == nil {
+			templ_7745c5c3_Var5 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"stars\" aria-hidden=\"true\"><span></span><span></span><span></span> <span></span><span></span><span></span></div>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+// ──── Spring assets — kept for re-swap ────
+func sakuraFlower() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var6 == nil {
+			templ_7745c5c3_Var6 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 6, "<svg class=\"w-full h-full\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\"><g fill=\"currentColor\"><path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(72 20 20)\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(144 20 20)\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(216 20 20)\"></path> <path d=\"M20 4 C23 10, 23 16, 20 20 C17 16, 17 10, 20 4 Z\" transform=\"rotate(288 20 20)\"></path></g> <circle cx=\"20\" cy=\"20\" r=\"2.2\" fill=\"#fce4ec\"></circle></svg>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		return nil
+	})
+}
+
+func sakuraPetals() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
+		}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
+		}
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var7 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var7 == nil {
+			templ_7745c5c3_Var7 = templ.NopComponent
+		}
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 7, "<div class=\"sakura-petals\" aria-hidden=\"true\"><span></span><span></span><span></span><span></span><span></span></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

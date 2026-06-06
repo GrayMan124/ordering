@@ -63,16 +63,23 @@ templ Index(user_valid bool) {
 		</head>
 		<body id="main-area" class="washi-bg text-washi min-h-screen flex flex-col relative">
 			<div class="noren"></div>
-			@sakuraPetals()
+			//<div class="lantern-far"></div>
+			// @sakuraPetals()
+			@stars()
+			@fireflies()
 			<main class="flex-1 flex flex-col items-center w-full max-w-2xl mx-auto px-4 pt-10 pb-16 relative z-10">
 				<header class="text-center mb-10">
-					<div class="flex items-center justify-center gap-3 mb-3 text-sakura/80">
+					//<div class="flex items-center justify-center gap-3 mb-3 text-sakura/80">
+					<div class="flex items-center justify-center gap-3 mb-3 text-hotaru/90">
 						<span class="w-3 h-3">
-							@sakuraFlower()
+							// @sakuraFlower()
+							@firefly()
 						</span>
-						<p class="font-mincho text-[11px] tracking-[0.5em]">桜 の 候</p>
+						//<p class="font-mincho text-[11px] tracking-[0.5em]">桜 の 候</p>
+						<p class="font-mincho text-[11px] tracking-[0.5em]">蛍 火 の 候</p>
 						<span class="w-3 h-3">
-							@sakuraFlower()
+							//@sakuraFlower()
+							@firefly()
 						</span>
 					</div>
 					<h1 class="font-mincho text-5xl text-washi tracking-[0.3em]">唐変木バー</h1>
