@@ -1,5 +1,5 @@
 -- name: GetAllCock :many
-SELECT * 
-FROM cocktails
-where is_available = true
-order by is_new desc, name;
+SELECT cock.* 
+FROM cocktails cock
+where cock.is_available = true
+order by cock.is_new cock.desc, cock.name;

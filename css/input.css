@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+        body { font-family: 'Noto Sans JP', sans-serif; }
+
+	.noren {
+    	position: absolute;
+    	top: 0; left: 0; right: 0;
+    	height: 140px;
+    	pointer-events: none;
+    	background: linear-gradient(to bottom,
+        	rgba(31, 58, 92, 0.45)   0%,
+        	rgba(31, 58, 92, 0.28)  25%,
+        	rgba(110, 155, 184, 0.12) 55%,
+        	transparent             100%);
+    	z-index: 0;
+	}
+        .hanko {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 4.5rem; height: 4.5rem;
+            border: 3px solid #b3413e; color: #b3413e;
+            font-family: 'Shippori Mincho', serif; font-size: 1.25rem;
+            background: rgba(179, 65, 62, 0.06);
+            transform: rotate(-6deg);
+        }
+
+        .washi-bg {
+            background-color: #1a1410;
+            background-image: radial-gradient(rgba(176, 141, 74, 0.04) 1px, transparent 1px);
+            background-size: 3px 3px;
+        }
+.stars {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 140px;
+    pointer-events: none;
+    z-index: 0;
+}
+.stars span {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: #ebe4d3;
+    border-radius: 50%;
+}
+.stars span:nth-child(1) { top: 22%; left: 12%; opacity: 0.50; }
+.stars span:nth-child(2) { top: 45%; left: 28%; opacity: 0.35; width: 1px; height: 1px; }
+.stars span:nth-child(3) { top: 18%; left: 55%; opacity: 0.55; }
+.stars span:nth-child(4) { top: 38%; left: 73%; opacity: 0.40; width: 1px; height: 1px; }
+.stars span:nth-child(5) { top: 60%; left: 20%; opacity: 0.25; }
+.stars span:nth-child(6) { top: 55%; left: 88%; opacity: 0.30; width: 1px; height: 1px; }
+        /* ──── Fireflies (蛍) — active ambient layer ──── */
+        .fireflies {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        /* Slow wandering motion — fireflies drift, they don't fall. */
+        @keyframes firefly-drift {
+            0%   { transform: translate(0, 0); }
+            25%  { transform: translate(30px, -25px); }
+            50%  { transform: translate(-20px, 20px); }
+            75%  { transform: translate(15px, 35px); }
+            100% { transform: translate(0, 0); }
+        }
+        /* Pulse: dot fades in and out, glow fades with it (cheap to animate). */
+        @keyframes firefly-pulse {
+            0%, 100% { opacity: 0.15; }
+            50%      { opacity: 0.9; }
+        }
+        .fireflies span {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: #d4c25a;
+            border-radius: 50%;
+            /* Static glow halo; opacity animation fades dot + halo together. */
+            box-shadow: 0 0 8px 2px rgba(212, 194, 90, 0.55);
+	    will-change: transform, opacity;
+            animation: firefly-drift ease-in-out infinite,
+                       firefly-pulse ease-in-out infinite;
+        }
+        .fireflies span:nth-child(1){ top:18%; left:12%; animation-duration:18s,3.8s; animation-delay:  0s,-1.2s; }
+        .fireflies span:nth-child(2){ top:35%; left:78%; animation-duration:22s,4.5s; animation-delay: -7s,-2.8s; }
+        .fireflies span:nth-child(3){ top:62%; left:25%; animation-duration:26s,3.2s; animation-delay:-13s,-0.5s; }
+        .fireflies span:nth-child(4){ top:80%; left:60%; animation-duration:20s,5.1s; animation-delay: -4s,-3.7s; }
+        .fireflies span:nth-child(5){ top:50%; left:45%; animation-duration:24s,4.0s; animation-delay:-16s,-1.9s; }
+        .fireflies span:nth-child(6){ top:25%; left:88%; animation-duration:28s,3.5s; animation-delay: -9s,-2.3s; }
+        @media (prefers-reduced-motion: reduce) {
+            .fireflies span { animation: none; opacity: 0.4; }
+        }
+
+        /* ──── Sakura layer (spring) — kept for re-swap ──── */
+        .sakura-petals {
+            position: fixed; inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        @keyframes sakura-fall {
+            0%   { transform: translate3d(0, -10vh, 0) rotate(0deg);    opacity: 0; }
+            10%  { opacity: 0.55; }
+            100% { transform: translate3d(40px, 110vh, 0) rotate(540deg); opacity: 0; }
+        }
+        .sakura-petals span {
+            position: absolute; top: 0;
+            background: #e8a3a3;
+            clip-path: path('M7 0 C 10 4, 11 9, 7 14 C 3 9, 4 4, 7 0 Z');
+            animation: sakura-fall linear infinite;
+            opacity: 0;
+        }
+        .sakura-petals span:nth-child(1){ left: 8%; width:14px; height:14px; animation-duration:22s; animation-delay: -7s; }
+        .sakura-petals span:nth-child(2){ left:30%; width:11px; height:11px; animation-duration:26s; animation-delay:-16s; }
+        .sakura-petals span:nth-child(3){ left:55%; width:17px; height:17px; animation-duration:20s; animation-delay: -3s; }
+        .sakura-petals span:nth-child(4){ left:75%; width:14px; height:14px; animation-duration:24s; animation-delay:-19s; }
+        .sakura-petals span:nth-child(5){ left:90%; width:10px; height:10px; animation-duration:28s; animation-delay:-13s; }
+        @media (prefers-reduced-motion: reduce) {
+            .sakura-petals span { animation: none; display: none; }
+        }
+    </style>
