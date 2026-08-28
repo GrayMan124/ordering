@@ -12,6 +12,13 @@ type cocktail struct {
 	Name    string
 	ImgName string
 }
+type CocktailUI struct {
+	Name       string
+	CockSpirit string
+	ImgName    string
+	Is_new     bool
+	Score      float64
+}
 
 templ filterShelf(label string, items []string, queryKey string, imgPrefix string, imgH string) {
 	<div class="flex items-stretch gap-4 border-t border-kin/20 pt-3">
@@ -37,7 +44,7 @@ templ filterShelf(label string, items []string, queryKey string, imgPrefix strin
 	</div>
 }
 
-templ GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) {
+templ GetMenu(cockList []CocktailUI) {
 	<section class="space-y-5">
 		<header class="flex items-end justify-between border-b border-kin/30 pb-3">
 			<div>
@@ -77,27 +84,27 @@ templ GetMenu(cockList, baseSpirits, ImgNames []string, is_new []bool) {
 		@filterShelf("型", []string{"Highball", "Martini", "Sour", "Rocks", "Shot", "Sunrise"}, "style", "type", "h-24")
 	</section>
 	<ul class="mt-8">
-		for idx, cock := range cockList {
+		for _, cock := range cockList {
 			<li>
 				<div
-					hx-get={ fmt.Sprintf("/cock?cocktail=%s", cock) }
+					hx-get={ fmt.Sprintf("/cock?cocktail=%s", cock.Name) }
 					hx-target="this"
 					hx-swap="outerHTML"
 					class="group flex items-center gap-5 py-4 border-t border-kin/20 cursor-pointer hover:bg-sumi-2 transition-colors"
 				>
 					<img
-						src={ fmt.Sprintf("/assets/drink_%s.png", ImgNames[idx]) }
-						alt={ cock }
+						src={ fmt.Sprintf("/assets/drink_%s.png", cock.ImgName) }
+						alt={ cock.Name }
 						class="w-14 h-20 object-contain flex-shrink-0"
 					/>
 					<div class="flex-grow">
 						<h3 class="font-mincho text-xl text-washi leading-tight tracking-wider">
-							{ cock }
-							if is_new[idx] {
+							{ fmt.Sprintf("%s (%.0f)", cock.Name, cock.Score) }
+							if cock.Is_new {
 								<span class="ml-2 align-middle font-jp text-[10px] text-shu border border-shu px-1.5 py-0.5 tracking-widest">新</span>
 							}
 						</h3>
-						<p class="font-jp text-[10px] text-washi-dim uppercase tracking-[0.3em] mt-1">{ baseSpirits[idx] }</p>
+						<p class="font-jp text-[10px] text-washi-dim uppercase tracking-[0.3em] mt-1">{ cock.CockSpirit }</p>
 					</div>
 					<span class="text-kin text-xl group-hover:translate-x-1 transition-transform">›</span>
 				</div>

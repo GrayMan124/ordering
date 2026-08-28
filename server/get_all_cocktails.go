@@ -28,18 +28,18 @@ func (cfg *ApiConfig) CocktailAllHandler(w http.ResponseWriter, r *http.Request)
 		cfg.RespondWithError(w, r, 500)
 		return
 	}
-	var cockNames []string
-	var cockSpirits []string
-	var imgNames []string
-	var is_new_list []bool
+	var cockList []ui.CocktailUI
 	for _, cockt := range cocs {
-		cockNames = append(cockNames, cockt.Name)
-		cockSpirits = append(cockSpirits, cockt.BaseSpirit)
-		imgNames = append(imgNames, cockt.ImgName.String)
-		is_new_list = append(is_new_list, cockt.IsNew)
+		cockList = append(cockList, ui.CocktailUI{
+			Name:       cockt.Name,
+			CockSpirit: cockt.BaseSpirit,
+			ImgName:    cockt.ImgName.String,
+			Is_new:     cockt.IsNew,
+			Score:      cockt.Score,
+		})
 	}
 	w.WriteHeader(200)
-	component := ui.GetMenu(cockNames, cockSpirits, imgNames, is_new_list)
+	component := ui.GetMenu(cockList)
 	component.Render(r.Context(), w)
 
 }
@@ -53,7 +53,7 @@ func (cfg *ApiConfig) CocktailsFiltered(w http.ResponseWriter, r *http.Request) 
 	}
 	filter := r.URL.Query().Get("filter")
 	cock_style := r.URL.Query().Get("style")
-	var final_cocs []database.Cocktail
+	var final_cocs []database.GetAllCockRow
 	if filter != "" || cock_style != "" {
 		if filter != "" {
 			for _, coc := range cocs {
@@ -72,18 +72,18 @@ func (cfg *ApiConfig) CocktailsFiltered(w http.ResponseWriter, r *http.Request) 
 		final_cocs = cocs
 	}
 
-	var cockNames []string
-	var cockSpirits []string
-	var imgNames []string
-	var is_new_list []bool
-	for _, cockt := range final_cocs {
-		cockNames = append(cockNames, cockt.Name)
-		cockSpirits = append(cockSpirits, cockt.BaseSpirit)
-		imgNames = append(imgNames, cockt.ImgName.String)
-		is_new_list = append(is_new_list, cockt.IsNew)
+	var cockList []ui.CocktailUI
+	for _, cockt := range cocs {
+		cockList = append(cockList, ui.CocktailUI{
+			Name:       cockt.Name,
+			CockSpirit: cockt.BaseSpirit,
+			ImgName:    cockt.ImgName.String,
+			Is_new:     cockt.IsNew,
+			Score:      cockt.Score,
+		})
 	}
 	w.WriteHeader(200)
-	component := ui.GetMenu(cockNames, cockSpirits, imgNames, is_new_list)
+	component := ui.GetMenu(cockList)
 	component.Render(r.Context(), w)
 
 }
@@ -105,18 +105,18 @@ func (cfg *ApiConfig) CocktailSearch(w http.ResponseWriter, r *http.Request) {
 		cfg.RespondWithError(w, r, 500)
 		return
 	}
-	var cockNames []string
-	var cockSpirits []string
-	var imgNames []string
-	var is_new_list []bool
+	var cockList []ui.CocktailUI
 	for _, cockt := range cocs {
-		cockNames = append(cockNames, cockt.Name)
-		cockSpirits = append(cockSpirits, cockt.BaseSpirit)
-		imgNames = append(imgNames, cockt.ImgName.String)
-		is_new_list = append(is_new_list, cockt.IsNew)
+		cockList = append(cockList, ui.CocktailUI{
+			Name:       cockt.Name,
+			CockSpirit: cockt.BaseSpirit,
+			ImgName:    cockt.ImgName.String,
+			Is_new:     cockt.IsNew,
+			Score:      cockt.Score,
+		})
 	}
 	w.WriteHeader(200)
-	component := ui.GetMenu(cockNames, cockSpirits, imgNames, is_new_list)
+	component := ui.GetMenu(cockList)
 	component.Render(r.Context(), w)
 
 }

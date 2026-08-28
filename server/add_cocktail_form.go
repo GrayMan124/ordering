@@ -3,11 +3,10 @@ package server
 import (
 	"database/sql"
 	"fmt"
+	"github.com/GrayMan124/ordering/internal/database"
 	"log"
 	"net/http"
 	"strconv"
-
-	"github.com/GrayMan124/ordering/internal/database"
 )
 
 func (cfg *ApiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request) {
@@ -72,7 +71,6 @@ func (cfg *ApiConfig) AddCocktailFromData(w http.ResponseWriter, r *http.Request
 	}
 	_ = ReturnCocktail{Name: created_cocktail.Name, ID: created_cocktail.ID.UUID}
 
-	w.WriteHeader(201)
 	w.Header().Set("Content-Type", "application/json")
-	return
+	w.WriteHeader(201)
 }

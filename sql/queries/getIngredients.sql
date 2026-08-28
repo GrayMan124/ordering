@@ -1,2 +1,4 @@
 -- name: GetIngr :many
-select * from ingredients;
+select * from ingredients
+order by name;
+

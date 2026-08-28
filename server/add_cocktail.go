@@ -3,11 +3,13 @@ package server
 import (
 	"database/sql"
 	"encoding/json"
-	"github.com/GrayMan124/ordering/internal/database"
-	"github.com/google/uuid"
 	"log"
 	"net/http"
 	"slices"
+	"strings"
+
+	"github.com/GrayMan124/ordering/internal/database"
+	"github.com/google/uuid"
 )
 
 type Ingredient struct {
@@ -43,13 +45,13 @@ func (cfg *ApiConfig) getIngredientsId(ingredients []Ingredient, r *http.Request
 	}
 	ingrQueryNames := make([]string, len(ingrQuery))
 	for idx, ingrQ := range ingrQuery {
-		ingrQueryNames[idx] = ingrQ.Name
+		ingrQueryNames[idx] = strings.ToLower(ingrQ.Name)
 	}
 	ingrMap := make(map[string]uuid.UUID, len(ingrNames))
 	for _, ingr := range ingredients {
-		if slices.Contains(ingrQueryNames, ingr.Name) {
+		if slices.Contains(ingrQueryNames, strings.ToLower(ingr.Name)) {
 			for _, ingrQ := range ingrQuery {
-				if ingrQ.Name == ingr.Name {
+				if strings.EqualFold(ingrQ.Name, ingr.Name) {
 					ingrMap[ingr.Name] = ingrQ.ID
 					break
 				}
