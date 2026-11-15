@@ -1,11 +1,16 @@
 # Ordering
 
-[![No AI](https://www.aihonestybadge.com/badges/no-ai-small.svg)](https://www.aihonestybadge.com)
-[![License](https://shields.io)](LICENSE)
+<div align="center">
+[![AI Assisted](https://www.aihonestybadge.com/badges/ai-assisted-small.svg)](https://www.aihonestybadge.com)
+[![License: MIT](https://shields.io)](https://opensource.org)
+</div>
 
 A small web app for ordering drinks at a home bar. Guests pick a name, browse the menu and send orders from their phone; the bartender sees incoming orders and marks them done. There's also a leaderboard, because why not.
 
 Built with Go, [templ](https://templ.guide), HTMX and PostgreSQL.
+
+## AI usage
+Generative AI was used to help write frontend code, primarly CSS styling and small portions of HTML. The backend code was written by hand, with no AI assistance.
 
 ## Running it
 
