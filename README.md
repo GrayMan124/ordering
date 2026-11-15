@@ -1,7 +1,9 @@
 # Ordering
 
 <div align="center">
+
 [![AI Assisted](https://www.aihonestybadge.com/badges/ai-assisted-small.svg)](https://www.aihonestybadge.com)
+
 [![License: MIT](https://shields.io)](https://opensource.org)
 </div>
 
