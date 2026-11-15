@@ -1,11 +1,12 @@
 # Ordering
 
-<div align="center">
+<p align="center">
 
 [![AI Assisted](https://www.aihonestybadge.com/badges/ai-assisted-small.svg)](https://www.aihonestybadge.com)
 
 [![License: MIT](https://shields.io)](https://opensource.org)
-</div>
+
+</p>
 
 A small web app for ordering drinks at a home bar. Guests pick a name, browse the menu and send orders from their phone; the bartender sees incoming orders and marks them done. There's also a leaderboard, because why not.
 
