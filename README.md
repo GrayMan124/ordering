@@ -1,5 +1,8 @@
 # Ordering
 
+[![No AI](https://www.aihonestybadge.com/badges/no-ai-small.svg)](https://www.aihonestybadge.com)
+[![License](https://shields.io)](LICENSE)
+
 A small web app for ordering drinks at a home bar. Guests pick a name, browse the menu and send orders from their phone; the bartender sees incoming orders and marks them done. There's also a leaderboard, because why not.
 
 Built with Go, [templ](https://templ.guide), HTMX and PostgreSQL.
